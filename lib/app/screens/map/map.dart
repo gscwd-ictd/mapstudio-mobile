@@ -3,8 +3,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mapstudio/app/screens/map/mobile_map/portrait_map.dart';
 import 'package:mapstudio/app/widgets/openstreetmap/openstreetmap.dart';
 
 import '../../../domain/blocs/geolocation_bloc/geolocation_bloc.dart';
@@ -62,18 +64,18 @@ class _MapScreen extends State<MapScreen> {
           listener: (context, state) {
         if (BlocProvider.of<GeolocationBloc>(context).state
             is GeoLocationRequestDone) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('Location taken successfully.'),
-              duration: Duration(milliseconds: 3000)));
+          // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          //     content: Text('Location taken successfully.'),
+          //     duration: Duration(milliseconds: 3000)));
         } else if (BlocProvider.of<GeolocationBloc>(context).state
             is GeoLocationRequestLoading) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('Getting location.'),
-              duration: Duration(milliseconds: 3000)));
+          // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          //     content: Text('Getting location.'),
+          //     duration: Duration(milliseconds: 3000)));
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('Getting location failed.'),
-              duration: Duration(milliseconds: 3000)));
+          // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          //     content: Text('Getting location failed.'),
+          //     duration: Duration(milliseconds: 3000)));
         }
 
         // if (getRouteFailed == true) {
@@ -265,12 +267,7 @@ class _MapScreen extends State<MapScreen> {
           );
         } else {
           //if on mobile
-          return ElevatedButton(
-            onPressed: () {
-              GetGeolocationRequest;
-            },
-            child: const Text('test'),
-          );
+          return PortraitMap(currentLayer: currentLayer);
         }
       }),
     );

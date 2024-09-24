@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<GeolocationBloc>(
-            create: (_) => injector()..add(const GetGeolocationRequest())),
+            create: (_) => injector()..add(const InitializeGeolocator())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

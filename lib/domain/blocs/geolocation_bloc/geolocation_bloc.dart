@@ -8,7 +8,12 @@ part 'geolocation_state.dart';
 class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
   GeolocationBloc() : super(const GeoLocationRequestLoading()) {
     on<GetGeolocationRequest>(_getGeolocationRequest);
+    on<InitializeGeolocator>(_initializeGeolocator);
   }
+  int currentLayer = 0;
+
+  void _initializeGeolocator(
+      GeolocationEvent event, Emitter<GeolocationState> emit) async {}
 
   void _getGeolocationRequest(
       GeolocationEvent event, Emitter<GeolocationState> emit) async {
