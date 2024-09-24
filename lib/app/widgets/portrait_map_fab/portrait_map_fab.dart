@@ -3,20 +3,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:mapstudio/app/widgets/buttons/tooltip_button.dart';
 import 'package:mapstudio/domain/blocs/geolocation_bloc/geolocation_bloc.dart';
+import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_bloc.dart';
+import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_event.dart';
 
-class PortraitMap extends StatefulWidget {
+import '../../../common/enums/map_layer_enum.dart';
+
+class PortraitFab extends StatefulWidget {
   final int currentLayer;
-  const PortraitMap({super.key, required this.currentLayer});
+  const PortraitFab({super.key, required this.currentLayer});
 
   @override
-  State<PortraitMap> createState() => _PortraitMapState();
+  State<PortraitFab> createState() => _PortraitFabState();
 }
 
-class _PortraitMapState extends State<PortraitMap> {
+class _PortraitFabState extends State<PortraitFab> {
   @override
   Widget build(BuildContext context) {
     final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
-    int currentLayer = geolocationBloc.currentLayer;
+    final maplayerBloc = BlocProvider.of<MapLayerBloc>(context);
+    // int currentLayer = geolocationBloc.currentLayer;
     return Padding(
       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 12),
       child: Row(
@@ -28,7 +33,11 @@ class _PortraitMapState extends State<PortraitMap> {
               label: 'Street View',
               onTap: () {
                 setState(() {
-                  geolocationBloc.currentLayer = 0;
+                  BlocProvider.of<MapLayerBloc>(context)
+                      .add(const ChangeMapLayerEvent(
+                    currentLayer: MapLayer.defaultosm,
+                  ));
+                  // geolocationBloc.currentLayer = 0;
                 });
               },
             ),
@@ -40,7 +49,11 @@ class _PortraitMapState extends State<PortraitMap> {
                 label: 'Street View',
                 onTap: () {
                   setState(() {
-                    geolocationBloc.currentLayer = 0;
+                    BlocProvider.of<MapLayerBloc>(context)
+                        .add(const ChangeMapLayerEvent(
+                      currentLayer: MapLayer.defaultosm,
+                    ));
+                    // geolocationBloc.currentLayer = 0;
                   });
                 },
               ),
@@ -49,7 +62,11 @@ class _PortraitMapState extends State<PortraitMap> {
                 label: 'Dark Mode',
                 onTap: () {
                   setState(() {
-                    geolocationBloc.currentLayer = 0;
+                    BlocProvider.of<MapLayerBloc>(context)
+                        .add(const ChangeMapLayerEvent(
+                      currentLayer: MapLayer.darkmode,
+                    ));
+                    // geolocationBloc.currentLayer = 0;
                   });
                 },
               ),
@@ -58,7 +75,11 @@ class _PortraitMapState extends State<PortraitMap> {
                 label: 'Light Mode',
                 onTap: () {
                   setState(() {
-                    geolocationBloc.currentLayer = 0;
+                    BlocProvider.of<MapLayerBloc>(context)
+                        .add(const ChangeMapLayerEvent(
+                      currentLayer: MapLayer.lightmode,
+                    ));
+                    // geolocationBloc.currentLayer = 0;
                   });
                 },
               ),
@@ -67,7 +88,11 @@ class _PortraitMapState extends State<PortraitMap> {
                 label: 'Pipeline',
                 onTap: () {
                   setState(() {
-                    geolocationBloc.currentLayer = 0;
+                    BlocProvider.of<MapLayerBloc>(context)
+                        .add(const ChangeMapLayerEvent(
+                      currentLayer: MapLayer.pipelines,
+                    ));
+                    // geolocationBloc.currentLayer = 0;
                   });
                 },
               ),
@@ -76,7 +101,11 @@ class _PortraitMapState extends State<PortraitMap> {
                 label: 'Fire Hydrants',
                 onTap: () {
                   setState(() {
-                    geolocationBloc.currentLayer = 0;
+                    BlocProvider.of<MapLayerBloc>(context)
+                        .add(const ChangeMapLayerEvent(
+                      currentLayer: MapLayer.firehydrants,
+                    ));
+                    // geolocationBloc.currentLayer = 0;
                   });
                 },
               ),
@@ -85,7 +114,11 @@ class _PortraitMapState extends State<PortraitMap> {
                 label: 'Water Meters',
                 onTap: () {
                   setState(() {
-                    geolocationBloc.currentLayer = 0;
+                    BlocProvider.of<MapLayerBloc>(context)
+                        .add(const ChangeMapLayerEvent(
+                      currentLayer: MapLayer.watermeters,
+                    ));
+                    // geolocationBloc.currentLayer = 0;
                   });
                 },
               ),

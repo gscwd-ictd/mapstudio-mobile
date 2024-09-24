@@ -2,12 +2,9 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mapstudio/app/screens/map/mobile_map/portrait_map.dart';
-import 'package:mapstudio/app/widgets/openstreetmap/openstreetmap.dart';
+import 'package:mapstudio/app/widgets/portrait_map_fab/portrait_map_fab.dart';
+import 'package:mapstudio/app/widgets/open_street_map/open_street_map.dart';
 
 import '../../../domain/blocs/geolocation_bloc/geolocation_bloc.dart';
 
@@ -40,7 +37,7 @@ class _MapScreen extends State<MapScreen> {
     // First get the FlutterView.
     FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
     final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
-// Dimensions in physical pixels (px)
+    // Dimensions in physical pixels (px)
     Size size = view.physicalSize;
     double deviceWidth = size.width;
 
@@ -56,7 +53,7 @@ class _MapScreen extends State<MapScreen> {
       //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       //   title: Text(widget.title),
       // ),
-      body: const FlutterMapWidget(),
+      body: const OpenStreetMapWidget(),
       floatingActionButtonLocation: deviceWidth > 1600
           ? FloatingActionButtonLocation.miniStartTop
           : FloatingActionButtonLocation.endFloat,
@@ -267,7 +264,7 @@ class _MapScreen extends State<MapScreen> {
           );
         } else {
           //if on mobile
-          return PortraitMap(currentLayer: currentLayer);
+          return PortraitFab(currentLayer: currentLayer);
         }
       }),
     );
