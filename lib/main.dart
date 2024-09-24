@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapstudio/app/screens/map/map.dart';
-
-import 'app/widgets/openstreetmap/openstreetmap.dart';
+import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_bloc.dart';
+import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_event.dart';
 import 'domain/blocs/geolocation_bloc/geolocation_bloc.dart';
 import 'src/injector.dart';
 
@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<GeolocationBloc>(
             create: (_) => injector()..add(const InitializeGeolocator())),
+        BlocProvider<MapLayerBloc>(
+            create: (_) => injector()..add(const InitializeMapLayer())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
