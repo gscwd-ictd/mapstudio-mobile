@@ -20,6 +20,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreen extends State<MapScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int currentLayer = 0;
   bool getRouteFailed = false;
 
@@ -34,6 +35,27 @@ class _MapScreen extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> appDrawers = [
+      const DrawerHeader(
+        decoration: BoxDecoration(
+          color: Colors.blue,
+        ),
+        child: Text('Map Example'),
+      ),
+      ListTile(
+        leading: const Icon(
+          Icons.my_location,
+        ),
+        title: const Text('My Current Location'),
+        trailing: IconButton(
+          icon: const Icon(Icons.remove_red_eye_outlined),
+          onPressed: () {},
+        ),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+    ];
     // First get the FlutterView.
     FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
     final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
@@ -42,7 +64,24 @@ class _MapScreen extends State<MapScreen> {
     double deviceWidth = size.width;
 
     return Scaffold(
+      key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              _scaffoldKey.currentState?.openDrawer();
+            },
+            icon: const Icon(Icons.layers_sharp)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      drawer: Drawer(
+        child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: appDrawers),
+      ),
       // appBar: AppBar(
       //   leading: IconButton(
       //     icon: const Icon(Icons.arrow_back),

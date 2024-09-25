@@ -27,21 +27,31 @@ class _PortraitFabState extends State<PortraitFab> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SpeedDial(children: [
-            SpeedDialChild(
-              child: const Icon(Icons.streetview_rounded),
-              label: 'Street View',
-              onTap: () {
-                setState(() {
-                  BlocProvider.of<MapLayerBloc>(context)
-                      .add(const ChangeMapLayerEvent(
-                    currentLayer: MapLayer.defaultosm,
-                  ));
-                  // geolocationBloc.currentLayer = 0;
-                });
-              },
+          SpeedDial(
+            children: [
+              SpeedDialChild(
+                backgroundColor: Colors.transparent,
+                child: Image.asset(
+                  "assets/images/open_layer.png",
+                ),
+                label: 'Street View',
+                shape: const RoundedRectangleBorder(),
+                onTap: () {
+                  setState(() {
+                    maplayerBloc.add(const ChangeMapLayerEvent(
+                      currentLayer: MapLayer.defaultosm,
+                    ));
+                    // geolocationBloc.currentLayer = 0;
+                  });
+                },
+              ),
+            ],
+            elevation: 10,
+            switchLabelPosition: true,
+            child: Image.asset(
+              "assets/images/open_layer.png",
             ),
-          ], elevation: 10, child: Image.asset("assets/images/open_layer.png")),
+          ),
           SpeedDial(
             children: [
               SpeedDialChild(
@@ -49,8 +59,7 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Street View',
                 onTap: () {
                   setState(() {
-                    BlocProvider.of<MapLayerBloc>(context)
-                        .add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(const ChangeMapLayerEvent(
                       currentLayer: MapLayer.defaultosm,
                     ));
                     // geolocationBloc.currentLayer = 0;
@@ -62,8 +71,7 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Dark Mode',
                 onTap: () {
                   setState(() {
-                    BlocProvider.of<MapLayerBloc>(context)
-                        .add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(const ChangeMapLayerEvent(
                       currentLayer: MapLayer.darkmode,
                     ));
                     // geolocationBloc.currentLayer = 0;
@@ -75,8 +83,7 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Light Mode',
                 onTap: () {
                   setState(() {
-                    BlocProvider.of<MapLayerBloc>(context)
-                        .add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(const ChangeMapLayerEvent(
                       currentLayer: MapLayer.lightmode,
                     ));
                     // geolocationBloc.currentLayer = 0;
@@ -88,8 +95,7 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Pipeline',
                 onTap: () {
                   setState(() {
-                    BlocProvider.of<MapLayerBloc>(context)
-                        .add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(const ChangeMapLayerEvent(
                       currentLayer: MapLayer.pipelines,
                     ));
                     // geolocationBloc.currentLayer = 0;
@@ -101,8 +107,7 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Fire Hydrants',
                 onTap: () {
                   setState(() {
-                    BlocProvider.of<MapLayerBloc>(context)
-                        .add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(const ChangeMapLayerEvent(
                       currentLayer: MapLayer.firehydrants,
                     ));
                     // geolocationBloc.currentLayer = 0;
@@ -114,8 +119,7 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Water Meters',
                 onTap: () {
                   setState(() {
-                    BlocProvider.of<MapLayerBloc>(context)
-                        .add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(const ChangeMapLayerEvent(
                       currentLayer: MapLayer.watermeters,
                     ));
                     // geolocationBloc.currentLayer = 0;
@@ -123,6 +127,7 @@ class _PortraitFabState extends State<PortraitFab> {
                 },
               ),
             ],
+            child: const Icon(Icons.map_outlined),
           ),
         ],
       ),
