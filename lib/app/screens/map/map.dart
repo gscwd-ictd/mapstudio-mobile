@@ -303,7 +303,7 @@ class _MapScreen extends State<MapScreen> {
           );
         } else {
           //if on mobile
-          return PortraitFab(currentLayer: currentLayer);
+          return PortraitFab();
         }
       }),
     );
