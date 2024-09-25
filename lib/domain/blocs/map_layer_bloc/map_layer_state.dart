@@ -1,22 +1,19 @@
-import 'package:equatable/equatable.dart';
-
 import '../../../common/enums/map_layer_enum.dart';
 
-class MapLayerState extends Equatable {
-  final MapLayer currentLayer;
+abstract class MapLayerState {
+  MapLayer? currentLayer = MapLayer.defaultosm;
 
-  const MapLayerState({
-    this.currentLayer = MapLayer.defaultosm,
-  });
+  MapLayerState({this.currentLayer});
+}
 
-  @override
-  List<Object> get props => [currentLayer];
+class MapLayerStateInitial extends MapLayerState {
+  MapLayerStateInitial();
+}
 
-  MapLayerState copyWith({
-    MapLayer? currentLayer,
-  }) {
-    return MapLayerState(
-      currentLayer: currentLayer ?? this.currentLayer,
-    );
-  }
+class MapLayerLoading extends MapLayerState {
+  MapLayerLoading({super.currentLayer});
+}
+
+class MapLayerLoaded extends MapLayerState {
+  MapLayerLoaded({super.currentLayer});
 }
