@@ -9,8 +9,8 @@ import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_event.dart';
 import '../../../common/enums/map_layer_enum.dart';
 
 class PortraitFab extends StatefulWidget {
-  final int currentLayer;
-  const PortraitFab({super.key, required this.currentLayer});
+  // final int currentLayer;
+  const PortraitFab();
 
   @override
   State<PortraitFab> createState() => _PortraitFabState();
@@ -38,9 +38,10 @@ class _PortraitFabState extends State<PortraitFab> {
                 shape: const RoundedRectangleBorder(),
                 onTap: () {
                   setState(() {
-                    maplayerBloc.add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.defaultosm,
                     ));
+                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -59,9 +60,10 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Street View',
                 onTap: () {
                   setState(() {
-                    maplayerBloc.add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.defaultosm,
                     ));
+                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -71,9 +73,10 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Dark Mode',
                 onTap: () {
                   setState(() {
-                    maplayerBloc.add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.darkmode,
                     ));
+                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -83,9 +86,10 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Light Mode',
                 onTap: () {
                   setState(() {
-                    maplayerBloc.add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.lightmode,
                     ));
+                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -95,9 +99,10 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Pipeline',
                 onTap: () {
                   setState(() {
-                    maplayerBloc.add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.pipelines,
                     ));
+                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -107,9 +112,10 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Fire Hydrants',
                 onTap: () {
                   setState(() {
-                    maplayerBloc.add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.firehydrants,
                     ));
+                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -119,9 +125,10 @@ class _PortraitFabState extends State<PortraitFab> {
                 label: 'Water Meters',
                 onTap: () {
                   setState(() {
-                    maplayerBloc.add(const ChangeMapLayerEvent(
+                    maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.watermeters,
                     ));
+                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },

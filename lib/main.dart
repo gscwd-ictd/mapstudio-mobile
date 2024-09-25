@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<GeolocationBloc>(
             create: (_) => injector()..add(const InitializeGeolocator())),
         BlocProvider<MapLayerBloc>(
-            create: (_) => injector()..add(const InitializeMapLayer())),
+            create: (_) => injector()..add(InitializeMapLayer())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -60,6 +60,8 @@ class _OpenStreetMapWidget extends State<OpenStreetMapWidget> {
             ] else if (state.currentLayer == MapLayer.watermeters) ...[
               openStreetMapCustomTileLayer_light,
               gscwdMap_WaterMeter2024,
+            ] else ...[
+              openStreetMapTileLayer,
             ],
 
             Text(userPosition),
@@ -104,6 +106,7 @@ class _OpenStreetMapWidget extends State<OpenStreetMapWidget> {
 }
 
 TileLayer get openStreetMapTileLayer => TileLayer(
+      tileDisplay: const TileDisplay.instantaneous(),
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
       userAgentPackageName: 'dev.fleaflet.flutter_map.example',
     );
@@ -126,6 +129,7 @@ TileLayer get openStreetMapCustomTileLayer_light => TileLayer(
     );
 
 TileLayer get gscwdMap_Pipeline2024_6 => TileLayer(
+      tileDisplay: const TileDisplay.instantaneous(),
       wmsOptions: WMSTileLayerOptions(
         crs: const Epsg3857(),
         baseUrl: 'http://172.20.110.69:8080/geoserver/gismapping3/wms?',
@@ -134,6 +138,7 @@ TileLayer get gscwdMap_Pipeline2024_6 => TileLayer(
     );
 
 TileLayer get gscwdMap_Hydrants2024 => TileLayer(
+      tileDisplay: const TileDisplay.instantaneous(),
       wmsOptions: WMSTileLayerOptions(
         crs: const Epsg3857(),
         baseUrl: 'http://172.20.110.69:8080/geoserver/gismapping3/wms?',
@@ -142,6 +147,7 @@ TileLayer get gscwdMap_Hydrants2024 => TileLayer(
     );
 
 TileLayer get gscwdMap_WaterMeter2024 => TileLayer(
+      tileDisplay: const TileDisplay.instantaneous(),
       wmsOptions: WMSTileLayerOptions(
         crs: const Epsg3857(),
         baseUrl: 'http://172.20.110.69:8080/geoserver/gismapping3/wms?',
