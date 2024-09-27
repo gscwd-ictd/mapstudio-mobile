@@ -64,7 +64,7 @@ class _OpenStreetMapWidget extends State<OpenStreetMapWidget> {
               openStreetMapTileLayer,
             ],
 
-            Text(userPosition),
+            Text(deviceWidth.toString()),
             BlocBuilder<GeolocationBloc, GeolocationState>(
               builder: (context, state) {
                 if (BlocProvider.of<GeolocationBloc>(context).state
