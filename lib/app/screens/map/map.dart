@@ -3,7 +3,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mapstudio/app/widgets/portrait_map_fab/portrait_map_fab.dart';
+import 'package:mapstudio/app/widgets/map_floating_action_button/map_floating_action_button.dart';
 import 'package:mapstudio/app/widgets/open_street_map/open_street_map.dart';
 
 import '../../../domain/blocs/geolocation_bloc/geolocation_bloc.dart';
@@ -59,9 +59,9 @@ class _MapScreen extends State<MapScreen> {
     // First get the FlutterView.
     FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
     final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
-    // Dimensions in physical pixels (px)
-    Size size = view.physicalSize;
-    double deviceWidth = size.width;
+
+    //check if orientation is portrait or landscape
+    Orientation deviceOrientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -93,9 +93,9 @@ class _MapScreen extends State<MapScreen> {
       //   title: Text(widget.title),
       // ),
       body: const OpenStreetMapWidget(),
-      floatingActionButtonLocation: deviceWidth > 1600
-          ? FloatingActionButtonLocation.miniStartTop
-          : FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: deviceOrientation == Orientation.portrait
+          ? FloatingActionButtonLocation.endFloat
+          : FloatingActionButtonLocation.miniStartTop,
       floatingActionButton: BlocConsumer<GeolocationBloc, GeolocationState>(
           listener: (context, state) {
         if (BlocProvider.of<GeolocationBloc>(context).state
@@ -121,190 +121,7 @@ class _MapScreen extends State<MapScreen> {
         //       duration: Duration(milliseconds: 300)));
         // }
       }, builder: (context, state) {
-        if (deviceWidth > 1600) {
-          //if on tablet
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        currentLayer = 0;
-                        geolocationBloc.add(const GetGeolocationRequest());
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                          child: Icon(
-                            Icons.streetview_rounded,
-                            size: 16,
-                            color: currentLayer == 0
-                                ? Colors.blueAccent
-                                : Colors.black,
-                          ),
-                        ),
-                        const Text(
-                          'Street View',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        currentLayer = 1;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                          child: Icon(
-                            Icons.dark_mode_rounded,
-                            size: 16,
-                            color: currentLayer == 1
-                                ? Colors.blueAccent
-                                : Colors.black,
-                          ),
-                        ),
-                        const Text(
-                          'Dark Mode',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        currentLayer = 2;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                          child: Icon(
-                            size: 16,
-                            Icons.light_mode_rounded,
-                            color: currentLayer == 2
-                                ? Colors.blueAccent
-                                : Colors.black,
-                          ),
-                        ),
-                        const Text(
-                          'Light Mode',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        currentLayer = 3;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                          child: Icon(
-                            size: 16,
-                            Icons.plumbing_rounded,
-                            color: currentLayer == 3
-                                ? Colors.blueAccent
-                                : Colors.black,
-                          ),
-                        ),
-                        const Text(
-                          'Pipeline',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        currentLayer = 4;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                          child: Icon(
-                            size: 16,
-                            Icons.fire_hydrant_alt_rounded,
-                            color: currentLayer == 4
-                                ? Colors.blueAccent
-                                : Colors.black,
-                          ),
-                        ),
-                        const Text(
-                          'Fire Hydrants',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        currentLayer = 5;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                          child: Icon(
-                            size: 16,
-                            Icons.water_damage_rounded,
-                            color: currentLayer == 5
-                                ? Colors.blueAccent
-                                : Colors.black,
-                          ),
-                        ),
-                        const Text(
-                          'Water Meters',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        } else {
-          //if on mobile
-          return PortraitFab();
-        }
+        return const MapFloatingActionButton();
       }),
     );
   }
