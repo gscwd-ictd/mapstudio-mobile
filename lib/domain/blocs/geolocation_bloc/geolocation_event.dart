@@ -9,7 +9,8 @@ class InitializeGeolocator extends GeolocationEvent {
 }
 
 class GetGeolocationRequest extends GeolocationEvent {
-  const GetGeolocationRequest();
+  final BuildContext context;
+  const GetGeolocationRequest(this.context);
 }
 
 class StoreGeolocationData extends GeolocationEvent {

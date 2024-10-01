@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:mapstudio/app/screens/map/map.dart';
 
 part 'geolocation_event.dart';
 part 'geolocation_state.dart';
@@ -16,7 +18,7 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
       GeolocationEvent event, Emitter<GeolocationState> emit) async {}
 
   void _getGeolocationRequest(
-      GeolocationEvent event, Emitter<GeolocationState> emit) async {
+      GetGeolocationRequest event, Emitter<GeolocationState> emit) async {
     emit(const GeoLocationRequestLoading());
     print('test');
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -40,7 +42,8 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
           Geolocator.getPositionStream(locationSettings: locationSettings)
               .listen(
             (Position position) => add(
-              const GetGeolocationRequest(),
+              // ignore: use_build_context_synchronously
+              GetGeolocationRequest(event.context),
             ),
           );
         }
@@ -54,7 +57,8 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
         // monitor device geolocation changes and runs GetGeolocationRequest event again there are updates
         Geolocator.getPositionStream(locationSettings: locationSettings).listen(
           (Position position) => add(
-            const GetGeolocationRequest(),
+            // ignore: use_build_context_synchronously
+            GetGeolocationRequest(event.context),
           ),
         );
 
@@ -62,5 +66,24 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
             locationData.latitude, locationData.longitude));
       }
     }
+    // ignore: use_build_context_synchronously
+    Navigator.of(event.context).pushAndRemoveUntil(
+      // ignore: use_build_context_synchronously
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) {
+          // Navigate to the SecondScreen
+          return const MapScreen();
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          var tween = Tween<double>(begin: 0.0, end: 1).animate(animation);
+          return FadeTransition(
+            opacity: tween,
+            // Apply slide transition
+            child: child,
+          );
+        },
+      ),
+      (route) => false,
+    );
   }
 }

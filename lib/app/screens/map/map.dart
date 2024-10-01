@@ -11,9 +11,7 @@ import '../../../domain/blocs/geolocation_bloc/geolocation_bloc.dart';
 // import '../../constants/types/route_type.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key, required this.title});
-
-  final String title;
+  const MapScreen({super.key});
 
   @override
   State<MapScreen> createState() => _MapScreen();

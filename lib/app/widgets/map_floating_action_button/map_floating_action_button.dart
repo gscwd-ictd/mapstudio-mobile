@@ -1,9 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:mapstudio/app/widgets/buttons/tooltip_button.dart';
 import 'package:mapstudio/domain/blocs/geolocation_bloc/geolocation_bloc.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_bloc.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_event.dart';
@@ -48,7 +45,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                       maplayerBloc.add(UpdateMapLayer(
                         currentLayer: MapLayer.defaultosm,
                       ));
-                      geolocationBloc.add(const GetGeolocationRequest());
                       // geolocationBloc.currentLayer = 0;
                     });
                   },
@@ -70,7 +66,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                       maplayerBloc.add(UpdateMapLayer(
                         currentLayer: MapLayer.defaultosm,
                       ));
-                      geolocationBloc.add(const GetGeolocationRequest());
                       // geolocationBloc.currentLayer = 0;
                     });
                   },
@@ -83,7 +78,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                       maplayerBloc.add(UpdateMapLayer(
                         currentLayer: MapLayer.darkmode,
                       ));
-                      geolocationBloc.add(const GetGeolocationRequest());
                       // geolocationBloc.currentLayer = 0;
                     });
                   },
@@ -96,7 +90,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                       maplayerBloc.add(UpdateMapLayer(
                         currentLayer: MapLayer.lightmode,
                       ));
-                      geolocationBloc.add(const GetGeolocationRequest());
                       // geolocationBloc.currentLayer = 0;
                     });
                   },
@@ -109,7 +102,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                       maplayerBloc.add(UpdateMapLayer(
                         currentLayer: MapLayer.pipelines,
                       ));
-                      geolocationBloc.add(const GetGeolocationRequest());
                       // geolocationBloc.currentLayer = 0;
                     });
                   },
@@ -122,7 +114,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                       maplayerBloc.add(UpdateMapLayer(
                         currentLayer: MapLayer.firehydrants,
                       ));
-                      geolocationBloc.add(const GetGeolocationRequest());
                       // geolocationBloc.currentLayer = 0;
                     });
                   },
@@ -135,7 +126,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                       maplayerBloc.add(UpdateMapLayer(
                         currentLayer: MapLayer.watermeters,
                       ));
-                      geolocationBloc.add(const GetGeolocationRequest());
                       // geolocationBloc.currentLayer = 0;
                     });
                   },
@@ -163,7 +153,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                     maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.defaultosm,
                     ));
-                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -196,7 +185,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                     maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.darkmode,
                     ));
-                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -229,7 +217,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                     maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.lightmode,
                     ));
-                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -262,7 +249,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                     maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.pipelines,
                     ));
-                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -295,7 +281,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                     maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.firehydrants,
                     ));
-                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
@@ -328,7 +313,6 @@ class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
                     maplayerBloc.add(UpdateMapLayer(
                       currentLayer: MapLayer.watermeters,
                     ));
-                    geolocationBloc.add(const GetGeolocationRequest());
                     // geolocationBloc.currentLayer = 0;
                   });
                 },
