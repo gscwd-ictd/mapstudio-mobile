@@ -67,15 +67,18 @@ class _OpenStreetMapWidget extends State<OpenStreetMapWidget> {
             Text(deviceWidth.toString()),
             BlocBuilder<GeolocationBloc, GeolocationState>(
               builder: (context, state) {
-                if (BlocProvider.of<GeolocationBloc>(context).state
-                    is GeoLocationRequestDone) {
-                  userPosition =
-                      "${state.currentLatitude.toString()} ${state.currentLongitude.toString()}";
+                if (state is GeoLocationRequestDone) {
+                  double? lat = state.currentLatitude;
+                  double? long = state.currentLongitude;
+                  LatLng latLng = const LatLng(0, 0);
+                  if (lat != null && long != null) {
+                    userPosition = "${lat.toString()} ${long.toString()}";
+                    latLng = LatLng(lat, long);
+                  }
                   return MarkerLayer(markers: [
                     // 1st marker
                     Marker(
-                        point: LatLng(
-                            state.currentLongitude!, state.currentLatitude!),
+                        point: latLng,
                         width: 40,
                         height: 40,
                         alignment: Alignment.center,

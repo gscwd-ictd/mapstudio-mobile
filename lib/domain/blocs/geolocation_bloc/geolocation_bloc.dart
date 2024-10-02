@@ -33,34 +33,38 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
           emit(const GeoLocationPermissionDeclined());
           // return Future.error('Location services are denied.');
         } else {
-          await Geolocator.getCurrentPosition();
-          LocationSettings locationSettings = const LocationSettings(
-            accuracy: LocationAccuracy.best,
-            distanceFilter: 10,
-          );
+          final locationData = await Geolocator.getCurrentPosition(
+              desiredAccuracy: LocationAccuracy.high);
+          // LocationSettings locationSettings = const LocationSettings(
+          //   accuracy: LocationAccuracy.best,
+          //   distanceFilter: 10,
+          // );
           // monitor device geolocation changes and runs GetGeolocationRequest event again there are updates
-          Geolocator.getPositionStream(locationSettings: locationSettings)
-              .listen(
-            (Position position) => add(
-              // ignore: use_build_context_synchronously
-              GetGeolocationRequest(event.context),
-            ),
-          );
+          // Geolocator.getPositionStream(locationSettings: locationSettings)
+          //     .listen(
+          //   (Position position) => add(
+          //     // ignore: use_build_context_synchronously
+          //     GetGeolocationRequest(event.context),
+          //   ),
+          // );
+          emit(GeoLocationRequestDone(
+              locationData.latitude, locationData.longitude));
         }
       } else {
-        final locationData = await Geolocator.getCurrentPosition();
-        LocationSettings locationSettings = const LocationSettings(
-          accuracy: LocationAccuracy.best,
-          distanceFilter: 10,
-        );
+        final locationData = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
+        // LocationSettings locationSettings = const LocationSettings(
+        //   accuracy: LocationAccuracy.best,
+        //   distanceFilter: 10,
+        // );
 
         // monitor device geolocation changes and runs GetGeolocationRequest event again there are updates
-        Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-          (Position position) => add(
-            // ignore: use_build_context_synchronously
-            GetGeolocationRequest(event.context),
-          ),
-        );
+        // Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+        //   (Position position) => add(
+        //     // ignore: use_build_context_synchronously
+        //     GetGeolocationRequest(event.context),
+        //   ),
+        // );
 
         emit(GeoLocationRequestDone(
             locationData.latitude, locationData.longitude));
