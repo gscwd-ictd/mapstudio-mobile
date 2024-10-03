@@ -7,6 +7,7 @@ import 'package:mapstudio/app/widgets/map_floating_action_button/map_floating_ac
 import 'package:mapstudio/app/widgets/open_street_map/open_street_map.dart';
 
 import '../../../domain/blocs/geolocation_bloc/geolocation_bloc.dart';
+import '../../widgets/curved_navigation_bar/curved_navigation_bar.dart';
 
 // import '../../constants/types/route_type.dart';
 
@@ -62,6 +63,8 @@ class _MapScreen extends State<MapScreen> {
     Orientation deviceOrientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
+      extendBody: true,
+      bottomNavigationBar: const CurvedNavBar(),
       key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
