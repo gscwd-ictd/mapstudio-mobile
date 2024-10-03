@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:mapstudio/app/widgets/saco_form_details/saco_form_details.dart';
+import 'package:mapstudio/app/widgets/saco_form/saco_form_body.dart';
+import 'package:mapstudio/app/widgets/saco_form/saco_form_details.dart';
+import 'package:mapstudio/app/widgets/saco_form/saco_form_map.dart';
 import 'package:mapstudio/common/constants/colors.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
 import 'package:mapstudio/common/utils/text_scale_util.dart';
@@ -51,48 +53,8 @@ class _SacoFormState extends State<SacoForm> {
                   color: Colors.white,
                 ),
                 const SacoFormDetail(),
-                Padding(
-                  padding: EdgeInsets.only(top: SizerUtil.height(context) / 30),
-                  child: ShadowWidget(
-                    blurRadius: 5,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: SizedBox(
-                        height: SizerUtil.height(context) / 2.5,
-                        width: SizerUtil.width(context) / 1.1,
-                        child: Stack(
-                          alignment: AlignmentDirectional.bottomEnd,
-                          children: [
-                            FlutterMap(
-                                options: const MapOptions(
-                                  initialCenter: LatLng(6.12562, 125.18451),
-                                  initialZoom: 17,
-                                  minZoom: 12,
-                                  maxZoom: 20,
-                                  interactionOptions: InteractionOptions(
-                                      flags: ~InteractiveFlag.doubleTapZoom),
-                                ),
-                                children: [openStreetMapTileLayer]),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      shape: const CircleBorder(),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10)),
-                                  onPressed: () {},
-                                  child: const Icon(
-                                    Icons.my_location,
-                                    color: Colors.blue,
-                                  )),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                )
+                SacoFormMap(tileLayer: openStreetMapTileLayer),
+                const SacoFormBody()
               ],
             ),
           ),
