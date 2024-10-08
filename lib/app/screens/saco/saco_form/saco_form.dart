@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:mapstudio/app/widgets/buttons/icon_circular_button.dart';
+import 'package:mapstudio/app/widgets/curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_body/saco_form_body.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_details.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_map.dart';
@@ -24,11 +25,33 @@ class _SacoFormState extends State<SacoForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.mainColor,
+        title: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  right: SizerUtil.width(context) / 12, top: 32.0),
+              child: Text("Inspection of Applicant's Information:",
+                  style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                  textScaler: TextScaler.linear(
+                      TextScaleUtil.textScaleFactor(context))),
+            ),
+            const Divider(
+              color: Colors.white,
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: const CurvedNavBar(),
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 3,
+            height: MediaQuery.of(context).size.height / 4,
             child: Container(
               decoration: const BoxDecoration(
                 shape: BoxShape.rectangle,
@@ -39,25 +62,11 @@ class _SacoFormState extends State<SacoForm> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 80.0),
-            child: SingleChildScrollView(
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0, bottom: 30),
               child: Column(
                 children: [
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: SizerUtil.width(context) / 12),
-                    child: Text("Inspection of Applicant's Information:",
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                        textScaler: TextScaler.linear(
-                            TextScaleUtil.textScaleFactor(context))),
-                  ),
-                  const Divider(
-                    color: Colors.white,
-                  ),
                   const SacoFormDetail(),
                   SacoFormMap(tileLayer: openStreetMapTileLayer),
                   const SacoFormBody(),

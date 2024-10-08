@@ -19,6 +19,7 @@ class _LogoScreenState extends State<LogoScreen> with TickerProviderStateMixin {
     Future.delayed(d, () {
       animation.dispose();
       // to next page and close this page
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushAndRemoveUntil(
         // ignore: use_build_context_synchronously
         PageRouteBuilder(

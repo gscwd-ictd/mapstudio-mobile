@@ -3,6 +3,7 @@ import 'package:mapstudio/common/enums/radio_button_enum.dart';
 import 'package:mapstudio/common/utils/radio_button_util.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
 
+// ignore: must_be_immutable
 class TextRadioButton extends StatefulWidget {
   final int value;
   final String name;

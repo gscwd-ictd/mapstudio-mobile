@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:mapstudio/app/screens/map/map.dart';
 import 'package:mapstudio/app/screens/saco/saco_form/saco_form.dart';
 
 part 'geolocation_event.dart';

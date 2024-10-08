@@ -27,8 +27,8 @@ class _OpenStreetMapWidget extends State<OpenStreetMapWidget> {
   Widget build(BuildContext context) {
     // First get the FlutterView.
     FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
-    final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
-    final mapLayerBloc = BlocProvider.of<MapLayerBloc>(context);
+    // final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
+    // final mapLayerBloc = BlocProvider.of<MapLayerBloc>(context);
     // Dimensions in physical pixels (px)
     Size size = view.physicalSize;
     double deviceWidth = size.width;

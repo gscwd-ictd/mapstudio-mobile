@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:mapstudio/domain/blocs/geolocation_bloc/geolocation_bloc.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_bloc.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_event.dart';
 
@@ -19,7 +18,7 @@ class MapFloatingActionButton extends StatefulWidget {
 class _MapFloatingActionButtonState extends State<MapFloatingActionButton> {
   @override
   Widget build(BuildContext context) {
-    final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
+    // final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
     final maplayerBloc = BlocProvider.of<MapLayerBloc>(context);
 
     Orientation deviceOrientation = MediaQuery.of(context).orientation;
