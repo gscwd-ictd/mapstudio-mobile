@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapstudio/app/screens/splash_screen/logo_screen.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_bloc.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_event.dart';
+import 'app/screens/saco/saco_list/saco_list.dart';
 import 'domain/blocs/geolocation_bloc/geolocation_bloc.dart';
 import 'src/injector.dart';
 
@@ -45,7 +46,11 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Hero(tag: 'splash', child: LogoScreen()),
+        home: const Hero(
+            tag: 'splash',
+            child:
+                // LogoScreen()
+                SacoList()),
       ),
     );
   }
