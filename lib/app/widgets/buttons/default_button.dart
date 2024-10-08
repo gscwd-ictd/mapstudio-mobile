@@ -31,7 +31,7 @@ class _DefaultButtonState extends State<DefaultButton> {
           backgroundColor: widget.color == null
               ? const Color.fromARGB(255, 37, 99, 235)
               : widget.color!,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+          padding: const EdgeInsets.symmetric(horizontal: 10)),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: widget.buttonWidth),
         child: ButtonText(

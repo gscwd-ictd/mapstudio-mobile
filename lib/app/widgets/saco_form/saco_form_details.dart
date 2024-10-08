@@ -33,11 +33,11 @@ class _SacoFormDetailState extends State<SacoFormDetail> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Applicant's Name",
-                      style: const TextStyle(fontSize: 14, color: Colors.white),
+                      style: const TextStyle(fontSize: 13, color: Colors.white),
                       textScaler: TextScaler.linear(
                           TextScaleUtil.textScaleFactor(context))),
                   Text("Applicant's Address",
-                      style: const TextStyle(fontSize: 14, color: Colors.white),
+                      style: const TextStyle(fontSize: 13, color: Colors.white),
                       textScaler: TextScaler.linear(
                           TextScaleUtil.textScaleFactor(context))),
                 ],

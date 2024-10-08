@@ -18,13 +18,16 @@ class ButtonText extends StatefulWidget {
 class _ButtonTextState extends State<ButtonText> {
   @override
   Widget build(BuildContext context) {
-    return Text(widget.buttonText,
-        style: TextStyle(
-            letterSpacing: 2,
-            fontSize: widget.buttonSize,
-            fontWeight: FontWeight.w500,
-            color: widget.color),
-        textAlign: TextAlign.center,
-        textScaler: TextScaler.linear(TextScaleUtil.textScaleFactor(context)));
+    return Center(
+      child: Text(widget.buttonText,
+          style: TextStyle(
+              letterSpacing: 2,
+              fontSize: widget.buttonSize,
+              fontWeight: FontWeight.w500,
+              color: widget.color),
+          textAlign: TextAlign.center,
+          textScaler:
+              TextScaler.linear(TextScaleUtil.textScaleFactor(context))),
+    );
   }
 }

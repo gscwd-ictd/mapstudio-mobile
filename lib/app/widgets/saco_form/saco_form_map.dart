@@ -16,13 +16,13 @@ class _SacoFormMapState extends State<SacoFormMap> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: SizerUtil.height(context) / 30),
+      padding: EdgeInsets.only(top: SizerUtil.height(context) / 80, bottom: 4),
       child: ShadowWidget(
         blurRadius: 5,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: SizedBox(
-            height: SizerUtil.height(context) / 2.5,
+            height: SizerUtil.height(context) / 3,
             width: SizerUtil.width(context) / 1.1,
             child: Stack(
               alignment: AlignmentDirectional.bottomEnd,
