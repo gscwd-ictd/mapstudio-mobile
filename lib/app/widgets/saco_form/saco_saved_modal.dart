@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:mapstudio/app/widgets/text/button_text.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
+import 'package:sizer/sizer.dart';
 
 class SacoSavedModal extends StatefulWidget {
   const SacoSavedModal({super.key});
@@ -31,7 +32,7 @@ class _SacoSavedModalState extends State<SacoSavedModal> {
                   stops: [0.0, 1.0],
                   tileMode: TileMode.clamp),
             ),
-            height: 280,
+            height: 35.h,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -69,11 +70,14 @@ class _SacoSavedModalState extends State<SacoSavedModal> {
           ),
         ),
         Positioned(
-            left: SizerUtil.width(context) / 3,
-            top: SizerUtil.height(context) / 4.7,
-            child: Image.asset(
-              'assets/images/mr_tankee.png',
-              scale: 3,
+            left: 33.w,
+            top: 31.h,
+            child: Transform.translate(
+              offset: Offset(0, -9.5.h),
+              child: Image.asset(
+                'assets/images/mr_tankee.png',
+                scale: 3,
+              ),
             )),
       ],
     );

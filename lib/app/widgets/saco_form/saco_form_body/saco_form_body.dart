@@ -7,6 +7,7 @@ import 'package:mapstudio/app/widgets/saco_form/saco_form_body/sub_form_body/siz
 import 'package:mapstudio/app/widgets/saco_form/saco_form_body/sub_form_body/system_available.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_body/sub_form_body/type_of_connection.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
+import 'package:sizer/sizer.dart';
 
 class SacoFormBody extends StatefulWidget {
   const SacoFormBody({super.key});
@@ -18,42 +19,50 @@ class SacoFormBody extends StatefulWidget {
 class _SacoFormBodyState extends State<SacoFormBody> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      color: Colors.white,
-      margin: null,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FittedBox(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                  width: SizerUtil.width(context) / 2.2,
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 1.5.w),
+      child: Card(
+        elevation: 5,
+        color: Colors.white,
+        margin: null,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            height: 35.h,
+            width: 90.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                    width: 45.w,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SystemAvailable(),
-                        BuildingType(),
-                        TypeOfConnection(),
-                        Estimates()
+                        const SystemAvailable(),
+                        SizedBox(
+                            height: 15.h,
+                            child: const Column(
+                              children: [
+                                BuildingType(),
+                                TypeOfConnection(),
+                              ],
+                            )),
+                        const Estimates()
                       ],
-                    ),
-                  )),
-              SizedBox(
-                  width: SizerUtil.width(context) / 2.2,
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      PlumbingAvavilable(),
-                      SizeOfConnection(),
-                      Notes()
-                    ],
-                  ))
-            ],
+                    )),
+                SizedBox(
+                    width: 45.w,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const PlumbingAvavilable(),
+                        SizedBox(height: 15.h, child: const SizeOfConnection()),
+                        const Notes()
+                      ],
+                    ))
+              ],
+            ),
           ),
         ),
       ),

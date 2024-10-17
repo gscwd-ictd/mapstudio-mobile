@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mapstudio/app/widgets/buttons/text_radio_button.dart';
+import 'package:mapstudio/common/constants/labels.dart';
 import 'package:mapstudio/common/enums/radio_button_enum.dart';
+import 'package:sizer/sizer.dart';
 
 class SystemAvailable extends StatefulWidget {
   const SystemAvailable({super.key});
@@ -16,9 +18,9 @@ class _SystemAvailableState extends State<SystemAvailable> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'System Available?',
-          style: TextStyle(color: Colors.grey, fontSize: 11),
+          style: AppLabels.frmLblTxtStyle,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,

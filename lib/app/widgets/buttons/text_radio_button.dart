@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mapstudio/common/enums/radio_button_enum.dart';
 import 'package:mapstudio/common/utils/radio_button_util.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
+import 'package:sizer/sizer.dart';
 
 // ignore: must_be_immutable
 class TextRadioButton extends StatefulWidget {
@@ -26,7 +27,7 @@ class _TextRadioButtonState extends State<TextRadioButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: SizerUtil.width(context) / (6 + widget.width),
+      width: 20.w,
       child: ListTile(
         contentPadding: const EdgeInsets.only(left: 10),
         minTileHeight: 5,
@@ -35,10 +36,10 @@ class _TextRadioButtonState extends State<TextRadioButton> {
         minVerticalPadding: 1,
         title: Text(
           widget.name,
-          style: const TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 15.sp),
         ),
         leading: SizedBox(
-          width: 20,
+          width: 2.w,
           child: Transform.scale(
             scale: 0.8,
             child: Radio<int>(

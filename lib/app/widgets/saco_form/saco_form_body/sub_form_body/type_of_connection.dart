@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapstudio/common/constants/labels.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
 
 class TypeOfConnection extends StatefulWidget {
@@ -16,9 +17,9 @@ class _TypeOfConnectionState extends State<TypeOfConnection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Type of Connection',
-            style: TextStyle(color: Colors.grey, fontSize: 11),
+            style: AppLabels.frmLblTxtStyle,
           ),
           Transform.scale(
             scale: 0.9,

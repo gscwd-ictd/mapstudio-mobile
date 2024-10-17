@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapstudio/app/widgets/buttons/text_radio_button.dart';
+import 'package:mapstudio/common/constants/labels.dart';
 import 'package:mapstudio/common/enums/radio_button_enum.dart';
 
 class PlumbingAvavilable extends StatefulWidget {
@@ -15,9 +16,12 @@ class _PlumbingAvavilableState extends State<PlumbingAvavilable> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Plumbing Installation Available?',
-          style: TextStyle(color: Colors.grey, fontSize: 11),
+        FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            'Plumbing Installation Available?',
+            style: AppLabels.frmLblTxtStyle,
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
