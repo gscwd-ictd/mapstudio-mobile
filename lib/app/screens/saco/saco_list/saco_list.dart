@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mapstudio/common/enums/saco_status_enum.dart';
 import '../../../../common/constants/colors.dart';
-import '../../../../common/utils/sizer_util.dart';
 import '../../../../common/utils/text_scale_util.dart';
 import '../../../widgets/curved_navigation_bar/curved_navigation_bar.dart';
+import '../../../widgets/saco_list/saco_list_detail.dart';
+import '../../../widgets/text_form/text_form.dart';
 
 class SacoList extends StatefulWidget {
   const SacoList({super.key});
@@ -19,6 +21,7 @@ class _SacoListState extends State<SacoList> {
       // appBar: AppBar(
       //   backgroundColor: AppColors.mainColor,
       // ),
+      backgroundColor: const Color.fromARGB(255, 237, 240, 245),
       bottomNavigationBar: const CurvedNavBar(),
       resizeToAvoidBottomInset: true,
       body: Stack(
@@ -36,45 +39,59 @@ class _SacoListState extends State<SacoList> {
             ),
           ),
           SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 60, 20, 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Hello, Mr. Surveryor",
-                            style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.white),
-                            textScaler: TextScaler.linear(
-                                TextScaleUtil.textScaleFactor(context))),
-                        Text("Umaagos na pagbati!",
-                            style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                            textScaler: TextScaler.linear(
-                                TextScaleUtil.textScaleFactor(context))),
-                      ],
-                    ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 70, 10, 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Hello, Mr. Surveryor",
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.white),
+                                textScaler: TextScaler.linear(
+                                    TextScaleUtil.textScaleFactor(context))),
+                            Text("Umaagos na pagbati!",
+                                style: const TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                                textScaler: TextScaler.linear(
+                                    TextScaleUtil.textScaleFactor(context))),
+                          ],
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: const Image(
+                          image: AssetImage('assets/images/sample_avatar.jpg'),
+                          height: 80,
+                          width: 80,
+                        ),
+                      ),
+                    ],
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: const Image(
-                      image: AssetImage('assets/images/sample_avatar.jpg'),
-                      height: 100,
-                      width: 100,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                TextForm(
+                  icon: FontAwesomeIcons.magnifyingGlass,
+                ),
+                SacoListDetail(
+                  sacoNumber: '859682',
+                  applicantName: 'Ricard Vicente Narvaiza',
+                  applicantAddress:
+                      '21 Prince Street Queenies Village General Santos City',
+                  sacoStatus: SacoStatus.completed,
+                )
+              ],
             ),
           ),
         ],
