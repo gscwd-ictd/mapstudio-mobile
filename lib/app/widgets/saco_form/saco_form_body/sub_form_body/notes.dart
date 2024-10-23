@@ -41,6 +41,7 @@ class _NotesState extends State<Notes> {
               valueListenable: myFocusNotifier,
               builder: (_, isFocus, child) {
                 return TextFormField(
+                  scrollPadding: EdgeInsets.symmetric(vertical: 10.h),
                   focusNode: myFocusNode,
                   controller: textController,
                   style: TextStyle(fontSize: 16.sp),

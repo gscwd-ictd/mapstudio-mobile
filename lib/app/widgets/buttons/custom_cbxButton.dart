@@ -1,6 +1,6 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mapstudio/common/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomCbxButton extends StatefulWidget {
@@ -20,6 +20,8 @@ class _CustomCbxButtonState extends State<CustomCbxButton> {
   Widget build(BuildContext context) {
     final List<String> items = widget.items;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 1.0),
@@ -74,7 +76,9 @@ class _CustomCbxButtonState extends State<CustomCbxButton> {
                 child: SizedBox(
                   height: 22.h,
                   child: ListView.builder(
+                      shrinkWrap: true,
                       itemCount: items.length,
+                      padding: const EdgeInsets.all(0.0),
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 1.0),
