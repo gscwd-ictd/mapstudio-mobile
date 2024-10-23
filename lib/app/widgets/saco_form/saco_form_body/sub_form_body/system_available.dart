@@ -15,36 +15,36 @@ class _SystemAvailableState extends State<SystemAvailable> {
   int sysAvail = 0;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'System Available?',
-          style: AppLabels.frmLblTxtStyle,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextRadioButton(
-              rbMode: RadioButtonEnum.sysAvail,
-              onPressed: () {
-                setState(() {});
-              },
-              value: 1,
-              name: 'Yes',
+    return Padding(
+      padding: EdgeInsets.only(bottom: 2.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: 0.5.h),
+            child: Text(
+              'System is Available',
+              style: AppLabels.frmLblTxtStyle,
             ),
-            TextRadioButton(
-              rbMode: RadioButtonEnum.sysAvail,
-              onPressed: () {
-                setState(() {});
-              },
-              value: 2,
-              name: 'No',
-            ),
-          ],
-        )
-      ],
+          ),
+          TextRadioButton(
+            rbMode: RadioButtonEnum.sysAvail,
+            onPressed: () {
+              setState(() {});
+            },
+            value: 1,
+            name: 'Yes',
+          ),
+          TextRadioButton(
+            rbMode: RadioButtonEnum.sysAvail,
+            onPressed: () {
+              setState(() {});
+            },
+            value: 2,
+            name: 'No',
+          ),
+        ],
+      ),
     );
   }
 }

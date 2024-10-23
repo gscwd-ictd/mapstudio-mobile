@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mapstudio/common/constants/labels.dart';
-import 'package:mapstudio/common/utils/sizer_util.dart';
 import 'package:sizer/sizer.dart';
 
 class Estimates extends StatefulWidget {
@@ -11,10 +10,26 @@ class Estimates extends StatefulWidget {
 }
 
 class _EstimatesState extends State<Estimates> {
+  late FocusNode myFocusNode;
+  final textController = TextEditingController();
+  final ValueNotifier<bool> myFocusNotifier = ValueNotifier<bool>(false);
+
+  void onFocusChange() {
+    myFocusNotifier.value = myFocusNode.hasFocus;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    myFocusNode = FocusNode();
+    myFocusNode.addListener(onFocusChange);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 2.0),
+      padding: EdgeInsets.only(bottom: 2.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -22,27 +37,31 @@ class _EstimatesState extends State<Estimates> {
             'Estimates',
             style: AppLabels.frmLblTxtStyle,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: SizedBox(
-              width: 40.w,
-              child: TextFormField(
-                style: const TextStyle(fontSize: 10),
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide.none,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
-                  ),
-                ),
-                maxLines: 3,
-              ),
-            ),
+          SizedBox(
+            height: 6.h,
+            child: ValueListenableBuilder(
+                valueListenable: myFocusNotifier,
+                builder: (_, isFocus, child) {
+                  return TextFormField(
+                    focusNode: myFocusNode,
+                    controller: textController,
+                    style: TextStyle(fontSize: 16.sp),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: isFocus ? Colors.white : Colors.transparent,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            const BorderSide(color: Colors.grey, width: 1),
+                      ),
+                    ),
+                    maxLines: 3,
+                  );
+                }),
           )
         ],
       ),

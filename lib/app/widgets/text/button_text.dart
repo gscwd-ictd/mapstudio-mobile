@@ -23,7 +23,7 @@ class _ButtonTextState extends State<ButtonText> {
           style: TextStyle(
               letterSpacing: 2,
               fontSize: widget.buttonSize,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.bold,
               color: widget.color),
           textAlign: TextAlign.center,
           textScaler:

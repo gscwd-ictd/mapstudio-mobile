@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mapstudio/app/widgets/buttons/custom_cbxButton.dart';
 import 'package:mapstudio/common/constants/labels.dart';
-import 'package:mapstudio/common/utils/sizer_util.dart';
-import 'package:sizer/sizer.dart';
+import 'package:mapstudio/common/utils/cbx_button_util.dart';
 
 class BuildingType extends StatefulWidget {
   const BuildingType({super.key});
@@ -11,59 +11,25 @@ class BuildingType extends StatefulWidget {
 }
 
 class _BuildingTypeState extends State<BuildingType> {
+  String? selectedValue;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Building Type',
-            style: AppLabels.frmLblTxtStyle,
-          ),
-          Transform.scale(
-            scale: 0.9,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(8)),
-              child: DropdownMenu(
-                  width: 50.w,
-                  trailingIcon: Transform.translate(
-                    offset: const Offset(8, -12),
-                    child: const Icon(
-                      Icons.arrow_drop_down,
-                      size: 25,
-                    ),
-                  ),
-                  selectedTrailingIcon: Transform.translate(
-                    offset: const Offset(8, -12),
-                    child: const Icon(
-                      Icons.arrow_drop_down,
-                      size: 25,
-                    ),
-                  ),
-                  textStyle:
-                      TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
-                  initialSelection: 'Government',
-                  inputDecorationTheme: InputDecorationTheme(
-                    isDense: true,
-                    contentPadding: EdgeInsets.only(left: 1.w),
-                    constraints:
-                        BoxConstraints.tight(const Size.fromHeight(25)),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  dropdownMenuEntries: const <DropdownMenuEntry<String>>[
-                    DropdownMenuEntry(value: 'Government', label: 'Government'),
-                    DropdownMenuEntry(value: 'Private', label: 'Private'),
-                  ]),
-            ),
-          )
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Building Type',
+          style: AppLabels.frmLblTxtStyle,
+        ),
+        Container(
+          decoration: BoxDecoration(
+              color: Colors.grey[100], borderRadius: BorderRadius.circular(8)),
+          child: const CustomCbxButton(
+              items: ['Residential', 'Commercial', 'Government', 'Industrial'],
+              hintText: 'Choose Building Type'),
+        ),
+        SizedBox(height: CbxButtonUtil.isCbxBuildTypeOpen ? 200 : 20),
+      ],
     );
   }
 }

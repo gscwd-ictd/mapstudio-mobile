@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapstudio/common/enums/radio_button_enum.dart';
 import 'package:mapstudio/common/utils/radio_button_util.dart';
-import 'package:mapstudio/common/utils/sizer_util.dart';
 import 'package:sizer/sizer.dart';
 
 // ignore: must_be_immutable
@@ -26,32 +25,48 @@ class TextRadioButton extends StatefulWidget {
 class _TextRadioButtonState extends State<TextRadioButton> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 20.w,
-      child: ListTile(
-        contentPadding: const EdgeInsets.only(left: 10),
-        minTileHeight: 5,
-        horizontalTitleGap: 0.1,
-        minLeadingWidth: 18,
-        minVerticalPadding: 1,
-        title: Text(
-          widget.name,
-          style: TextStyle(fontSize: 15.sp),
-        ),
-        leading: SizedBox(
-          width: 2.w,
-          child: Transform.scale(
-            scale: 0.8,
-            child: Radio<int>(
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              value: widget.value,
-              groupValue: RadioButtonUtil.getRbSelection(widget.rbMode),
-              activeColor: Colors.black, // Change the fill color when selected
-              splashRadius: 1, // Change the splash radius when clicked
-              onChanged: (int? value) {
-                RadioButtonUtil.setRbSelection(widget.rbMode, value!);
-                widget.onPressed();
-              },
+    bool isSelected =
+        RadioButtonUtil.getRbSelection(widget.rbMode) == widget.value;
+    return Padding(
+      padding: EdgeInsets.only(bottom: 0.6.h),
+      child: SizedBox(
+        width: 100.w,
+        child: ListTile(
+          onTap: () {
+            RadioButtonUtil.setRbSelection(widget.rbMode, widget.value);
+            widget.onPressed();
+          },
+          tileColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          contentPadding: const EdgeInsets.only(left: 10),
+          minTileHeight: 5.h,
+          horizontalTitleGap: 0.1,
+          minLeadingWidth: 18,
+          minVerticalPadding: 1,
+          title: Text(
+            widget.name,
+            style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: isSelected ? FontWeight.bold : null),
+          ),
+          leading: SizedBox(
+            width: 2.w,
+            child: Transform.scale(
+              scale: 0.6,
+              child: Radio<int>(
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                value: widget.value,
+                groupValue: RadioButtonUtil.getRbSelection(widget.rbMode),
+                activeColor:
+                    Colors.black, // Change the fill color when selected
+                splashRadius: 1, // Change the splash radius when clicked
+                onChanged: (int? value) {
+                  RadioButtonUtil.setRbSelection(widget.rbMode, value!);
+                  widget.onPressed();
+                },
+              ),
             ),
           ),
         ),

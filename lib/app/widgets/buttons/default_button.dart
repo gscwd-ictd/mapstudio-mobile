@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapstudio/app/widgets/text/button_text.dart';
+import 'package:sizer/sizer.dart';
 
 // ignore: must_be_immutable
 class DefaultButton extends StatefulWidget {
@@ -35,7 +36,7 @@ class _DefaultButtonState extends State<DefaultButton> {
         child: ButtonText(
           color: widget.txtColor == null ? Colors.white : widget.txtColor!,
           buttonText: widget.buttonText,
-          buttonSize: 18,
+          buttonSize: 16.sp,
         ),
       ),
       onPressed: () {
