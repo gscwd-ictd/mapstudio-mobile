@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mapstudio/common/constants/colors.dart';
+import 'package:mapstudio/common/utils/file_util.dart';
 import 'package:shadow_widget/shadow_widget.dart';
 import 'package:sizer/sizer.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
 
 class SacoFormMap extends StatefulWidget {
   final TileLayer tileLayer;
@@ -26,16 +28,19 @@ class _SacoFormMapState extends State<SacoFormMap> {
           child: Stack(
             alignment: AlignmentDirectional.bottomEnd,
             children: [
-              FlutterMap(
-                  options: const MapOptions(
-                    initialCenter: LatLng(6.12562, 125.18451),
-                    initialZoom: 17,
-                    minZoom: 12,
-                    maxZoom: 20,
-                    interactionOptions: InteractionOptions(
-                        flags: ~InteractiveFlag.doubleTapZoom),
-                  ),
-                  children: [widget.tileLayer]),
+              WidgetsToImage(
+                controller: FileUtil.flutterMapImageController,
+                child: FlutterMap(
+                    options: const MapOptions(
+                      initialCenter: LatLng(6.12562, 125.18451),
+                      initialZoom: 17,
+                      minZoom: 12,
+                      maxZoom: 20,
+                      interactionOptions: InteractionOptions(
+                          flags: ~InteractiveFlag.doubleTapZoom),
+                    ),
+                    children: [widget.tileLayer]),
+              ),
               Padding(
                 padding: EdgeInsets.only(bottom: 2.h),
                 child: ElevatedButton(

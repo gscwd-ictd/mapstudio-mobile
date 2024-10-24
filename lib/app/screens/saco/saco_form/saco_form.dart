@@ -6,6 +6,7 @@ import 'package:mapstudio/app/widgets/saco_form/saco_form_details.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_map.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_save_changes_modal.dart';
 import 'package:mapstudio/common/constants/colors.dart';
+import 'package:mapstudio/common/utils/file_util.dart';
 import 'package:mapstudio/common/utils/text_scale_util.dart';
 import 'package:sizer/sizer.dart';
 
@@ -96,8 +97,9 @@ class _SacoFormState extends State<SacoForm> {
                     buttonWidth: 38.w,
                     onPressed: () {
                       showDialog(
-                          barrierDismissible: false,
+                          barrierDismissible: true,
                           barrierColor: const Color.fromRGBO(255, 255, 255, 80),
+                          // ignore: use_build_context_synchronously
                           context: context,
                           builder: (context) => const SacoSaveChangesModal());
                     },
