@@ -98,7 +98,7 @@ class _SacoFormState extends State<SacoForm> {
                     onPressed: () {
                       showDialog(
                           barrierDismissible: true,
-                          barrierColor: const Color.fromRGBO(255, 255, 255, 80),
+                          // barrierColor: const Color.fromRGBO(255, 255, 255, 80),
                           // ignore: use_build_context_synchronously
                           context: context,
                           builder: (context) => const SacoSaveChangesModal());
