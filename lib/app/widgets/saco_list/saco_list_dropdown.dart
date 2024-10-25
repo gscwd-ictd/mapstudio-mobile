@@ -18,7 +18,7 @@ class SacoListDropDown extends StatefulWidget {
 
 class _SacoListDropDownState extends State<SacoListDropDown> {
   // String dropdownValue = list.first;
-  late String selectedOption;
+  String? selectedOption;
 
   @override
   Widget build(BuildContext context) {
