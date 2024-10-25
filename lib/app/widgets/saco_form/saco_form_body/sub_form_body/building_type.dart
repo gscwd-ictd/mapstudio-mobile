@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mapstudio/common/constants/labels.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
+import 'package:sizer/sizer.dart';
 
 class BuildingType extends StatefulWidget {
   const BuildingType({super.key});
@@ -16,9 +18,9 @@ class _BuildingTypeState extends State<BuildingType> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Building Type',
-            style: TextStyle(color: Colors.grey, fontSize: 11),
+            style: AppLabels.frmLblTxtStyle,
           ),
           Transform.scale(
             scale: 0.9,
@@ -27,7 +29,7 @@ class _BuildingTypeState extends State<BuildingType> {
                   color: Colors.grey[100],
                   borderRadius: BorderRadius.circular(8)),
               child: DropdownMenu(
-                  width: SizerUtil.width(context) / 2,
+                  width: 50.w,
                   trailingIcon: Transform.translate(
                     offset: const Offset(8, -12),
                     child: const Icon(
@@ -42,12 +44,12 @@ class _BuildingTypeState extends State<BuildingType> {
                       size: 25,
                     ),
                   ),
-                  textStyle: const TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.bold),
+                  textStyle:
+                      TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
                   initialSelection: 'Government',
                   inputDecorationTheme: InputDecorationTheme(
                     isDense: true,
-                    contentPadding: const EdgeInsets.only(left: 6),
+                    contentPadding: EdgeInsets.only(left: 1.w),
                     constraints:
                         BoxConstraints.tight(const Size.fromHeight(25)),
                     border: OutlineInputBorder(

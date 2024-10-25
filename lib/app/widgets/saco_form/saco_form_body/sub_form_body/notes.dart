@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mapstudio/common/constants/labels.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
+import 'package:sizer/sizer.dart';
 
 class Notes extends StatefulWidget {
   const Notes({super.key});
@@ -12,18 +14,18 @@ class _NotesState extends State<Notes> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 14.0),
+      padding: const EdgeInsets.only(top: 2.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Notes',
-            style: TextStyle(color: Colors.grey, fontSize: 11),
+            style: AppLabels.frmLblTxtStyle,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: SizedBox(
-              width: SizerUtil.width(context) / 2.5,
+              width: 40.w,
               child: TextFormField(
                 style: const TextStyle(fontSize: 10),
                 decoration: InputDecoration(

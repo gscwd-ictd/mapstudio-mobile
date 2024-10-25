@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
 import 'package:mapstudio/common/utils/text_scale_util.dart';
+import 'package:sizer/sizer.dart';
 
 class SacoFormDetail extends StatefulWidget {
   const SacoFormDetail({super.key});
@@ -21,23 +22,23 @@ class _SacoFormDetailState extends State<SacoFormDetail> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('SACO Number',
-                style: const TextStyle(
-                    fontSize: 16,
+                style: TextStyle(
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
                 textScaler:
                     TextScaler.linear(TextScaleUtil.textScaleFactor(context))),
             Padding(
-              padding: EdgeInsets.only(left: SizerUtil.width(context) / 60),
+              padding: EdgeInsets.only(left: 3.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Applicant's Name",
-                      style: const TextStyle(fontSize: 13, color: Colors.white),
+                      style: TextStyle(fontSize: 15.sp, color: Colors.white),
                       textScaler: TextScaler.linear(
                           TextScaleUtil.textScaleFactor(context))),
                   Text("Applicant's Address",
-                      style: const TextStyle(fontSize: 13, color: Colors.white),
+                      style: TextStyle(fontSize: 15.sp, color: Colors.white),
                       textScaler: TextScaler.linear(
                           TextScaleUtil.textScaleFactor(context))),
                 ],
@@ -45,13 +46,13 @@ class _SacoFormDetailState extends State<SacoFormDetail> {
             ),
           ],
         ),
-        SizedBox(width: SizerUtil.width(context) / 6),
+        SizedBox(width: 25.w),
         Card(
             color: Colors.greenAccent,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6.0),
+              padding: EdgeInsets.symmetric(horizontal: 2.w),
               child: Text('New',
-                  style: const TextStyle(fontSize: 12),
+                  style: TextStyle(fontSize: 14.sp),
                   textScaler: TextScaler.linear(
                       TextScaleUtil.textScaleFactor(context))),
             ))
