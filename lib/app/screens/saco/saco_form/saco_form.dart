@@ -18,10 +18,21 @@ class SacoForm extends StatefulWidget {
 }
 
 class _SacoFormState extends State<SacoForm> {
+  double height = 15.h, posHeight = 5.h, pos = 1.h;
   @override
   void initState() {
     // TODO: implement initState
+    animate();
     super.initState();
+  }
+
+  Future<void> animate() async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    setState(() {
+      pos = 6.h;
+      posHeight = 20.h;
+      height = 30.h;
+    });
   }
 
   @override
@@ -33,20 +44,25 @@ class _SacoFormState extends State<SacoForm> {
         resizeToAvoidBottomInset: true,
         body: Stack(
           children: [
-            SizedBox(
-              height: 30.h,
-              child: Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(60),
-                      bottomRight: Radius.circular(60)),
-                  color: AppColors.mainColor,
+            AnimatedSize(
+              duration: const Duration(seconds: 1),
+              curve: Curves.fastOutSlowIn,
+              child: SizedBox(
+                height: height,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(60),
+                        bottomRight: Radius.circular(60)),
+                    color: AppColors.mainColor,
+                  ),
                 ),
               ),
             ),
-            Positioned(
-              top: 6.h,
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 500),
+              top: pos,
               left: 0,
               height: 20.h,
               width: 100.w,
@@ -89,7 +105,7 @@ class _SacoFormState extends State<SacoForm> {
             Positioned(
               bottom: 0,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 3.2.w, vertical: 2.h),
+                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
                 child: SizedBox(
                   height: 6.h,
                   child: DefaultButton(
@@ -97,11 +113,12 @@ class _SacoFormState extends State<SacoForm> {
                     buttonWidth: 38.w,
                     onPressed: () {
                       showDialog(
-                          barrierDismissible: true,
+                          barrierDismissible: false,
                           // barrierColor: const Color.fromRGBO(255, 255, 255, 80),
                           // ignore: use_build_context_synchronously
                           context: context,
-                          builder: (context) => const SacoSaveChangesModal());
+                          builder: (context) => SacoSaveChangesModal(
+                              tileLayer: openStreetMapTileLayer));
                     },
                   ),
                 ),

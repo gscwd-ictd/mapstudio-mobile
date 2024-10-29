@@ -79,6 +79,7 @@ class _SacoSavedModalState extends State<SacoSavedModal> {
                         onPressed: () {
                           Navigator.of(context).pop();
                           Navigator.of(context).pop();
+                          Navigator.of(context).pop();
                         },
                         buttonText: 'DONE',
                         buttonWidth: SizerUtil.width(context) / 12),

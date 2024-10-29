@@ -4,6 +4,7 @@ import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:mapstudio/app/widgets/text/button_text.dart';
 import 'package:mapstudio/common/utils/text_scale_util.dart';
 import 'package:mapstudio/domain/blocs/geolocation_bloc/geolocation_bloc.dart';
+import 'package:sizer/sizer.dart';
 
 class GetLocation extends StatefulWidget {
   const GetLocation({super.key});
@@ -47,12 +48,16 @@ class _GetLocationState extends State<GetLocation> {
                       scale: 1,
                     ),
                   ),
-                  DefaultButton(
-                    buttonText: 'ENABLE LOCATION',
-                    buttonWidth: MediaQuery.of(context).size.width / 7,
-                    onPressed: () {
-                      geoLocationBloc.add(GetGeolocationRequest(context));
-                    },
+                  SizedBox(
+                    height: 5.h,
+                    width: 80.w,
+                    child: DefaultButton(
+                      buttonText: 'ENABLE LOCATION',
+                      buttonWidth: 10.w,
+                      onPressed: () {
+                        geoLocationBloc.add(GetGeolocationRequest(context));
+                      },
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 90),
                   TextButton(
