@@ -48,6 +48,7 @@ dependencies:
   curved_navigation_bar: ^1.0.6 
   font_awesome_flutter: ^10.7.0
   sizer: ^3.0.4
+  screenshot: ^3.0.0
 
 dev_dependencies:
   flutter_test:

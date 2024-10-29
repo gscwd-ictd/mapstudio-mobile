@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mapstudio/app/screens/get_location/get_location.dart';
-import 'package:mapstudio/app/screens/map/map.dart';
 
 class LogoScreen extends StatefulWidget {
   const LogoScreen({super.key});

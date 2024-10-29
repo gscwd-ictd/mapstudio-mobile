@@ -16,13 +16,16 @@ class _SizeOfConnectionState extends State<SizeOfConnection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: EdgeInsets.only(bottom: 2.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Size of Connection',
-            style: AppLabels.frmLblTxtStyle,
+          Padding(
+            padding: EdgeInsets.only(bottom: 0.5.h),
+            child: Text(
+              'Size of Connection',
+              style: AppLabels.frmLblTxtStyle,
+            ),
           ),
           TextRadioButton(
             rbMode: RadioButtonEnum.sizeOfConnection,
@@ -40,39 +43,14 @@ class _SizeOfConnectionState extends State<SizeOfConnection> {
             value: 2,
             name: '3/4',
           ),
-          Row(
-            children: [
-              TextRadioButton(
-                width: -1,
-                rbMode: RadioButtonEnum.sizeOfConnection,
-                onPressed: () {
-                  setState(() {});
-                },
-                value: 3,
-                name: 'others',
-              ),
-              SizedBox(
-                width: 22.w,
-                height: SizerUtil.height(context) / 34,
-                child: TextFormField(
-                  style: const TextStyle(fontSize: 10),
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                          const BorderSide(color: Colors.grey, width: 1),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          )
+          TextRadioButton(
+            rbMode: RadioButtonEnum.sizeOfConnection,
+            onPressed: () {
+              setState(() {});
+            },
+            value: 3,
+            name: 'others',
+          ),
         ],
       ),
     );
