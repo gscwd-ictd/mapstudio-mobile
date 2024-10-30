@@ -36,9 +36,9 @@ class _RoundedButtonState extends State<RoundedButton> {
           padding: const EdgeInsets.symmetric(horizontal: 10)),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: widget.buttonWidth),
-        child: ButtonText(
+        child: DefaultText(
           color: widget.txtColor == null ? Colors.white : widget.txtColor!,
-          buttonText: widget.buttonText,
+          text: widget.buttonText,
           buttonSize: widget.txtSize == null ? 18 : widget.txtSize!,
         ),
       ),
