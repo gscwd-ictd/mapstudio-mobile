@@ -49,6 +49,8 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   sizer: ^3.0.4
   screenshot: ^3.0.0
+  easy_animated_tabbar: ^0.0.1
+  indexed: ^0.0.8
 
 dev_dependencies:
   flutter_test:

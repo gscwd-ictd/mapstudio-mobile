@@ -3,7 +3,8 @@ enum SacoStatus {
   inprogress('In Progress'),
   forwarded('Forwarded'),
   returned('Returned'),
-  completed('Completed');
+  completed('Completed'),
+  all('All');
 
   final String value;
   const SacoStatus(this.value);
