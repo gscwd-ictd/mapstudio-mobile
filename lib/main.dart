@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:mapstudio/app/screens/saco/saco_dashboard/saco_dashboard.dart';
 import 'package:mapstudio/app/screens/saco/saco_form/saco_form.dart';
+import 'package:mapstudio/app/screens/saco/saco_map/saco_map.dart';
 import 'package:mapstudio/app/screens/splash_screen/logo_screen.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_bloc.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_event.dart';
@@ -48,7 +51,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const Hero(tag: 'splash', child: LogoScreen()),
+          home: const Hero(tag: 'splash', child: SacoDashboard()),
         );
       }),
     );

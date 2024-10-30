@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:mapstudio/app/screens/saco/saco_form/saco_form.dart';
+import 'package:mapstudio/app/screens/saco/saco_form/saco_form_ver2.dart';
 import 'package:mapstudio/app/widgets/saco_list/saco_list_status.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../common/enums/saco_status_enum.dart';
 
@@ -30,31 +32,49 @@ class _SacoListDetailState extends State<SacoListDetail>
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                const SacoForm(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              // animation = AnimationController(
-              //   vsync: this,
-              //   duration: const Duration(seconds: 2),
-              // );
-              var begin = const Offset(1.0, 0.0);
-              var end = Offset.zero;
-              var curve = Curves.ease;
+        showModalBottomSheet<void>(
+            context: context,
+            isScrollControlled: true,
+            isDismissible: false,
+            showDragHandle: true,
+            useRootNavigator: true,
+            builder: (BuildContext context) {
+              return DraggableScrollableSheet(
+                  expand: false,
+                  snap: false,
+                  builder: (_, controller) {
+                    return SingleChildScrollView(
+                        physics: ClampingScrollPhysics(),
+                        controller: controller,
+                        child:
+                            SizedBox(height: 200.h, child: const SacoForm()));
+                  });
+            });
+        // Navigator.push(
+        //   context,
+        //   PageRouteBuilder(
+        //     pageBuilder: (context, animation, secondaryAnimation) =>
+        //         const SacoForm(),
+        //     transitionsBuilder:
+        //         (context, animation, secondaryAnimation, child) {
+        //       // animation = AnimationController(
+        //       //   vsync: this,
+        //       //   duration: const Duration(seconds: 2),
+        //       // );
+        //       var begin = const Offset(1.0, 0.0);
+        //       var end = Offset.zero;
+        //       var curve = Curves.ease;
 
-              var tween =
-                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        //       var tween =
+        //           Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-              return SlideTransition(
-                position: animation.drive(tween),
-                child: child,
-              );
-            },
-          ),
-        );
+        //       return SlideTransition(
+        //         position: animation.drive(tween),
+        //         child: child,
+        //       );
+        //     },
+        //   ),
+        // );
         // Navigator.of(context)
         //     .push(MaterialPageRoute(builder: (context) => const SacoForm()));
       },

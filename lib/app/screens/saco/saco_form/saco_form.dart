@@ -37,95 +37,36 @@ class _SacoFormState extends State<SacoForm> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 9 / 16,
-      child: Scaffold(
-        backgroundColor: AppColors.bgColor,
-        resizeToAvoidBottomInset: true,
-        body: Stack(
-          children: [
-            AnimatedSize(
-              duration: const Duration(seconds: 1),
-              curve: Curves.fastOutSlowIn,
-              child: SizedBox(
-                height: height,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(60),
-                        bottomRight: Radius.circular(60)),
-                    color: AppColors.mainColor,
-                  ),
-                ),
+    return Scaffold(
+      backgroundColor: AppColors.bgColor,
+      resizeToAvoidBottomInset: true,
+      body: Column(
+        children: [
+          const SacoFormDetail(),
+          const Divider(
+            color: Colors.grey,
+          ),
+          const SacoFormBody(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+            child: SizedBox(
+              height: 6.h,
+              child: DefaultButton(
+                buttonText: 'SAVE',
+                buttonWidth: 38.w,
+                onPressed: () {
+                  showDialog(
+                      barrierDismissible: false,
+                      // barrierColor: const Color.fromRGBO(255, 255, 255, 80),
+                      // ignore: use_build_context_synchronously
+                      context: context,
+                      builder: (context) => SacoSaveChangesModal(
+                          tileLayer: openStreetMapTileLayer));
+                },
               ),
             ),
-            AnimatedPositioned(
-              duration: const Duration(milliseconds: 500),
-              top: pos,
-              left: 0,
-              height: 20.h,
-              width: 100.w,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 6.w, top: 2.h),
-                    child: Text("Inspection of Applicant's Information:",
-                        style: TextStyle(
-                            letterSpacing: 1,
-                            fontSize: 17.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                        textScaler: TextScaler.linear(
-                            TextScaleUtil.textScaleFactor(context))),
-                  ),
-                  const Divider(
-                    color: Colors.white,
-                  ),
-                  const SacoFormDetail(),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.only(bottom: 10.h, top: 22.h),
-                child: Center(
-                  child: Column(
-                    children: [
-                      SacoFormMap(tileLayer: openStreetMapTileLayer),
-                      const SacoFormBody(),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-                child: SizedBox(
-                  height: 6.h,
-                  child: DefaultButton(
-                    buttonText: 'SAVE',
-                    buttonWidth: 38.w,
-                    onPressed: () {
-                      showDialog(
-                          barrierDismissible: false,
-                          // barrierColor: const Color.fromRGBO(255, 255, 255, 80),
-                          // ignore: use_build_context_synchronously
-                          context: context,
-                          builder: (context) => SacoSaveChangesModal(
-                              tileLayer: openStreetMapTileLayer));
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

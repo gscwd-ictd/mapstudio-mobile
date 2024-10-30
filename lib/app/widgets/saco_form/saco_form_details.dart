@@ -22,10 +22,7 @@ class _SacoFormDetailState extends State<SacoFormDetail> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('SACO Number',
-                style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
                 textScaler:
                     TextScaler.linear(TextScaleUtil.textScaleFactor(context))),
             Padding(
@@ -34,11 +31,11 @@ class _SacoFormDetailState extends State<SacoFormDetail> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Applicant's Name",
-                      style: TextStyle(fontSize: 15.sp, color: Colors.white),
+                      style: TextStyle(fontSize: 15.sp),
                       textScaler: TextScaler.linear(
                           TextScaleUtil.textScaleFactor(context))),
                   Text("Applicant's Address",
-                      style: TextStyle(fontSize: 15.sp, color: Colors.white),
+                      style: TextStyle(fontSize: 15.sp),
                       textScaler: TextScaler.linear(
                           TextScaleUtil.textScaleFactor(context))),
                 ],
