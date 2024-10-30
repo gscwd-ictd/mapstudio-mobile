@@ -4,9 +4,6 @@ import 'package:mapstudio/app/screens/saco/saco_form/saco_form.dart';
 import 'package:mapstudio/app/screens/splash_screen/logo_screen.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_bloc.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_event.dart';
-import 'package:mapstudio/domain/blocs/saco_dashboard_bloc/saco_dashboard_bloc.dart';
-import 'package:mapstudio/domain/blocs/saco_dashboard_bloc/saco_dashboard_event.dart';
-import 'app/screens/saco/saco_dashboard/saco_dashboard.dart';
 import 'domain/blocs/geolocation_bloc/geolocation_bloc.dart';
 import 'src/injector.dart';
 import 'package:sizer/sizer.dart';
@@ -28,8 +25,6 @@ class MyApp extends StatelessWidget {
             create: (_) => injector()..add(const InitializeGeolocator())),
         BlocProvider<MapLayerBloc>(
             create: (_) => injector()..add(InitializeMapLayer())),
-        BlocProvider<SacoDashboardBloc>(
-            create: (_) => injector()..add(InitializeSacoDashboard())),
       ],
       child: Sizer(builder: (context, orientation, screenType) {
         return MaterialApp(
@@ -53,7 +48,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const Hero(tag: 'splash', child: SacoDashboard()),
+          home: const Hero(tag: 'splash', child: LogoScreen()),
         );
       }),
     );

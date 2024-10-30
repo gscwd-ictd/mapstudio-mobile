@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:mapstudio/app/screens/saco/saco_dashboard/saco_dashboard.dart';
 import 'package:mapstudio/app/screens/saco/saco_form/saco_form.dart';
 
 part 'geolocation_event.dart';
@@ -71,23 +72,21 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
       }
     }
     // ignore: use_build_context_synchronously
-    Navigator.of(event.context).pushAndRemoveUntil(
-      // ignore: use_build_context_synchronously
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) {
-          // Navigate to the SecondScreen
-          return const SacoForm();
-        },
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          var tween = Tween<double>(begin: 0.0, end: 1).animate(animation);
-          return FadeTransition(
-            opacity: tween,
-            // Apply slide transition
-            child: child,
-          );
-        },
-      ),
-      (route) => false,
-    );
+    Navigator.of(event.context).pushReplacement(
+        // ignore: use_build_context_synchronously
+        PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) {
+        // Navigate to the SecondScreen
+        return const SacoDashboard();
+      },
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var tween = Tween<double>(begin: 0.0, end: 1).animate(animation);
+        return FadeTransition(
+          opacity: tween,
+          // Apply slide transition
+          child: child,
+        );
+      },
+    ));
   }
 }
