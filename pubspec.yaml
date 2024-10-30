@@ -48,6 +48,8 @@ dependencies:
   curved_navigation_bar: ^1.0.6 
   font_awesome_flutter: ^10.7.0
   sizer: ^3.0.4
+  easy_animated_tabbar: ^0.0.1
+  indexed: ^0.0.8
 
 dev_dependencies:
   flutter_test:

@@ -1,23 +1,31 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mapstudio/common/enums/saco_status_enum.dart';
+import 'package:mapstudio/domain/blocs/saco_dashboard_bloc/saco_Dashboard_state.dart';
+import 'package:mapstudio/domain/blocs/saco_dashboard_bloc/saco_dashboard_bloc.dart';
+
+import '../../../domain/blocs/saco_dashboard_bloc/saco_dashboard_event.dart';
 
 // ignore: must_be_immutable
-class TextForm extends StatefulWidget {
+class SacoSearchField extends StatefulWidget {
   IconData icon;
-  TextForm({
+  SacoSearchField({
     super.key,
     required this.icon,
   });
 
   @override
-  State<TextForm> createState() => _TextFormState();
+  State<SacoSearchField> createState() => _SacoSearchFieldState();
 }
 
-class _TextFormState extends State<TextForm> {
+class _SacoSearchFieldState extends State<SacoSearchField> {
   @override
   Widget build(BuildContext context) {
+    final sacoDashboardBloc = BlocProvider.of<SacoDashboardBloc>(context);
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
       child: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
@@ -26,6 +34,11 @@ class _TextFormState extends State<TextForm> {
             border: Border.fromBorderSide(
                 BorderSide(color: Color.fromARGB(255, 204, 204, 204)))),
         child: TextFormField(
+          onChanged: (text) {
+            sacoDashboardBloc.add(UpdateSacoDashboard(
+                search: text,
+                selectedStatus: sacoDashboardBloc.state.selectedStatus));
+          },
           style: const TextStyle(fontSize: 20),
           decoration: InputDecoration(
               hintStyle: const TextStyle(

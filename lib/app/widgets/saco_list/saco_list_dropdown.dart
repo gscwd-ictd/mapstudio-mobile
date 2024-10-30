@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapstudio/common/enums/saco_status_enum.dart';
+
+import '../../../domain/blocs/saco_dashboard_bloc/saco_dashboard_bloc.dart';
+import '../../../domain/blocs/saco_dashboard_bloc/saco_dashboard_event.dart';
 
 // List<String> list = <String>[
 //   'New Application',
@@ -18,10 +22,12 @@ class SacoListDropDown extends StatefulWidget {
 
 class _SacoListDropDownState extends State<SacoListDropDown> {
   // String dropdownValue = list.first;
-  String? selectedOption;
+  String? selectedOption = 'All';
 
   @override
   Widget build(BuildContext context) {
+    final sacoDashboardBloc = BlocProvider.of<SacoDashboardBloc>(context);
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       child: DropdownButton<String>(
@@ -31,7 +37,7 @@ class _SacoListDropDownState extends State<SacoListDropDown> {
         hint: const Text('Select Option'),
         items: <String>[
           'All',
-          'New Application',
+          'New',
           'In Progress',
           'Forwarded',
           'Returned',
@@ -49,9 +55,29 @@ class _SacoListDropDownState extends State<SacoListDropDown> {
           );
         }).toList(),
         onChanged: (newValue) {
+          SacoStatus newStatus = SacoStatus.all;
+
+          switch (newValue) {
+            case 'All':
+              newStatus = SacoStatus.all;
+            case 'New':
+              newStatus = SacoStatus.newapplication;
+            case 'In Progress':
+              newStatus = SacoStatus.inprogress;
+            case 'Forwarded':
+              newStatus = SacoStatus.forwarded;
+            case 'Returned':
+              newStatus = SacoStatus.returned;
+            case 'Completed':
+              newStatus = SacoStatus.completed;
+          }
+
+          sacoDashboardBloc.add(UpdateSacoDashboard(
+              search: sacoDashboardBloc.state.search,
+              selectedStatus: newStatus));
           selectedOption = newValue!;
           setState(() {
-            selectedOption;
+            selectedOption = newValue;
           });
         },
       ),

@@ -20,7 +20,7 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
   void _getGeolocationRequest(
       GetGeolocationRequest event, Emitter<GeolocationState> emit) async {
     emit(const GeoLocationRequestLoading());
-    print('test');
+
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // return Future.error('Location services are disabled.');
