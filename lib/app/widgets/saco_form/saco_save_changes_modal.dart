@@ -88,11 +88,10 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                   Padding(
                     padding: EdgeInsets.only(
                       top: 4.h,
-                      bottom: 8.h,
                       right: 5.w,
                     ),
                     child: SizedBox(
-                      height: 76.h,
+                      height: 78.h,
                       child: SingleChildScrollView(
                         child: Padding(
                           padding: EdgeInsets.only(left: 5.w, top: 2.h),
@@ -142,52 +141,28 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                                     Transform.translate(
                                       offset: Offset(-1.w, 0),
                                       child: Card(
-                                        elevation: 10,
-                                        shape: RoundedRectangleBorder(
-                                            side: BorderSide.none,
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
-                                        child: SizedBox(
-                                          height: 25.h,
-                                          width: 75.w,
-                                          child: FlutterMap(
-                                              options: const MapOptions(
-                                                initialCenter:
-                                                    LatLng(6.12562, 125.18451),
-                                                initialZoom: 17,
-                                                minZoom: 12,
-                                                maxZoom: 20,
-                                                interactionOptions:
-                                                    InteractionOptions(
-                                                        flags: ~InteractiveFlag
-                                                            .doubleTapZoom),
-                                              ),
-                                              children: [widget.tileLayer]),
-                                        ),
-                                        // child: FutureBuilder(
-                                        //     future: captureWidget(),
-                                        //     builder: (context,
-                                        //         AsyncSnapshot<Uint8List> snapshot) {
-                                        //       switch (snapshot.connectionState) {
-                                        //         case ConnectionState.waiting:
-                                        //           return SizedBox(
-                                        //             height: 25.h,
-                                        //             width: 80.w,
-                                        //             child: const Center(
-                                        //               child:
-                                        //                   CircularProgressIndicator(),
-                                        //             ),
-                                        //           );
-                                        //         default:
-                                        //           return Image.memory(
-                                        //             snapshot.data ?? Uint8List(0),
-                                        //             fit: BoxFit.fitWidth,
-                                        //             height: 25.h,
-                                        //             width: 80.w,
-                                        //           );
-                                        //       }
-                                        //     }),
-                                      ),
+                                          elevation: 10,
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide.none,
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          child: SizedBox(
+                                            height: 25.h,
+                                            width: 75.w,
+                                            child: FlutterMap(
+                                                options: const MapOptions(
+                                                  initialCenter: LatLng(
+                                                      6.12562, 125.18451),
+                                                  initialZoom: 17,
+                                                  minZoom: 12,
+                                                  maxZoom: 20,
+                                                  interactionOptions:
+                                                      InteractionOptions(
+                                                          flags: ~InteractiveFlag
+                                                              .doubleTapZoom),
+                                                ),
+                                                children: [widget.tileLayer]),
+                                          )),
                                     ),
                                     SizedBox(
                                       height: 0.4.h,
@@ -324,6 +299,39 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 5.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        DefaultButton(
+                          onPressed: () {
+                            showDialog(
+                                barrierDismissible: true,
+                                barrierColor:
+                                    const Color.fromRGBO(255, 255, 255, 80),
+                                // ignore: use_build_context_synchronously
+                                context: context,
+                                builder: (context) => const SacoSavedModal());
+                          },
+                          buttonText: 'SAVE',
+                          buttonWidth: 24.w,
+                          btnColor: AppColors.mainColor,
+                        ),
+                        DefaultButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          buttonText: 'BACK',
+                          buttonWidth: 2.w,
+                          btnColor: Colors.white,
+                          txtColor: AppColors.lblColor,
+                          borderSide: const BorderSide(
+                              color: AppColors.mainColor, width: 0.8),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
               Positioned(
@@ -341,41 +349,7 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                bottom: 0,
-                child: SizedBox(
-                  height: 6.h,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      DefaultButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        buttonText: 'BACK',
-                        buttonWidth: 15.w,
-                        btnColor: Colors.white,
-                        txtColor: Colors.blueAccent,
-                      ),
-                      DefaultButton(
-                        onPressed: () {
-                          showDialog(
-                              barrierDismissible: true,
-                              barrierColor:
-                                  const Color.fromRGBO(255, 255, 255, 80),
-                              // ignore: use_build_context_synchronously
-                              context: context,
-                              builder: (context) => const SacoSavedModal());
-                        },
-                        buttonText: 'SAVE',
-                        buttonWidth: 15.w,
-                        btnColor: AppColors.mainColor,
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              )
             ],
           ),
         ),
