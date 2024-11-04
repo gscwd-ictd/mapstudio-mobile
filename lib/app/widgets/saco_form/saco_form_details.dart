@@ -13,47 +13,42 @@ class SacoFormDetail extends StatefulWidget {
 class _SacoFormDetailState extends State<SacoFormDetail> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('SACO Number',
-                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-                textScaler:
-                    TextScaler.linear(TextScaleUtil.textScaleFactor(context))),
-            Padding(
-              padding: EdgeInsets.only(left: 3.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Applicant's Name",
-                      style: TextStyle(fontSize: 15.sp),
-                      textScaler: TextScaler.linear(
-                          TextScaleUtil.textScaleFactor(context))),
-                  Text("Applicant's Address",
-                      style: TextStyle(fontSize: 15.sp),
-                      textScaler: TextScaler.linear(
-                          TextScaleUtil.textScaleFactor(context))),
-                ],
-              ),
-            ),
-          ],
-        ),
-        SizedBox(width: 25.w),
-        Card(
-            color: AppColors.newTag,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 1.w),
-              child: Text('New',
-                  style: TextStyle(fontSize: 14.sp),
+    return Padding(
+      padding: EdgeInsets.only(left: 4.w, bottom: 2.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('SACO Number',
+                  style:
+                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
                   textScaler: TextScaler.linear(
                       TextScaleUtil.textScaleFactor(context))),
-            ))
-      ],
+              Padding(
+                padding: EdgeInsets.only(left: 3.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Applicant's Name",
+                        style: TextStyle(fontSize: 16.sp),
+                        textScaler: TextScaler.linear(
+                            TextScaleUtil.textScaleFactor(context))),
+                    Text("Applicant's Address",
+                        style: TextStyle(fontSize: 16.sp),
+                        textScaler: TextScaler.linear(
+                            TextScaleUtil.textScaleFactor(context))),
+                  ],
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

@@ -27,21 +27,26 @@ class _SystemAvailableState extends State<SystemAvailable> {
               style: AppLabels.frmLblTxtStyle,
             ),
           ),
-          TextRadioButton(
-            rbMode: RadioButtonEnum.sysAvail,
-            onPressed: () {
-              setState(() {});
-            },
-            value: 1,
-            name: 'Yes',
-          ),
-          TextRadioButton(
-            rbMode: RadioButtonEnum.sysAvail,
-            onPressed: () {
-              setState(() {});
-            },
-            value: 2,
-            name: 'No',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextRadioButton(
+                rbMode: RadioButtonEnum.sysAvail,
+                onPressed: () {
+                  setState(() {});
+                },
+                value: 1,
+                name: 'Yes',
+              ),
+              TextRadioButton(
+                rbMode: RadioButtonEnum.sysAvail,
+                onPressed: () {
+                  setState(() {});
+                },
+                value: 2,
+                name: 'No',
+              ),
+            ],
           ),
         ],
       ),

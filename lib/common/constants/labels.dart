@@ -3,7 +3,7 @@ import 'package:mapstudio/common/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class AppLabels {
-  static double labelSize = 16.sp;
+  static double labelSize = 15.sp;
   static TextStyle frmLblTxtStyle =
       TextStyle(color: AppColors.lblColor, fontSize: labelSize);
   static double mainCbxTxt = 14.sp;

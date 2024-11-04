@@ -3,11 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_body/saco_form_body.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_details.dart';
-import 'package:mapstudio/app/widgets/saco_form/saco_form_map.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_save_changes_modal.dart';
-import 'package:mapstudio/common/constants/colors.dart';
-import 'package:mapstudio/common/utils/file_util.dart';
-import 'package:mapstudio/common/utils/text_scale_util.dart';
 import 'package:sizer/sizer.dart';
 
 class SacoForm extends StatefulWidget {
@@ -37,36 +33,54 @@ class _SacoFormState extends State<SacoForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.bgColor,
-      resizeToAvoidBottomInset: true,
-      body: Column(
-        children: [
-          const SacoFormDetail(),
-          const Divider(
-            color: Colors.grey,
-          ),
-          const SacoFormBody(),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-            child: SizedBox(
-              height: 6.h,
-              child: DefaultButton(
-                buttonText: 'SAVE',
-                buttonWidth: 38.w,
-                onPressed: () {
-                  showDialog(
-                      barrierDismissible: false,
-                      // barrierColor: const Color.fromRGBO(255, 255, 255, 80),
-                      // ignore: use_build_context_synchronously
-                      context: context,
-                      builder: (context) => SacoSaveChangesModal(
-                          tileLayer: openStreetMapTileLayer));
-                },
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Container(
+                    height: 7,
+                    width: 25.w,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey[300])),
               ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 2.h,
+            ),
+            const SacoFormDetail(),
+            Divider(
+              thickness: 2,
+              color: Colors.grey[300],
+            ),
+            const SacoFormBody(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+              child: SizedBox(
+                height: 6.h,
+                child: DefaultButton(
+                  buttonText: 'PROCEED',
+                  buttonWidth: 30.w,
+                  onPressed: () {
+                    showDialog(
+                        barrierDismissible: false,
+                        // barrierColor: const Color.fromRGBO(255, 255, 255, 80),
+                        // ignore: use_build_context_synchronously
+                        context: context,
+                        builder: (context) => SacoSaveChangesModal(
+                            tileLayer: openStreetMapTileLayer));
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -76,7 +76,7 @@ class _GetLocationState extends State<GetLocation> {
                         padding: EdgeInsets.symmetric(
                           horizontal: MediaQuery.of(context).size.width / 3.8,
                         ),
-                        child: const DefaultText(
+                        child: DefaultText(
                           color: Colors.grey,
                           text: 'NOT NOW',
                           buttonSize: 18,

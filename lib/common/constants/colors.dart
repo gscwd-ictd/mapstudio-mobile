@@ -7,4 +7,5 @@ class AppColors {
   static const Color newTag = Color(0xFFB0FF9D); //#B0FF9D
   static const Color bgColor = Color(0xFFF1F5F9);
   static const Color lblColor = Color(0xFF525C70);
+  static const Color lblBlkColor = Color.fromARGB(255, 57, 58, 59);
 }

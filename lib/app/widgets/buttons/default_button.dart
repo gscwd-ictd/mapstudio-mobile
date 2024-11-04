@@ -9,13 +9,15 @@ class DefaultButton extends StatefulWidget {
   final double buttonWidth;
   Color? btnColor;
   Color? txtColor;
+  BorderSide? borderSide;
   DefaultButton(
       {super.key,
       required this.onPressed,
       required this.buttonText,
       required this.buttonWidth,
       this.btnColor,
-      this.txtColor});
+      this.txtColor,
+      this.borderSide});
 
   @override
   State<DefaultButton> createState() => _DefaultButtonState();
@@ -27,7 +29,8 @@ class _DefaultButtonState extends State<DefaultButton> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8), side: BorderSide.none),
+              borderRadius: BorderRadius.circular(80),
+              side: widget.borderSide ?? BorderSide.none),
           backgroundColor: widget.btnColor == null
               ? const Color.fromARGB(255, 37, 99, 235)
               : widget.btnColor!,
@@ -35,6 +38,7 @@ class _DefaultButtonState extends State<DefaultButton> {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: widget.buttonWidth),
         child: DefaultText(
+          fontWeight: FontWeight.normal,
           color: widget.txtColor == null ? Colors.white : widget.txtColor!,
           text: widget.buttonText,
           buttonSize: 16.sp,
