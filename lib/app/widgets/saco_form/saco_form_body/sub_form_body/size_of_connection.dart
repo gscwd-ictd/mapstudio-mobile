@@ -27,29 +27,42 @@ class _SizeOfConnectionState extends State<SizeOfConnection> {
               style: AppLabels.frmLblTxtStyle,
             ),
           ),
-          TextRadioButton(
-            rbMode: RadioButtonEnum.sizeOfConnection,
-            onPressed: () {
-              setState(() {});
-            },
-            value: 1,
-            name: '1/2',
-          ),
-          TextRadioButton(
-            rbMode: RadioButtonEnum.sizeOfConnection,
-            onPressed: () {
-              setState(() {});
-            },
-            value: 2,
-            name: '3/4',
-          ),
-          TextRadioButton(
-            rbMode: RadioButtonEnum.sizeOfConnection,
-            onPressed: () {
-              setState(() {});
-            },
-            value: 3,
-            name: 'others',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  TextRadioButton(
+                    rbMode: RadioButtonEnum.sizeOfConnection,
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    value: 1,
+                    name: '1/2',
+                  ),
+                  SizedBox(
+                    height: 0.5.h,
+                  ),
+                  TextRadioButton(
+                    rbMode: RadioButtonEnum.sizeOfConnection,
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    value: 3,
+                    name: 'others',
+                  ),
+                ],
+              ),
+              TextRadioButton(
+                rbMode: RadioButtonEnum.sizeOfConnection,
+                onPressed: () {
+                  setState(() {});
+                },
+                value: 2,
+                name: '3/4',
+              )
+            ],
           ),
         ],
       ),

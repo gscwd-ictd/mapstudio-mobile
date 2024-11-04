@@ -23,7 +23,7 @@ class _SacoFormBodyState extends State<SacoFormBody> {
       padding: EdgeInsets.only(left: 3.w, right: 3.w, top: 2.h),
       child: const Card(
         elevation: 0,
-        color: AppColors.bgColor,
+        color: Colors.white,
         margin: null,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -5,11 +5,13 @@ class DefaultText extends StatefulWidget {
   final String text;
   final double buttonSize;
   final Color color;
-  const DefaultText(
+  FontWeight? fontWeight;
+  DefaultText(
       {super.key,
       required this.text,
       required this.buttonSize,
-      required this.color});
+      required this.color,
+      this.fontWeight});
 
   @override
   State<DefaultText> createState() => _DefaultTextState();
@@ -23,7 +25,7 @@ class _DefaultTextState extends State<DefaultText> {
           style: TextStyle(
               letterSpacing: 2,
               fontSize: widget.buttonSize,
-              fontWeight: FontWeight.bold,
+              fontWeight: widget.fontWeight ?? FontWeight.bold,
               color: widget.color),
           textAlign: TextAlign.center,
           textScaler:

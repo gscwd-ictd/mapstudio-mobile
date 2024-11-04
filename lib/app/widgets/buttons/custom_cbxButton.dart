@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mapstudio/common/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomCbxButton extends StatefulWidget {
@@ -31,7 +32,7 @@ class _CustomCbxButtonState extends State<CustomCbxButton> {
                     topLeft: Radius.circular(8), topRight: Radius.circular(8))
                 : BorderRadius.circular(8),
             child: Container(
-              color: Colors.white,
+              color: AppColors.bgColor,
               child: ListTile(
                 shape: RoundedRectangleBorder(
                     side: BorderSide.none,
@@ -69,11 +70,16 @@ class _CustomCbxButtonState extends State<CustomCbxButton> {
             ),
           ),
         ),
+        Container(
+          color: Colors.white,
+          height: 0.1.h,
+        ),
         !isOpen
             ? Container()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: SizedBox(
+                child: Container(
+                  color: Colors.white,
                   height: 22.h,
                   child: ListView.builder(
                       shrinkWrap: true,
@@ -89,7 +95,7 @@ class _CustomCbxButtonState extends State<CustomCbxButton> {
                                     bottomRight: Radius.circular(8))
                                 : BorderRadius.circular(0),
                             child: Container(
-                              color: Colors.white,
+                              color: AppColors.bgColor,
                               child: ListTile(
                                 visualDensity:
                                     const VisualDensity(vertical: -3),

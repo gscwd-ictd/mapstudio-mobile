@@ -26,22 +26,27 @@ class _PlumbingAvavilableState extends State<PlumbingAvavilable> {
               style: AppLabels.frmLblTxtStyle,
             ),
           ),
-          TextRadioButton(
-            rbMode: RadioButtonEnum.plumbingAvail,
-            onPressed: () {
-              setState(() {});
-            },
-            value: 1,
-            name: 'Yes',
-          ),
-          TextRadioButton(
-            rbMode: RadioButtonEnum.plumbingAvail,
-            onPressed: () {
-              setState(() {});
-            },
-            value: 2,
-            name: 'No',
-          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextRadioButton(
+                rbMode: RadioButtonEnum.plumbingAvail,
+                onPressed: () {
+                  setState(() {});
+                },
+                value: 1,
+                name: 'Yes',
+              ),
+              TextRadioButton(
+                rbMode: RadioButtonEnum.plumbingAvail,
+                onPressed: () {
+                  setState(() {});
+                },
+                value: 2,
+                name: 'No',
+              ),
+            ],
+          )
         ],
       ),
     );

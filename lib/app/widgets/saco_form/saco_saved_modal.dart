@@ -56,7 +56,7 @@ class _SacoSavedModalState extends State<SacoSavedModal> {
                   Padding(
                     padding:
                         EdgeInsets.only(top: SizerUtil.height(context) / 8),
-                    child: const DefaultText(
+                    child: DefaultText(
                         text: 'Successful',
                         buttonSize: 26,
                         color: Colors.white),
