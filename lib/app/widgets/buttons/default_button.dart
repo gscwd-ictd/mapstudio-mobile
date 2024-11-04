@@ -10,6 +10,7 @@ class DefaultButton extends StatefulWidget {
   Color? btnColor;
   Color? txtColor;
   BorderSide? borderSide;
+  BorderRadiusGeometry? radius;
   DefaultButton(
       {super.key,
       required this.onPressed,
@@ -17,7 +18,8 @@ class DefaultButton extends StatefulWidget {
       required this.buttonWidth,
       this.btnColor,
       this.txtColor,
-      this.borderSide});
+      this.borderSide,
+      this.radius});
 
   @override
   State<DefaultButton> createState() => _DefaultButtonState();
@@ -29,7 +31,7 @@ class _DefaultButtonState extends State<DefaultButton> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(80),
+              borderRadius: widget.radius ?? BorderRadius.circular(80),
               side: widget.borderSide ?? BorderSide.none),
           backgroundColor: widget.btnColor == null
               ? const Color.fromARGB(255, 37, 99, 235)
