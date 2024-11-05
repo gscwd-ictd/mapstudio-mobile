@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
+import 'package:mapstudio/app/screens/saco/saco_map/saco_map.dart';
 import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_body/saco_form_body.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_details.dart';
@@ -79,15 +79,12 @@ class _SacoFormState extends State<SacoForm> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 2.h,
+            )
           ],
         ),
       ),
     );
   }
 }
-
-TileLayer get openStreetMapTileLayer => TileLayer(
-      tileDisplay: const TileDisplay.instantaneous(),
-      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-    );
