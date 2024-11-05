@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapstudio/common/enums/saco_status_enum.dart';
 import 'package:mapstudio/data/models/saco_list_model.dart';
 import 'package:mapstudio/domain/blocs/saco_dashboard_bloc/saco_dashboard_state.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../common/constants/colors.dart';
 import '../../../../common/utils/text_scale_util.dart';
 import '../../../../domain/blocs/saco_dashboard_bloc/saco_dashboard_bloc.dart';
@@ -113,7 +114,7 @@ class _SacoDashboardState extends State<SacoDashboard> {
           Column(
             children: [
               SizedBox(
-                  height: MediaQuery.of(context).size.height / 4.5,
+                  height: 18.h,
                   child: Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.rectangle,
@@ -172,33 +173,9 @@ class _SacoDashboardState extends State<SacoDashboard> {
                           ]),
                     ),
                   )),
-              //SEARCH FIELD
-              SacoSearchField(
-                icon: FontAwesomeIcons.magnifyingGlass,
+              SizedBox(
+                height: 15.h,
               ),
-              //LIST AND MAP BUTTONS
-              Expanded(
-                flex: 1,
-                child: SizedBox(
-                  width: MediaQuery.sizeOf(context).width,
-                  child: SacoEasyAnimatedTab(
-                    //buttonTitles are deisnged to only have 2 items in the array
-                    buttonTitles: const <String>['List', 'Map'],
-                    onSelected: (index) {},
-                    minHeightOfItem: 20,
-                    minWidthOfItem: MediaQuery.sizeOf(context).width * 0.50,
-                    deActiveItemColor: Colors.white,
-                    activeItemColor: const Color.fromARGB(255, 29, 41, 67),
-                    deActiveTextStyle:
-                        const TextStyle(color: Colors.black, fontSize: 16),
-                    activeTextStyle:
-                        const TextStyle(color: Colors.white, fontSize: 16),
-                    deActiveBorderRadius: 50,
-                    activeBorderRadius: 50,
-                  ),
-                ),
-              ),
-
               //YOUR TASKS AND DROP DOWN
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 10, 10, 0),

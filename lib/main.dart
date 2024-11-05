@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const Hero(tag: 'splash', child: SacoTabView()),
+          home: const Hero(tag: 'splash', child: LogoScreen()),
         );
       }),
     );

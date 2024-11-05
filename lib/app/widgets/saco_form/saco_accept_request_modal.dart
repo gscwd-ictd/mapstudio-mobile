@@ -76,7 +76,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: EdgeInsets.symmetric(
-          horizontal: 3.w, vertical: isDeclined ? 10.h : 16.h),
+          horizontal: 3.w, vertical: isDeclined ? 5.h : 11.h),
       elevation: 20,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
@@ -84,15 +84,16 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
           color: Colors.white,
           child: Stack(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 6.h, right: 4.w),
-                    child: SizedBox(
-                      height: isDeclined ? 68.h : 55.h,
-                      child: SingleChildScrollView(
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 6.h, right: 4.w),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        height: isDeclined ? 68.h : 55.h,
                         child: Padding(
                           padding: EdgeInsets.only(left: 5.w),
                           child: Column(
@@ -209,98 +210,101 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        DefaultButton(
-                          onPressed: isDeclined
-                              ? () {
-                                  showDialog(
-                                      barrierDismissible: false,
-                                      // ignore: use_build_context_synchronously
-                                      context: context,
-                                      builder: (context) => Container(
+                    SizedBox(
+                      height: 5.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DefaultButton(
+                            onPressed: isDeclined
+                                ? () {
+                                    showDialog(
+                                        barrierDismissible: false,
+                                        // ignore: use_build_context_synchronously
+                                        context: context,
+                                        builder: (context) => Container(
+                                              color: const Color.fromARGB(
+                                                      255, 0, 0, 0)
+                                                  .withOpacity(0.2),
+                                              child: BackdropFilter(
+                                                  filter: ImageFilter.blur(
+                                                      sigmaX: 10, sigmaY: 10),
+                                                  child: SacoReturnedModal(
+                                                      tileLayer:
+                                                          openStreetMapTileLayer)),
+                                            ));
+                                  }
+                                : () {
+                                    Navigator.of(context).pop();
+                                    showModalBottomSheet<void>(
+                                        context: context,
+                                        isScrollControlled: true,
+                                        isDismissible: false,
+                                        useRootNavigator: true,
+                                        builder: (BuildContext context) {
+                                          return Container(
                                             color: const Color.fromARGB(
                                                     255, 0, 0, 0)
-                                                .withOpacity(0.2),
+                                                .withOpacity(0.5),
                                             child: BackdropFilter(
-                                                filter: ImageFilter.blur(
-                                                    sigmaX: 10, sigmaY: 10),
-                                                child: SacoReturnedModal(
-                                                    tileLayer:
-                                                        openStreetMapTileLayer)),
-                                          ));
-                                }
-                              : () {
-                                  Navigator.of(context).pop();
-                                  showModalBottomSheet<void>(
-                                      context: context,
-                                      isScrollControlled: true,
-                                      isDismissible: false,
-                                      useRootNavigator: true,
-                                      builder: (BuildContext context) {
-                                        return Container(
-                                          color:
-                                              const Color.fromARGB(255, 0, 0, 0)
-                                                  .withOpacity(0.5),
-                                          child: BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                                sigmaX: 15, sigmaY: 15),
-                                            child: DraggableScrollableSheet(
-                                                expand: false,
-                                                snap: false,
-                                                builder: (_, controller) {
-                                                  return SingleChildScrollView(
-                                                      physics:
-                                                          const BouncingScrollPhysics(),
-                                                      controller: controller,
-                                                      child: SizedBox(
-                                                          height: 110.h,
-                                                          child:
-                                                              const SacoForm()));
-                                                }),
-                                          ),
-                                        );
-                                      });
-                                },
-                          buttonText: isDeclined ? 'DECLINE' : 'ACCEPT',
-                          buttonWidth: 16.w,
-                          btnColor: isDeclined
-                              ? AppColors.abortColor
-                              : AppColors.mainColor,
-                        ),
-                        SizedBox(
-                          width: 4.w,
-                        ),
-                        DefaultButton(
-                          onPressed: isDeclined
-                              ? () {
-                                  setState(() {
-                                    isDeclined = false;
-                                  });
-                                }
-                              : () {
-                                  setState(() {
-                                    isDeclined = true;
-                                  });
-                                },
-                          buttonText: isDeclined ? 'BACK' : 'DECLINE',
-                          buttonWidth: 2.w,
-                          btnColor: Colors.white,
-                          txtColor: AppColors.lblColor,
-                          borderSide: BorderSide(
-                              color: isDeclined
-                                  ? AppColors.abortColor
-                                  : AppColors.mainColor,
-                              width: 0.8),
-                        )
-                      ],
+                                              filter: ImageFilter.blur(
+                                                  sigmaX: 15, sigmaY: 15),
+                                              child: DraggableScrollableSheet(
+                                                  expand: false,
+                                                  snap: false,
+                                                  builder: (_, controller) {
+                                                    return SingleChildScrollView(
+                                                        physics:
+                                                            const BouncingScrollPhysics(),
+                                                        controller: controller,
+                                                        child: SizedBox(
+                                                            height: 120.h,
+                                                            child:
+                                                                const SacoForm()));
+                                                  }),
+                                            ),
+                                          );
+                                        });
+                                  },
+                            buttonText: isDeclined ? 'DECLINE' : 'ACCEPT',
+                            buttonWidth: 16.w,
+                            btnColor: isDeclined
+                                ? AppColors.abortColor
+                                : AppColors.mainColor,
+                          ),
+                          SizedBox(
+                            width: 4.w,
+                          ),
+                          DefaultButton(
+                            onPressed: isDeclined
+                                ? () {
+                                    setState(() {
+                                      isDeclined = false;
+                                    });
+                                  }
+                                : () {
+                                    setState(() {
+                                      isDeclined = true;
+                                    });
+                                  },
+                            buttonText: isDeclined ? 'BACK' : 'DECLINE',
+                            buttonWidth: 2.w,
+                            btnColor: Colors.white,
+                            txtColor: AppColors.lblColor,
+                            borderSide: BorderSide(
+                                color: isDeclined
+                                    ? AppColors.abortColor
+                                    : AppColors.mainColor,
+                                width: 0.8),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 2.h,
+                    )
+                  ],
+                ),
               ),
               Positioned(
                 top: 0,
