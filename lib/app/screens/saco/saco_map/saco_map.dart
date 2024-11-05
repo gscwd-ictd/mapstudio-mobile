@@ -6,8 +6,7 @@ import 'package:mapstudio/common/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class SacoMap extends StatefulWidget {
-  final TileLayer tileLayer;
-  const SacoMap({super.key, required this.tileLayer});
+  const SacoMap({super.key});
 
   @override
   State<SacoMap> createState() => _SacoMapState();
@@ -27,7 +26,7 @@ class _SacoMapState extends State<SacoMap> {
               interactionOptions:
                   InteractionOptions(flags: ~InteractiveFlag.doubleTapZoom),
             ),
-            children: [widget.tileLayer]),
+            children: [openStreetMapTileLayer]),
         Positioned(
           bottom: 0,
           right: 2.w,
@@ -95,3 +94,9 @@ class _SacoMapState extends State<SacoMap> {
     );
   }
 }
+
+TileLayer get openStreetMapTileLayer => TileLayer(
+      tileDisplay: const TileDisplay.instantaneous(),
+      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+      userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+    );
