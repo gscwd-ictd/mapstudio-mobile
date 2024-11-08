@@ -3,8 +3,20 @@ import 'package:mapstudio/common/constants/colors.dart';
 import 'package:mapstudio/common/utils/text_scale_util.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../common/enums/saco_status_enum.dart';
+
 class SacoFormDetail extends StatefulWidget {
-  const SacoFormDetail({super.key});
+  final String sacoNumber;
+  final String applicantName;
+  final String applicantAddress;
+  final SacoStatus sacoStatus;
+
+  const SacoFormDetail(
+      {super.key,
+      required this.sacoNumber,
+      required this.applicantName,
+      required this.applicantAddress,
+      required this.sacoStatus});
 
   @override
   State<SacoFormDetail> createState() => _SacoFormDetailState();
@@ -23,7 +35,7 @@ class _SacoFormDetailState extends State<SacoFormDetail> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('SACO Number',
+              Text(widget.sacoNumber,
                   style:
                       TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
                   textScaler: TextScaler.linear(
@@ -34,11 +46,11 @@ class _SacoFormDetailState extends State<SacoFormDetail> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Applicant's Name",
+                    Text(widget.applicantName,
                         style: TextStyle(fontSize: 16.sp),
                         textScaler: TextScaler.linear(
                             TextScaleUtil.textScaleFactor(context))),
-                    Text("Applicant's Address",
+                    Text(widget.applicantAddress,
                         style: TextStyle(fontSize: 16.sp),
                         textScaler: TextScaler.linear(
                             TextScaleUtil.textScaleFactor(context))),

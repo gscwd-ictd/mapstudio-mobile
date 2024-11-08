@@ -13,9 +13,26 @@ import 'package:mapstudio/common/utils/file_util.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../common/enums/saco_status_enum.dart';
+import '../buttons/location_pin_button.dart';
+
 class SacoSaveChangesModal extends StatefulWidget {
   final TileLayer tileLayer;
-  const SacoSaveChangesModal({super.key, required this.tileLayer});
+  final String sacoNumber;
+  final String applicantName;
+  final String applicantAddress;
+  final SacoStatus sacoStatus;
+  final double latitude;
+  final double longitude;
+  const SacoSaveChangesModal(
+      {super.key,
+      required this.tileLayer,
+      required this.latitude,
+      required this.longitude,
+      required this.sacoNumber,
+      required this.applicantName,
+      required this.applicantAddress,
+      required this.sacoStatus});
 
   @override
   State<SacoSaveChangesModal> createState() => _SacoSaveChangesModalState();
@@ -107,7 +124,7 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                                 height: 1.h,
                               ),
                               Text(
-                                'SACO Number',
+                                widget.sacoNumber,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 16.sp,
@@ -123,7 +140,7 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                                       height: 0.4.h,
                                     ),
                                     Text(
-                                      "Applicant's Name",
+                                      widget.applicantName,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 16.sp),
                                     ),
@@ -131,7 +148,7 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                                       height: 0.4.h,
                                     ),
                                     Text(
-                                      "Applicant's Address",
+                                      widget.applicantAddress,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 16.sp),
                                     ),
@@ -150,18 +167,36 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                                             height: 25.h,
                                             width: 75.w,
                                             child: FlutterMap(
-                                                options: const MapOptions(
+                                                options: MapOptions(
                                                   initialCenter: LatLng(
-                                                      6.12562, 125.18451),
+                                                      widget.longitude,
+                                                      widget.latitude),
                                                   initialZoom: 17,
                                                   minZoom: 12,
                                                   maxZoom: 20,
                                                   interactionOptions:
-                                                      InteractionOptions(
+                                                      const InteractionOptions(
                                                           flags: ~InteractiveFlag
                                                               .doubleTapZoom),
                                                 ),
-                                                children: [widget.tileLayer]),
+                                                children: [
+                                                  widget.tileLayer,
+                                                  MarkerLayer(markers: [
+                                                    // marker for concessionare address (longitude/latitude)
+                                                    Marker(
+                                                      point: LatLng(
+                                                          widget.longitude,
+                                                          widget.latitude),
+                                                      width: 60,
+                                                      height: 80,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: LocationPinButton(
+                                                        onPressed: () {},
+                                                      ),
+                                                    ),
+                                                  ])
+                                                ]),
                                           )),
                                     ),
                                     SizedBox(

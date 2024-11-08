@@ -17,6 +17,8 @@ class SacoListDetail extends StatefulWidget {
   String applicantName;
   String applicantAddress;
   SacoStatus sacoStatus;
+  final double latitude;
+  final double longitude;
 
   SacoListDetail({
     super.key,
@@ -24,6 +26,8 @@ class SacoListDetail extends StatefulWidget {
     required this.applicantName,
     required this.applicantAddress,
     required this.sacoStatus,
+    required this.latitude,
+    required this.longitude,
   });
 
   @override
@@ -45,7 +49,14 @@ class _SacoListDetailState extends State<SacoListDetail>
                   child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                       child: SacoAcceptRequestModal(
-                          tileLayer: openStreetMapTileLayer)),
+                        tileLayer: openStreetMapTileLayer,
+                        latitude: widget.latitude,
+                        longitude: widget.longitude,
+                        sacoNumber: widget.sacoNumber,
+                        applicantName: widget.applicantName,
+                        applicantAddress: widget.applicantAddress,
+                        sacoStatus: widget.sacoStatus,
+                      )),
                 ));
       },
       child: Padding(

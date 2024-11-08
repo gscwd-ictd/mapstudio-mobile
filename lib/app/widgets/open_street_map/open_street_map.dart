@@ -73,7 +73,7 @@ class _OpenStreetMapWidget extends State<OpenStreetMapWidget> {
                   LatLng latLng = const LatLng(0, 0);
                   if (lat != null && long != null) {
                     userPosition = "${lat.toString()} ${long.toString()}";
-                    latLng = LatLng(lat, long);
+                    latLng = LatLng(long, lat);
                   }
                   return MarkerLayer(markers: [
                     // 1st marker

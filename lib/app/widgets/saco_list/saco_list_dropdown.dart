@@ -38,8 +38,8 @@ class _SacoListDropDownState extends State<SacoListDropDown> {
         items: <String>[
           'All',
           'New',
-          'In Progress',
-          'Forwarded',
+          // 'In Progress',
+          // 'Forwarded',
           'Returned',
           'Completed'
         ].map((String value) {

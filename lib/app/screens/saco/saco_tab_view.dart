@@ -6,6 +6,9 @@ import 'package:mapstudio/app/widgets/saco_easy_animated_tab/saco_easy_animated_
 import 'package:mapstudio/app/widgets/saco_search_field/saco_search_field.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../common/enums/saco_status_enum.dart';
+import '../../../data/models/saco_list_model.dart';
+
 class SacoTabView extends StatefulWidget {
   const SacoTabView({super.key});
 
@@ -31,15 +34,130 @@ class _SacoTabViewState extends State<SacoTabView>
 
   @override
   Widget build(BuildContext context) {
+    List<SacoListModel> dummySacoList = [
+      SacoListModel(
+        sacoStatus: SacoStatus.newapplication,
+        sacoNumber: "256854",
+        applicantName: "Mark Dano",
+        applicantAddress:
+            "Block 5 Lot 10 Sarangani Homes Phase 1, Brgy. San Isidro General Santos City",
+        longitude: 6.125100,
+        latitude: 125.187256,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.newapplication,
+        sacoNumber: "364866",
+        applicantName: "John Henry Alf-Acheche",
+        applicantAddress:
+            "Block 2 Lot 12 Sarangani Homes Phase 2, Brgy. San Isidro General Santos City",
+        longitude: 6.127977,
+        latitude: 125.184778,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.completed,
+        sacoNumber: "334610",
+        applicantName: "Recardo Vincente Narvaiz",
+        applicantAddress:
+            "Block 11 Lot 320 Maldives Subdivision, Brgy. San Isidro General Santos City",
+        longitude: 6.126642,
+        latitude: 125.181849,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.completed,
+        sacoNumber: "455672",
+        applicantName: "Jelea Gleyn Nacerna",
+        applicantAddress:
+            "Block 1 Lot 23 Jolibee Homes, Brgy. Bula General Santos City",
+        longitude: 6.122512,
+        latitude: 125.181731,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.returned,
+        sacoNumber: "321121",
+        applicantName: "Aileen Joshua Tubero",
+        applicantAddress:
+            "Block 5 Lot 10 Saranganhi Homes Phase 1, Brgy. San Isidro General Santos City",
+        longitude: 6.119130,
+        latitude: 125.181216,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.newapplication,
+        sacoNumber: "00005",
+        applicantName: "Kara Kara Jane Ray Yes",
+        applicantAddress:
+            "Block 33 Lot 22 Mt. Matutum Subdivision, Brgy. Mabuhay General Santos City",
+        longitude: 6.117424,
+        latitude: 125.185561,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.newapplication,
+        sacoNumber: "585524",
+        applicantName: "Aimee Marcoss",
+        applicantAddress:
+            "Block 2 Lot 32 Sarangani Homes Phase 1, Brgy. San Isidro General Santos City",
+        longitude: 6.121033,
+        latitude: 125.189123,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.returned,
+        sacoNumber: "874458",
+        applicantName: "Ayan Spin Sir",
+        applicantAddress:
+            "Block 35 Lot 8 Sarangani Homes Phase 2, Brgy. San Isidro General Santos City",
+        longitude: 6.115171,
+        latitude: 125.178298,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.completed,
+        sacoNumber: "334610",
+        applicantName: "Ricky Gervaiz",
+        applicantAddress:
+            "Block 11 Lot 320 Maldives Subdivision, Brgy. San Isidro General Santos City",
+        longitude: 6.114577,
+        latitude: 125.176249,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.completed,
+        sacoNumber: "455672",
+        applicantName: "Jelea Gleyn Nacerna",
+        applicantAddress:
+            "Block 1 Lot 23 Jolibee Homes, Brgy. Bula General Santos City",
+        longitude: 6.116040,
+        latitude: 125.176377,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.returned,
+        sacoNumber: "966582",
+        applicantName: "Aileen Joshua Tubero",
+        applicantAddress:
+            "Block 15 Lot 45 Saranganhi Homes Phase 1, Brgy. San Isidro General Santos City",
+        longitude: 6.120447,
+        latitude: 125.179317,
+      ),
+      SacoListModel(
+        sacoStatus: SacoStatus.returned,
+        sacoNumber: "122473",
+        applicantName: "Kumeer Low Garancun",
+        applicantAddress:
+            "Block 23 Lot 1 Mt. Matutum Subdivision, Brgy. Mabuhay General Santos City",
+        longitude: 6.122601,
+        latitude: 125.184531,
+      ),
+    ];
+
     return Scaffold(
       body: Stack(
         children: [
           TabBarView(
             controller: tabController,
             physics: const NeverScrollableScrollPhysics(),
-            children: const [
-              SacoDashboard(),
-              SacoMap(),
+            children: [
+              SacoDashboard(
+                sacoList: dummySacoList,
+              ),
+              SacoMap(
+                sacoList: dummySacoList,
+              ),
             ],
           ),
           AnimatedPositioned(

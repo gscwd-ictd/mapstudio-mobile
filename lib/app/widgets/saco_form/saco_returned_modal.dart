@@ -7,9 +7,27 @@ import 'package:mapstudio/common/constants/colors.dart';
 import 'package:mapstudio/common/utils/sizer_util.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../common/enums/saco_status_enum.dart';
+import '../buttons/location_pin_button.dart';
+
 class SacoReturnedModal extends StatefulWidget {
   final TileLayer tileLayer;
-  const SacoReturnedModal({super.key, required this.tileLayer});
+  final String sacoNumber;
+  final String applicantName;
+  final String applicantAddress;
+  final SacoStatus sacoStatus;
+  final double latitude;
+  final double longitude;
+
+  const SacoReturnedModal(
+      {super.key,
+      required this.tileLayer,
+      required this.sacoNumber,
+      required this.applicantName,
+      required this.applicantAddress,
+      required this.sacoStatus,
+      required this.latitude,
+      required this.longitude});
 
   @override
   State<SacoReturnedModal> createState() => _SacoReturnedModalState();
@@ -59,7 +77,7 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'SACO Number',
+                        widget.sacoNumber,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16.sp, fontWeight: FontWeight.bold),
@@ -74,7 +92,7 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                               height: 0.4.h,
                             ),
                             Text(
-                              "Applicant's Name",
+                              widget.applicantName,
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 16.sp),
                             ),
@@ -82,7 +100,7 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                               height: 0.1.h,
                             ),
                             Text(
-                              "Applicant's Address",
+                              widget.applicantAddress,
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 16.sp),
                             ),
@@ -100,17 +118,33 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                                   height: 22.h,
                                   width: 78.w,
                                   child: FlutterMap(
-                                      options: const MapOptions(
-                                        initialCenter:
-                                            LatLng(6.12562, 125.18451),
+                                      options: MapOptions(
+                                        initialCenter: LatLng(
+                                            widget.longitude, widget.latitude),
                                         initialZoom: 17,
                                         minZoom: 12,
                                         maxZoom: 20,
-                                        interactionOptions: InteractionOptions(
-                                            flags:
-                                                ~InteractiveFlag.doubleTapZoom),
+                                        interactionOptions:
+                                            const InteractionOptions(
+                                                flags: ~InteractiveFlag
+                                                    .doubleTapZoom),
                                       ),
-                                      children: [widget.tileLayer]),
+                                      children: [
+                                        widget.tileLayer,
+                                        MarkerLayer(markers: [
+                                          // marker for concessionare address (longitude/latitude)
+                                          Marker(
+                                            point: LatLng(widget.longitude,
+                                                widget.latitude),
+                                            width: 60,
+                                            height: 80,
+                                            alignment: Alignment.center,
+                                            child: LocationPinButton(
+                                              onPressed: () {},
+                                            ),
+                                          ),
+                                        ])
+                                      ]),
                                 ),
                               ),
                             ),

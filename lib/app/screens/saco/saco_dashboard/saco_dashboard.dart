@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapstudio/common/enums/saco_status_enum.dart';
 import 'package:mapstudio/data/models/saco_list_model.dart';
 import 'package:mapstudio/domain/blocs/saco_dashboard_bloc/saco_dashboard_state.dart';
@@ -9,13 +8,12 @@ import '../../../../common/constants/colors.dart';
 import '../../../../common/utils/text_scale_util.dart';
 import '../../../../domain/blocs/saco_dashboard_bloc/saco_dashboard_bloc.dart';
 import '../../../widgets/curved_navigation_bar/curved_navigation_bar.dart';
-import '../../../widgets/saco_easy_animated_tab/saco_easy_animated_tab.dart';
 import '../../../widgets/saco_list/saco_list_detail.dart';
 import '../../../widgets/saco_list/saco_list_dropdown.dart';
-import '../../../widgets/saco_search_field/saco_search_field.dart';
 
 class SacoDashboard extends StatefulWidget {
-  const SacoDashboard({super.key});
+  final List<SacoListModel> sacoList;
+  const SacoDashboard({super.key, required this.sacoList});
 
   @override
   State<SacoDashboard> createState() => _SacoDashboardState();
@@ -25,81 +23,6 @@ class _SacoDashboardState extends State<SacoDashboard> {
   @override
   Widget build(BuildContext context) {
     final sacoDashboardBloc = BlocProvider.of<SacoDashboardBloc>(context);
-
-    List<SacoListModel> dummySacoList = [
-      SacoListModel(
-          sacoStatus: SacoStatus.newapplication,
-          sacoNumber: "256854",
-          applicantName: "Mark Dano",
-          applicantAddress:
-              "Block 5 Lot 10 Sarangani Homes Phase 1, Brgy. San Isidro General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.inprogress,
-          sacoNumber: "364866",
-          applicantName: "John Henry Alf-Acheche",
-          applicantAddress:
-              "Block 2 Lot 12 Sarangani Homes Phase 2, Brgy. San Isidro General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.completed,
-          sacoNumber: "334610",
-          applicantName: "Recardo Vincente Narvaiz",
-          applicantAddress:
-              "Block 11 Lot 320 Maldives Subdivision, Brgy. San Isidro General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.forwarded,
-          sacoNumber: "455672",
-          applicantName: "Jelea Gleyn Nacerna",
-          applicantAddress:
-              "Block 1 Lot 23 Jolibee Homes, Brgy. Bula General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.returned,
-          sacoNumber: "321121",
-          applicantName: "Aileen Joshua Tubero",
-          applicantAddress:
-              "Block 5 Lot 10 Saranganhi Homes Phase 1, Brgy. San Isidro General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.forwarded,
-          sacoNumber: "00005",
-          applicantName: "Kara Kara Jane Ray Yes",
-          applicantAddress:
-              "Block 33 Lot 22 Mt. Matutum Subdivision, Brgy. Mabuhay General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.newapplication,
-          sacoNumber: "585524",
-          applicantName: "Aimee Marcoss",
-          applicantAddress:
-              "Block 2 Lot 32 Sarangani Homes Phase 1, Brgy. San Isidro General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.inprogress,
-          sacoNumber: "874458",
-          applicantName: "Ayan Spin Sir",
-          applicantAddress:
-              "Block 35 Lot 8 Sarangani Homes Phase 2, Brgy. San Isidro General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.completed,
-          sacoNumber: "334610",
-          applicantName: "Ricky Gervaiz",
-          applicantAddress:
-              "Block 11 Lot 320 Maldives Subdivision, Brgy. San Isidro General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.forwarded,
-          sacoNumber: "455672",
-          applicantName: "Jelea Gleyn Nacerna",
-          applicantAddress:
-              "Block 1 Lot 23 Jolibee Homes, Brgy. Bula General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.returned,
-          sacoNumber: "966582",
-          applicantName: "Aileen Joshua Tubero",
-          applicantAddress:
-              "Block 15 Lot 45 Saranganhi Homes Phase 1, Brgy. San Isidro General Santos City"),
-      SacoListModel(
-          sacoStatus: SacoStatus.forwarded,
-          sacoNumber: "122473",
-          applicantName: "Kumeer Low Garancun",
-          applicantAddress:
-              "Block 23 Lot 1 Mt. Matutum Subdivision, Brgy. Mabuhay General Santos City"),
-    ];
 
     return Scaffold(
       // extendBody: true,
@@ -225,7 +148,7 @@ class _SacoDashboardState extends State<SacoDashboard> {
                                     SacoStatus.all &&
                                 sacoDashboardBloc.state.selectedStatus !=
                                     null)) {
-                          filteredSacoList = dummySacoList
+                          filteredSacoList = widget.sacoList
                               .where((e) =>
                                   e.sacoStatus ==
                                       sacoDashboardBloc.state.selectedStatus &&
@@ -244,7 +167,7 @@ class _SacoDashboardState extends State<SacoDashboard> {
                                     SacoStatus.all ||
                                 sacoDashboardBloc.state.selectedStatus ==
                                     null)) {
-                          filteredSacoList = dummySacoList
+                          filteredSacoList = widget.sacoList
                               .where((e) =>
                                   e.applicantName.toLowerCase().contains(
                                       sacoDashboardBloc.state.search
@@ -256,7 +179,7 @@ class _SacoDashboardState extends State<SacoDashboard> {
                         }
                         //if search field is empty and drop down is set to any of the options
                         else {
-                          filteredSacoList = dummySacoList
+                          filteredSacoList = widget.sacoList
                               .where((e) =>
                                   e.sacoStatus ==
                                   sacoDashboardBloc.state.selectedStatus)
@@ -278,7 +201,7 @@ class _SacoDashboardState extends State<SacoDashboard> {
                                     SacoStatus.all ||
                                 sacoDashboardBloc.state.selectedStatus ==
                                     null)) {
-                          finalSacoList = dummySacoList;
+                          finalSacoList = widget.sacoList;
                         } else {
                           finalSacoList = [];
                         }
@@ -290,14 +213,15 @@ class _SacoDashboardState extends State<SacoDashboard> {
                                 itemCount: finalSacoList.length,
                                 itemBuilder: (context, index) {
                                   return SacoListDetail(
-                                      sacoNumber:
-                                          finalSacoList[index].sacoNumber,
-                                      applicantName:
-                                          finalSacoList[index].applicantName,
-                                      applicantAddress:
-                                          finalSacoList[index].applicantAddress,
-                                      sacoStatus:
-                                          finalSacoList[index].sacoStatus);
+                                    sacoNumber: finalSacoList[index].sacoNumber,
+                                    applicantName:
+                                        finalSacoList[index].applicantName,
+                                    applicantAddress:
+                                        finalSacoList[index].applicantAddress,
+                                    sacoStatus: finalSacoList[index].sacoStatus,
+                                    latitude: finalSacoList[index].latitude,
+                                    longitude: finalSacoList[index].longitude,
+                                  );
                                 });
                           case <= 0:
                             return const Center(
@@ -309,17 +233,20 @@ class _SacoDashboardState extends State<SacoDashboard> {
                           default:
                             return ListView.builder(
                                 padding: const EdgeInsets.fromLTRB(0, 4, 0, 20),
-                                itemCount: dummySacoList.length,
+                                itemCount: widget.sacoList.length,
                                 itemBuilder: (context, index) {
                                   return SacoListDetail(
-                                      sacoNumber:
-                                          dummySacoList[index].sacoNumber,
-                                      applicantName:
-                                          dummySacoList[index].applicantName,
-                                      applicantAddress:
-                                          dummySacoList[index].applicantAddress,
-                                      sacoStatus:
-                                          dummySacoList[index].sacoStatus);
+                                    sacoNumber:
+                                        widget.sacoList[index].sacoNumber,
+                                    applicantName:
+                                        widget.sacoList[index].applicantName,
+                                    applicantAddress:
+                                        widget.sacoList[index].applicantAddress,
+                                    sacoStatus:
+                                        widget.sacoList[index].sacoStatus,
+                                    latitude: widget.sacoList[index].latitude,
+                                    longitude: widget.sacoList[index].longitude,
+                                  );
                                 });
                         }
                       },
