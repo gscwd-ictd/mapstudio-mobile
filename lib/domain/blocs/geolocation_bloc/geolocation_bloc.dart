@@ -22,11 +22,13 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
   void _getGeolocationRequest(
       GetGeolocationRequest event, Emitter<GeolocationState> emit) async {
     emit(const GeoLocationRequestLoading());
+    print('geolocation request loading');
 
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // return Future.error('Location services are disabled.');
       emit(const GeoLocationDisabled());
+      print('geolocation request disabled');
     } else {
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
@@ -37,39 +39,41 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
         } else {
           final locationData = await Geolocator.getCurrentPosition(
               desiredAccuracy: LocationAccuracy.high);
-          // LocationSettings locationSettings = const LocationSettings(
-          //   accuracy: LocationAccuracy.best,
-          //   distanceFilter: 10,
-          // );
+          LocationSettings locationSettings = const LocationSettings(
+            accuracy: LocationAccuracy.best,
+            distanceFilter: 10,
+          );
           // monitor device geolocation changes and runs GetGeolocationRequest event again there are updates
-          // Geolocator.getPositionStream(locationSettings: locationSettings)
-          //     .listen(
-          //   (Position position) => add(
-          //     // ignore: use_build_context_synchronously
-          //     GetGeolocationRequest(event.context),
-          //   ),
-          // );
+          Geolocator.getPositionStream(locationSettings: locationSettings)
+              .listen(
+            (Position position) => add(
+              // ignore: use_build_context_synchronously
+              GetGeolocationRequest(event.context),
+            ),
+          );
           emit(GeoLocationRequestDone(
               locationData.latitude, locationData.longitude));
         }
       } else {
         final locationData = await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high);
-        // LocationSettings locationSettings = const LocationSettings(
-        //   accuracy: LocationAccuracy.best,
-        //   distanceFilter: 10,
-        // );
+        LocationSettings locationSettings = const LocationSettings(
+          accuracy: LocationAccuracy.best,
+          distanceFilter: 10,
+        );
 
         // monitor device geolocation changes and runs GetGeolocationRequest event again there are updates
-        // Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-        //   (Position position) => add(
-        //     // ignore: use_build_context_synchronously
-        //     GetGeolocationRequest(event.context),
-        //   ),
-        // );
+        Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+          (Position position) => add(
+            // ignore: use_build_context_synchronously
+            GetGeolocationRequest(event.context),
+          ),
+        );
 
         emit(GeoLocationRequestDone(
             locationData.latitude, locationData.longitude));
+
+        print('geolocation request complete');
       }
     }
     // ignore: use_build_context_synchronously

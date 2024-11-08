@@ -16,9 +16,27 @@ import 'package:mapstudio/common/constants/labels.dart';
 import 'package:mapstudio/common/utils/file_util.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../common/enums/saco_status_enum.dart';
+import '../buttons/location_pin_button.dart';
+
 class SacoAcceptRequestModal extends StatefulWidget {
   final TileLayer tileLayer;
-  const SacoAcceptRequestModal({super.key, required this.tileLayer});
+  final String sacoNumber;
+  final String applicantName;
+  final String applicantAddress;
+  final SacoStatus sacoStatus;
+  final double latitude;
+  final double longitude;
+
+  const SacoAcceptRequestModal(
+      {super.key,
+      required this.tileLayer,
+      required this.latitude,
+      required this.longitude,
+      required this.sacoNumber,
+      required this.applicantName,
+      required this.applicantAddress,
+      required this.sacoStatus});
 
   @override
   State<SacoAcceptRequestModal> createState() => _SacoAcceptRequestModalState();
@@ -108,7 +126,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                 height: 1.h,
                               ),
                               Text(
-                                'SACO Number',
+                                widget.sacoNumber,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 16.sp,
@@ -124,7 +142,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                       height: 0.4.h,
                                     ),
                                     Text(
-                                      "Applicant's Name",
+                                      widget.applicantName,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 16.sp),
                                     ),
@@ -132,7 +150,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                       height: 0.1.h,
                                     ),
                                     Text(
-                                      "Applicant's Address",
+                                      widget.applicantAddress,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 16.sp),
                                     ),
@@ -151,18 +169,35 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                           height: 38.h,
                                           width: 78.w,
                                           child: FlutterMap(
-                                              options: const MapOptions(
-                                                initialCenter:
-                                                    LatLng(6.12562, 125.18451),
+                                              options: MapOptions(
+                                                initialCenter: LatLng(
+                                                    widget.longitude,
+                                                    widget.latitude),
                                                 initialZoom: 17,
                                                 minZoom: 12,
                                                 maxZoom: 20,
                                                 interactionOptions:
-                                                    InteractionOptions(
+                                                    const InteractionOptions(
                                                         flags: ~InteractiveFlag
                                                             .doubleTapZoom),
                                               ),
-                                              children: [widget.tileLayer]),
+                                              children: [
+                                                widget.tileLayer,
+                                                MarkerLayer(markers: [
+                                                  // marker for concessionare address (longitude/latitude)
+                                                  Marker(
+                                                    point: LatLng(
+                                                        widget.longitude,
+                                                        widget.latitude),
+                                                    width: 60,
+                                                    height: 80,
+                                                    alignment: Alignment.center,
+                                                    child: LocationPinButton(
+                                                      onPressed: () {},
+                                                    ),
+                                                  ),
+                                                ])
+                                              ]),
                                         ),
                                       ),
                                     ),
@@ -230,8 +265,19 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                                   filter: ImageFilter.blur(
                                                       sigmaX: 10, sigmaY: 10),
                                                   child: SacoReturnedModal(
-                                                      tileLayer:
-                                                          openStreetMapTileLayer)),
+                                                    tileLayer:
+                                                        openStreetMapTileLayer,
+                                                    sacoNumber:
+                                                        widget.sacoNumber,
+                                                    applicantName:
+                                                        widget.applicantName,
+                                                    applicantAddress:
+                                                        widget.applicantAddress,
+                                                    sacoStatus:
+                                                        widget.sacoStatus,
+                                                    latitude: widget.latitude,
+                                                    longitude: widget.longitude,
+                                                  )),
                                             ));
                                   }
                                 : () {
@@ -259,8 +305,21 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                                         controller: controller,
                                                         child: SizedBox(
                                                             height: 120.h,
-                                                            child:
-                                                                const SacoForm()));
+                                                            child: SacoForm(
+                                                                sacoNumber: widget
+                                                                    .sacoNumber,
+                                                                applicantName:
+                                                                    widget
+                                                                        .applicantName,
+                                                                applicantAddress:
+                                                                    widget
+                                                                        .applicantAddress,
+                                                                sacoStatus: widget
+                                                                    .sacoStatus,
+                                                                latitude: widget
+                                                                    .latitude,
+                                                                longitude: widget
+                                                                    .longitude)));
                                                   }),
                                             ),
                                           );

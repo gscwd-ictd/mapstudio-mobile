@@ -6,8 +6,23 @@ import 'package:mapstudio/app/widgets/saco_form/saco_form_details.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_save_changes_modal.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../common/enums/saco_status_enum.dart';
+
 class SacoForm extends StatefulWidget {
-  const SacoForm({super.key});
+  final String sacoNumber;
+  final String applicantName;
+  final String applicantAddress;
+  final SacoStatus sacoStatus;
+  final double latitude;
+  final double longitude;
+  const SacoForm(
+      {super.key,
+      required this.sacoNumber,
+      required this.applicantName,
+      required this.applicantAddress,
+      required this.sacoStatus,
+      required this.latitude,
+      required this.longitude});
 
   @override
   State<SacoForm> createState() => _SacoFormState();
@@ -54,7 +69,12 @@ class _SacoFormState extends State<SacoForm> {
             SizedBox(
               height: 2.h,
             ),
-            const SacoFormDetail(),
+            SacoFormDetail(
+              sacoNumber: widget.sacoNumber,
+              applicantName: widget.applicantName,
+              applicantAddress: widget.applicantAddress,
+              sacoStatus: widget.sacoStatus,
+            ),
             Divider(
               thickness: 2,
               color: Colors.grey[300],
@@ -74,7 +94,14 @@ class _SacoFormState extends State<SacoForm> {
                         // ignore: use_build_context_synchronously
                         context: context,
                         builder: (context) => SacoSaveChangesModal(
-                            tileLayer: openStreetMapTileLayer));
+                              tileLayer: openStreetMapTileLayer,
+                              sacoNumber: widget.sacoNumber,
+                              applicantName: widget.applicantName,
+                              applicantAddress: widget.applicantAddress,
+                              sacoStatus: widget.sacoStatus,
+                              latitude: widget.latitude,
+                              longitude: widget.longitude,
+                            ));
                   },
                 ),
               ),
