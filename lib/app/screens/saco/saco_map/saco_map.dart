@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -25,6 +27,7 @@ class SacoMap extends StatefulWidget {
 }
 
 class _SacoMapState extends State<SacoMap> {
+  late StreamSubscription<Position> test;
   @override
   void initState() {
     // TODO: implement initState
@@ -33,13 +36,22 @@ class _SacoMapState extends State<SacoMap> {
       accuracy: LocationAccuracy.best,
       distanceFilter: 10,
     );
-    Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+    test =
+        Geolocator.getPositionStream(locationSettings: locationSettings).listen(
       (Position position) => geolocationBloc.add(
         // ignore: use_build_context_synchronously
         const GetGeolocationRequest(),
       ),
     );
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    print('disposing');
+    test.cancel();
+    super.dispose();
   }
 
   @override
