@@ -55,7 +55,8 @@ class _GetLocationState extends State<GetLocation> {
                       buttonText: 'ENABLE LOCATION',
                       buttonWidth: 10.w,
                       onPressed: () {
-                        geoLocationBloc.add(GetGeolocationRequest(context));
+                        geoLocationBloc
+                            .add(RequestGeolocationPermission(context));
                       },
                     ),
                   ),

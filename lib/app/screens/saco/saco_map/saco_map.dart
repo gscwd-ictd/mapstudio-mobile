@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mapstudio/app/widgets/buttons/location_pin_button.dart';
 import 'package:mapstudio/common/constants/colors.dart';
@@ -25,9 +26,24 @@ class SacoMap extends StatefulWidget {
 
 class _SacoMapState extends State<SacoMap> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    // TODO: implement initState
     final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
+    LocationSettings locationSettings = const LocationSettings(
+      accuracy: LocationAccuracy.best,
+      distanceFilter: 10,
+    );
+    Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+      (Position position) => geolocationBloc.add(
+        // ignore: use_build_context_synchronously
+        const GetGeolocationRequest(),
+      ),
+    );
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     List<Marker> _buildMarkers() {
       List<Marker> markers = [];
 
@@ -129,8 +145,8 @@ class _SacoMapState extends State<SacoMap> {
                           if (state is GeoLocationRequestDone) {
                             double? lat = state.currentLatitude;
                             double? long = state.currentLongitude;
-                            print(lat);
-                            print(long);
+                            // print(lat);
+                            // print(long);
                             LatLng latLng = const LatLng(0, 0);
                             if (lat != null && long != null) {
                               latLng = LatLng(long, lat);
