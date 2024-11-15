@@ -48,6 +48,7 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
             locationData.latitude, locationData.longitude));
 
         print('geolocation request complete');
+        print('${locationData.latitude}, ${locationData.longitude}');
       }
     }
   }

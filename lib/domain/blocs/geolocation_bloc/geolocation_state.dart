@@ -17,17 +17,19 @@ class GeoLocationRequestLoading extends GeolocationState {
 }
 
 class GeoLocationRequestDone extends GeolocationState {
-  const GeoLocationRequestDone(double currentLongitude, double currentLatitude)
+  const GeoLocationRequestDone(double currentLatitude, double currentLongitude)
       : super(
-            currentLongitude: currentLongitude,
-            currentLatitude: currentLatitude);
+          currentLatitude: currentLatitude,
+          currentLongitude: currentLongitude,
+        );
 }
 
 class GeoLocationUpdated extends GeolocationState {
-  const GeoLocationUpdated(double currentLongitude, double currentLatitude)
+  const GeoLocationUpdated(double currentLatitude, double currentLongitude)
       : super(
-            currentLongitude: currentLongitude,
-            currentLatitude: currentLatitude);
+          currentLatitude: currentLatitude,
+          currentLongitude: currentLongitude,
+        );
 }
 
 class GeoLocationRequestError extends GeolocationState {
