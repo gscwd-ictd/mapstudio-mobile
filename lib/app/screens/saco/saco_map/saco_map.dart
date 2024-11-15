@@ -6,8 +6,10 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:mapstudio/app/widgets/buttons/custom_marker.dart';
 import 'package:mapstudio/app/widgets/buttons/location_pin_button.dart';
 import 'package:mapstudio/common/constants/colors.dart';
+import 'package:mapstudio/common/utils/marker_util.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../common/enums/saco_status_enum.dart';
@@ -56,7 +58,7 @@ class _SacoMapState extends State<SacoMap> {
 
   @override
   Widget build(BuildContext context) {
-    List<Marker> _buildMarkers() {
+    List<Marker> _buildMarkers(Function ontap) {
       List<Marker> markers = [];
 
       final sacoDashboardBloc = BlocProvider.of<SacoDashboardBloc>(context);
@@ -120,16 +122,31 @@ class _SacoMapState extends State<SacoMap> {
 
       for (int i = 0; i < finalSacoList.length; i++) {
         markers.add(
-          Marker(
-            point:
-                LatLng(finalSacoList[i].longitude, finalSacoList[i].latitude),
-            width: 60,
-            height: 80,
-            alignment: Alignment.center,
-            child: LocationPinButton(
-              onPressed: () {},
-            ),
-          ),
+          createMarker(
+              position:
+                  LatLng(finalSacoList[i].longitude, finalSacoList[i].latitude),
+              address: finalSacoList[i].applicantAddress,
+              name: finalSacoList[i].applicantName,
+              sacoNumber: finalSacoList[i].sacoNumber,
+              ontap: () {
+                MarkerUtil.currentMarkerTap = LatLng(
+                    finalSacoList[i].longitude, finalSacoList[i].latitude);
+                ontap();
+                // setState(() {
+                //   MarkerUtil.currentMarkerTap = LatLng(
+                //       finalSacoList[i].longitude, finalSacoList[i].latitude);
+                // });
+              }),
+          // Marker(
+          //   point:
+          //       LatLng(finalSacoList[i].longitude, finalSacoList[i].latitude),
+          //   width: 60,
+          //   height: 80,
+          //   alignment: Alignment.center,
+          //   child: LocationPinButton(
+          //     onPressed: () {},
+          //   ),
+          // ),
         );
       }
       return markers;
@@ -163,22 +180,27 @@ class _SacoMapState extends State<SacoMap> {
                             if (lat != null && long != null) {
                               latLng = LatLng(long, lat);
                             }
-                            return MarkerLayer(markers: [
-                              // your location
-                              Marker(
-                                point: latLng,
-                                width: 50,
-                                height: 50,
-                                alignment: Alignment.center,
-                                child: Icon(
-                                  Icons.location_on_rounded,
-                                  size: 40,
-                                  color: Colors.blue[600],
+                            return StatefulBuilder(
+                                builder: (context, currentState) {
+                              return MarkerLayer(markers: [
+                                // your location
+                                Marker(
+                                  point: latLng,
+                                  width: 50,
+                                  height: 50,
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.location_on_rounded,
+                                    size: 40,
+                                    color: Colors.blue[600],
+                                  ),
                                 ),
-                              ),
 
-                              ..._buildMarkers(),
-                            ]);
+                                ..._buildMarkers(() {
+                                  currentState(() {});
+                                }),
+                              ]);
+                            });
                           } else {
                             return const MarkerLayer(markers: []);
                           }
