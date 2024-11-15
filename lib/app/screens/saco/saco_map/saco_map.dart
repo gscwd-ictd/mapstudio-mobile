@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mapstudio/app/widgets/buttons/location_pin_button.dart';
 import 'package:mapstudio/common/constants/colors.dart';
+import 'package:mapstudio/domain/blocs/map_route_bloc/map_route_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../common/enums/saco_status_enum.dart';
@@ -32,6 +33,7 @@ class _SacoMapState extends State<SacoMap> {
   void initState() {
     // TODO: implement initState
     final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
+
     LocationSettings locationSettings = const LocationSettings(
       accuracy: LocationAccuracy.best,
       distanceFilter: 10,
@@ -56,7 +58,10 @@ class _SacoMapState extends State<SacoMap> {
 
   @override
   Widget build(BuildContext context) {
-    List<Marker> _buildMarkers() {
+    final mapRouteBloc = BlocProvider.of<MapRouteBloc>(context);
+    final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
+
+    List<Marker> buildMarkers() {
       List<Marker> markers = [];
 
       final sacoDashboardBloc = BlocProvider.of<SacoDashboardBloc>(context);
@@ -121,13 +126,21 @@ class _SacoMapState extends State<SacoMap> {
       for (int i = 0; i < finalSacoList.length; i++) {
         markers.add(
           Marker(
-            point:
-                LatLng(finalSacoList[i].longitude, finalSacoList[i].latitude),
+            point: LatLng(
+              finalSacoList[i].latitude,
+              finalSacoList[i].longitude,
+            ),
             width: 60,
             height: 80,
             alignment: Alignment.center,
             child: LocationPinButton(
-              onPressed: () {},
+              onPressed: () {
+                mapRouteBloc.add(GetMapRouteRequest(
+                    startingPoint:
+                        '${geolocationBloc.state.currentLongitude}, ${geolocationBloc.state.currentLatitude}',
+                    destinationPoint:
+                        '${finalSacoList[i].longitude}, ${finalSacoList[i].latitude}'));
+              },
             ),
           ),
         );
@@ -143,6 +156,13 @@ class _SacoMapState extends State<SacoMap> {
               builder: (context, state) {
                 return FlutterMap(
                     options: const MapOptions(
+                      // onTap: (tapPosition, point) async {
+                      //   mapRouteBloc.add(GetMapRouteRequest(
+                      //       startingPoint:
+                      //           '${state.currentLongitude}, ${state.currentLatitude}',
+                      //       destinationPoint:
+                      //           '${point.longitude}, ${point.latitude}'));
+                      // },
                       initialCenter: LatLng(6.12562, 125.18451),
                       initialZoom: 17,
                       minZoom: 12,
@@ -155,13 +175,18 @@ class _SacoMapState extends State<SacoMap> {
                       BlocBuilder<GeolocationBloc, GeolocationState>(
                         builder: (context, state) {
                           if (state is GeoLocationRequestDone) {
+                            mapRouteBloc.add(GetMapRouteRequest(
+                                startingPoint:
+                                    '${mapRouteBloc.state.startingPoint}',
+                                destinationPoint:
+                                    '${mapRouteBloc.state.destinationPoint}'));
+
                             double? lat = state.currentLatitude;
                             double? long = state.currentLongitude;
-                            // print(lat);
-                            // print(long);
+
                             LatLng latLng = const LatLng(0, 0);
                             if (lat != null && long != null) {
-                              latLng = LatLng(long, lat);
+                              latLng = LatLng(lat, long);
                             }
                             return MarkerLayer(markers: [
                               // your location
@@ -177,13 +202,23 @@ class _SacoMapState extends State<SacoMap> {
                                 ),
                               ),
 
-                              ..._buildMarkers(),
+                              ...buildMarkers(),
                             ]);
                           } else {
                             return const MarkerLayer(markers: []);
                           }
                         },
                       ),
+                      //Polylines (Routing)
+                      BlocBuilder<MapRouteBloc, MapRouteState>(
+                          builder: (context, state) {
+                        return PolylineLayer(polylines: [
+                          Polyline(
+                              points: state.points,
+                              color: Colors.blue,
+                              strokeWidth: 5),
+                        ]);
+                      })
                     ]);
               },
             );

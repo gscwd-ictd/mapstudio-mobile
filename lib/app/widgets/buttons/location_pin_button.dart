@@ -5,7 +5,7 @@ import 'package:sizer/sizer.dart';
 // ignore: must_be_immutable
 class LocationPinButton extends StatefulWidget {
   final Function onPressed;
-  LocationPinButton({
+  const LocationPinButton({
     super.key,
     required this.onPressed,
   });
@@ -18,7 +18,9 @@ class _LocationPinButtonState extends State<LocationPinButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        widget.onPressed();
+      },
       style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,

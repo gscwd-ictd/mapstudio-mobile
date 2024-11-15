@@ -1,0 +1,44 @@
+import 'dart:convert';
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:http/http.dart' as http;
+import '../../../data/api/openroutesource_api.dart';
+
+part 'map_route_event.dart';
+part 'map_route_state.dart';
+
+class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
+  MapRouteBloc() : super(MapRouteLoading(points: [])) {
+    on<GetMapRouteRequest>(_getMapRouteRequest);
+    on<InitializeMapRoute>(_initializeMapRoute);
+  }
+
+  void _initializeMapRoute(
+      MapRouteEvent event, Emitter<MapRouteState> emit) async {}
+
+  void _getMapRouteRequest(
+      GetMapRouteRequest event, Emitter<MapRouteState> emit) async {
+    emit(MapRouteLoading(points: []));
+
+    var response = await http
+        .get(getRouteUrl(event.startingPoint, event.destinationPoint));
+
+    List listOfPoints = [];
+    List<LatLng> points = [];
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      listOfPoints = data['features'][0]['geometry']['coordinates'];
+      points = listOfPoints
+          .map((e) => LatLng(e[1].toDouble(), e[0].toDouble()))
+          .toList();
+      print(response.body);
+      print(points);
+      emit(
+          MapRouteUpdated(points, event.startingPoint, event.destinationPoint));
+    } else {
+      emit(MapRouteError(response.statusCode as String));
+    }
+  }
+}
