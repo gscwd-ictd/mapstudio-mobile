@@ -7,7 +7,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mapstudio/app/widgets/buttons/custom_marker.dart';
-import 'package:mapstudio/app/widgets/buttons/location_pin_button.dart';
 import 'package:mapstudio/common/constants/colors.dart';
 import 'package:mapstudio/common/utils/marker_util.dart';
 import 'package:mapstudio/domain/blocs/map_route_bloc/map_route_bloc.dart';
@@ -136,9 +135,9 @@ class _SacoMapState extends State<SacoMap> {
               ontap: () {
                 mapRouteBloc.add(GetMapRouteRequest(
                     startingPoint:
-                        '${geolocationBloc.state.currentLongitude}, ${geolocationBloc.state.currentLatitude}',
+                        '${geolocationBloc.state.currentLongitude.toString()}, ${geolocationBloc.state.currentLatitude.toString()}',
                     destinationPoint:
-                        '${finalSacoList[i].longitude}, ${finalSacoList[i].latitude}'));
+                        '${finalSacoList[i].longitude.toString()}, ${finalSacoList[i].latitude.toString()}'));
                 MarkerUtil.currentMarkerTap = LatLng(
                     finalSacoList[i].longitude, finalSacoList[i].latitude);
                 ontap();
@@ -187,46 +186,46 @@ class _SacoMapState extends State<SacoMap> {
                     children: [
                       openStreetMapTileLayer,
                       BlocBuilder<GeolocationBloc, GeolocationState>(
-                        builder: (context, state) {
-                          if (state is GeoLocationRequestDone) {
+                          builder: (context, state) {
+                        if (state is GeoLocationRequestDone) {
+                          double? lat = state.currentLatitude;
+                          double? long = state.currentLongitude;
+
+                          LatLng latLng = const LatLng(0, 0);
+                          if (lat != null && long != null) {
+                            latLng = LatLng(lat, long);
                             mapRouteBloc.add(GetMapRouteRequest(
                                 startingPoint:
-                                    '${mapRouteBloc.state.startingPoint}',
-                                destinationPoint:
-                                    '${mapRouteBloc.state.destinationPoint}'));
-
-                            double? lat = state.currentLatitude;
-                            double? long = state.currentLongitude;
-
-                            LatLng latLng = const LatLng(0, 0);
-                            if (lat != null && long != null) {
-                              latLng = LatLng(lat, long);
-                            }
-                            return StatefulBuilder(
-                                builder: (context, currentState) {
-                              return MarkerLayer(markers: [
-                                // your location
-                                Marker(
-                                  point: latLng,
-                                  width: 50,
-                                  height: 50,
-                                  alignment: Alignment.center,
-                                  child: Icon(
-                                    Icons.location_on_rounded,
-                                    size: 40,
-                                    color: Colors.blue[600],
-                                  ),
+                                    mapRouteBloc.state.startingPoint.toString(),
+                                destinationPoint: mapRouteBloc
+                                    .state.destinationPoint
+                                    .toString()));
+                          }
+                          return StatefulBuilder(
+                              builder: (context, currentState) {
+                            return MarkerLayer(markers: [
+                              // your location
+                              Marker(
+                                point: latLng,
+                                width: 50,
+                                height: 50,
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.location_on_rounded,
+                                  size: 40,
+                                  color: Colors.blue[600],
                                 ),
+                              ),
 
                               ...buildMarkers(() {
-                                  currentState(() {});
-                                }),
+                                currentState(() {});
+                              }),
                             ]);
-                          } else {
-                            return const MarkerLayer(markers: []);
-                          }
-                        },
-                      ),
+                          });
+                        } else {
+                          return const MarkerLayer(markers: []);
+                        }
+                      }),
                       //Polylines (Routing)
                       BlocBuilder<MapRouteBloc, MapRouteState>(
                           builder: (context, state) {

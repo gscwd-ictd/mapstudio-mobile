@@ -20,25 +20,33 @@ class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
   void _getMapRouteRequest(
       GetMapRouteRequest event, Emitter<MapRouteState> emit) async {
     emit(MapRouteLoading(points: []));
+    bool isNotNull =
+        event.startingPoint != 'null' && event.destinationPoint != 'null';
+    bool isNotEmpty =
+        event.startingPoint.isNotEmpty && event.destinationPoint.isNotEmpty;
+    if (isNotNull && isNotEmpty) {
+      var response = await http
+          .get(getRouteUrl(event.startingPoint, event.destinationPoint));
 
-    var response = await http
-        .get(getRouteUrl(event.startingPoint, event.destinationPoint));
+      List listOfPoints = [];
+      List<LatLng> points = [];
 
-    List listOfPoints = [];
-    List<LatLng> points = [];
-
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-      listOfPoints = data['features'][0]['geometry']['coordinates'];
-      points = listOfPoints
-          .map((e) => LatLng(e[1].toDouble(), e[0].toDouble()))
-          .toList();
-      print(response.body);
-      print(points);
-      emit(
-          MapRouteUpdated(points, event.startingPoint, event.destinationPoint));
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        listOfPoints = data['features'][0]['geometry']['coordinates'];
+        points = listOfPoints
+            .map((e) => LatLng(e[1].toDouble(), e[0].toDouble()))
+            .toList();
+        print(response.body);
+        print(points);
+        print('mapRoutes updated');
+        emit(MapRouteUpdated(
+            points, event.startingPoint, event.destinationPoint));
+      } else {
+        emit(MapRouteError(response.statusCode.toString()));
+      }
     } else {
-      emit(MapRouteError(response.statusCode as String));
+      emit(MapRouteError('Invalid Input'));
     }
   }
 }
