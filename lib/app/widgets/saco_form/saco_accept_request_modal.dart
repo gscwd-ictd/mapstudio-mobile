@@ -377,7 +377,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                       color: Colors.white,
                       text:
                           '${isDeclined ? 'DECLINE' : 'ACCEPT'} SURVEY REQUEST?',
-                      buttonSize: 16.sp,
+                      txtSize: 16.sp,
                     ),
                   ),
                 ),

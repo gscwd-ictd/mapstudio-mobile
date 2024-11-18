@@ -380,7 +380,7 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                     child: DefaultText(
                       color: Colors.white,
                       text: 'SAVE INSPECTION REPORT?',
-                      buttonSize: 17.sp,
+                      txtSize: 17.sp,
                     ),
                   ),
                 ),

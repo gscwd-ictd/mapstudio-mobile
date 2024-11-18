@@ -39,7 +39,7 @@ class _RoundedButtonState extends State<RoundedButton> {
         child: DefaultText(
           color: widget.txtColor == null ? Colors.white : widget.txtColor!,
           text: widget.buttonText,
-          buttonSize: widget.txtSize == null ? 18 : widget.txtSize!,
+          txtSize: widget.txtSize == null ? 18 : widget.txtSize!,
         ),
       ),
       onPressed: () {
