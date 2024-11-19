@@ -49,7 +49,7 @@ class _GetLocationState extends State<GetLocation> {
                     ),
                   ),
                   SizedBox(
-                    height: 5.h,
+                    height: 6.h,
                     width: 80.w,
                     child: DefaultButton(
                       buttonText: 'ENABLE LOCATION',
@@ -80,7 +80,7 @@ class _GetLocationState extends State<GetLocation> {
                         child: DefaultText(
                           color: Colors.grey,
                           text: 'NOT NOW',
-                          buttonSize: 18,
+                          txtSize: 18.sp,
                         ),
                       ),
                     ),

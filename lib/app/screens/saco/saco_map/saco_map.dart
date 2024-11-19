@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,8 +7,11 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:mapstudio/app/widgets/buttons/location_pin_button.dart';
+import 'package:mapstudio/app/screens/saco/saco_form/saco_form.dart';
+import 'package:mapstudio/app/widgets/buttons/custom_marker.dart';
+import 'package:mapstudio/app/widgets/saco_form/saco_accept_request_modal.dart';
 import 'package:mapstudio/common/constants/colors.dart';
+import 'package:mapstudio/common/utils/marker_util.dart';
 import 'package:mapstudio/domain/blocs/map_route_bloc/map_route_bloc.dart';
 import 'package:sizer/sizer.dart';
 
@@ -61,7 +65,7 @@ class _SacoMapState extends State<SacoMap> {
     final mapRouteBloc = BlocProvider.of<MapRouteBloc>(context);
     final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
 
-    List<Marker> buildMarkers() {
+    List<Marker> buildMarkers(Function ontap) {
       List<Marker> markers = [];
 
       final sacoDashboardBloc = BlocProvider.of<SacoDashboardBloc>(context);
@@ -125,26 +129,77 @@ class _SacoMapState extends State<SacoMap> {
 
       for (int i = 0; i < finalSacoList.length; i++) {
         markers.add(
-          Marker(
-            point: LatLng(
-              finalSacoList[i].latitude,
-              finalSacoList[i].longitude,
-            ),
-            width: 60,
-            height: 80,
-            alignment: Alignment.center,
-            child: LocationPinButton(
-              onPressed: () {
+          createMarker(
+              onYesTap: () {
+                showModalBottomSheet<void>(
+                    context: context,
+                    isScrollControlled: true,
+                    isDismissible: false,
+                    useRootNavigator: true,
+                    builder: (BuildContext context) {
+                      return Container(
+                        color:
+                            const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                          child: DraggableScrollableSheet(
+                              expand: false,
+                              snap: false,
+                              builder: (_, controller) {
+                                return SingleChildScrollView(
+                                    physics: const BouncingScrollPhysics(),
+                                    controller: controller,
+                                    child: SizedBox(
+                                        height: 120.h,
+                                        child: SacoForm(
+                                            sacoNumber:
+                                                finalSacoList[i].sacoNumber,
+                                            applicantName:
+                                                finalSacoList[i].applicantName,
+                                            applicantAddress: finalSacoList[i]
+                                                .applicantAddress,
+                                            sacoStatus:
+                                                finalSacoList[i].sacoStatus,
+                                            latitude: finalSacoList[i].latitude,
+                                            longitude:
+                                                finalSacoList[i].longitude)));
+                              }),
+                        ),
+                      );
+                    });
+              },
+              position:
+                  LatLng(finalSacoList[i].longitude, finalSacoList[i].latitude),
+              address: finalSacoList[i].applicantAddress,
+              name: finalSacoList[i].applicantName,
+              sacoNumber: finalSacoList[i].sacoNumber,
+              ontap: () {
                 mapRouteBloc.add(GetMapRouteRequest(
                     startingPoint:
-                        '${geolocationBloc.state.currentLongitude}, ${geolocationBloc.state.currentLatitude}',
+                        '${geolocationBloc.state.currentLongitude.toString()}, ${geolocationBloc.state.currentLatitude.toString()}',
                     destinationPoint:
-                        '${finalSacoList[i].longitude}, ${finalSacoList[i].latitude}'));
-              },
-            ),
-          ),
+                        '${finalSacoList[i].longitude.toString()}, ${finalSacoList[i].latitude.toString()}'));
+                MarkerUtil.currentMarkerTap = LatLng(
+                    finalSacoList[i].longitude, finalSacoList[i].latitude);
+                ontap();
+                // setState(() {
+                //   MarkerUtil.currentMarkerTap = LatLng(
+                //       finalSacoList[i].longitude, finalSacoList[i].latitude);
+                // });
+              }),
+          // Marker(
+          //   point:
+          //       LatLng(finalSacoList[i].longitude, finalSacoList[i].latitude),
+          //   width: 60,
+          //   height: 80,
+          //   alignment: Alignment.center,
+          //   child: LocationPinButton(
+          //     onPressed: () {},
+          //   ),
+          // );
         );
       }
+      print('${markers.length} markers');
       return markers;
     }
 
@@ -173,21 +228,23 @@ class _SacoMapState extends State<SacoMap> {
                     children: [
                       openStreetMapTileLayer,
                       BlocBuilder<GeolocationBloc, GeolocationState>(
-                        builder: (context, state) {
-                          if (state is GeoLocationRequestDone) {
+                          builder: (context, state) {
+                        if (state is GeoLocationRequestDone) {
+                          double? lat = state.currentLatitude;
+                          double? long = state.currentLongitude;
+
+                          LatLng latLng = const LatLng(0, 0);
+                          if (lat != null && long != null) {
+                            latLng = LatLng(lat, long);
                             mapRouteBloc.add(GetMapRouteRequest(
                                 startingPoint:
-                                    '${mapRouteBloc.state.startingPoint}',
-                                destinationPoint:
-                                    '${mapRouteBloc.state.destinationPoint}'));
-
-                            double? lat = state.currentLatitude;
-                            double? long = state.currentLongitude;
-
-                            LatLng latLng = const LatLng(0, 0);
-                            if (lat != null && long != null) {
-                              latLng = LatLng(lat, long);
-                            }
+                                    mapRouteBloc.state.startingPoint.toString(),
+                                destinationPoint: mapRouteBloc
+                                    .state.destinationPoint
+                                    .toString()));
+                          }
+                          return StatefulBuilder(
+                              builder: (context, currentState) {
                             return MarkerLayer(markers: [
                               // your location
                               Marker(
@@ -202,13 +259,15 @@ class _SacoMapState extends State<SacoMap> {
                                 ),
                               ),
 
-                              ...buildMarkers(),
+                              ...buildMarkers(() {
+                                currentState(() {});
+                              }),
                             ]);
-                          } else {
-                            return const MarkerLayer(markers: []);
-                          }
-                        },
-                      ),
+                          });
+                        } else {
+                          return const MarkerLayer(markers: []);
+                        }
+                      }),
                       //Polylines (Routing)
                       BlocBuilder<MapRouteBloc, MapRouteState>(
                           builder: (context, state) {
@@ -293,7 +352,6 @@ class _SacoMapState extends State<SacoMap> {
 }
 
 TileLayer get openStreetMapTileLayer => TileLayer(
-      tileDisplay: const TileDisplay.instantaneous(),
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+      userAgentPackageName: 'com.android.application',
     );

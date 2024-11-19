@@ -3,13 +3,13 @@ import 'package:mapstudio/common/utils/text_scale_util.dart';
 
 class DefaultText extends StatefulWidget {
   final String text;
-  final double buttonSize;
+  final double txtSize;
   final Color color;
   FontWeight? fontWeight;
   DefaultText(
       {super.key,
       required this.text,
-      required this.buttonSize,
+      required this.txtSize,
       required this.color,
       this.fontWeight});
 
@@ -24,7 +24,7 @@ class _DefaultTextState extends State<DefaultText> {
       child: Text(widget.text,
           style: TextStyle(
               letterSpacing: 2,
-              fontSize: widget.buttonSize,
+              fontSize: widget.txtSize,
               fontWeight: widget.fontWeight ?? FontWeight.bold,
               color: widget.color),
           textAlign: TextAlign.center,

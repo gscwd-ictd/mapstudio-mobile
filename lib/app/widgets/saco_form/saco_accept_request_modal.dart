@@ -94,7 +94,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: EdgeInsets.symmetric(
-          horizontal: 3.w, vertical: isDeclined ? 5.h : 11.h),
+          horizontal: 3.w, vertical: isDeclined ? 5.h : 8.h),
       elevation: 20,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
@@ -111,7 +111,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                       padding: EdgeInsets.only(top: 6.h, right: 4.w),
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
-                        height: isDeclined ? 68.h : 55.h,
+                        height: isDeclined ? 70.h : 55.h,
                         child: Padding(
                           padding: EdgeInsets.only(left: 5.w),
                           child: Column(
@@ -151,7 +151,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                     ),
                                     Text(
                                       widget.applicantAddress,
-                                      textAlign: TextAlign.center,
+                                      textAlign: TextAlign.start,
                                       style: TextStyle(fontSize: 16.sp),
                                     ),
                                     SizedBox(
@@ -326,7 +326,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                         });
                                   },
                             buttonText: isDeclined ? 'DECLINE' : 'ACCEPT',
-                            buttonWidth: 16.w,
+                            buttonWidth: 14.w,
                             btnColor: isDeclined
                                 ? AppColors.abortColor
                                 : AppColors.mainColor,
@@ -377,7 +377,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                       color: Colors.white,
                       text:
                           '${isDeclined ? 'DECLINE' : 'ACCEPT'} SURVEY REQUEST?',
-                      buttonSize: 16.sp,
+                      txtSize: 16.sp,
                     ),
                   ),
                 ),

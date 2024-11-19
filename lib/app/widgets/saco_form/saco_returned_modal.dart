@@ -56,7 +56,7 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                 stops: [0.0, 1.0],
                 tileMode: TileMode.clamp),
           ),
-          height: 50.h,
+          height: 54.h,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,7 +78,7 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                     children: [
                       Text(
                         widget.sacoNumber,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                             fontSize: 16.sp, fontWeight: FontWeight.bold),
                       ),
@@ -93,7 +93,7 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                             ),
                             Text(
                               widget.applicantName,
-                              textAlign: TextAlign.center,
+                              textAlign: TextAlign.start,
                               style: TextStyle(fontSize: 16.sp),
                             ),
                             SizedBox(
@@ -101,7 +101,7 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                             ),
                             Text(
                               widget.applicantAddress,
-                              textAlign: TextAlign.center,
+                              textAlign: TextAlign.start,
                               style: TextStyle(fontSize: 16.sp),
                             ),
                             SizedBox(

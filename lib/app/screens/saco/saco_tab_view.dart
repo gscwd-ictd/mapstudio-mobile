@@ -41,8 +41,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Mark Dano",
         applicantAddress:
             "Block 5 Lot 10 Sarangani Homes Phase 1, Brgy. San Isidro General Santos City",
-        latitude: 6.125100,
-        longitude: 125.187256,
+        latitude: 6.1257211,
+        longitude: 125.1939712,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.newapplication,
@@ -104,8 +104,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Ayan Spin Sir",
         applicantAddress:
             "Block 35 Lot 8 Sarangani Homes Phase 2, Brgy. San Isidro General Santos City",
-        longitude: 6.115171,
-        latitude: 125.178298,
+        longitude: 6.1255063,
+        latitude: 124.0637916,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.completed,
