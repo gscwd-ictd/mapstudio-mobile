@@ -41,8 +41,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Mark Dano",
         applicantAddress:
             "Block 5 Lot 10 Sarangani Homes Phase 1, Brgy. San Isidro General Santos City",
-        latitude: 6.1257211,
-        longitude: 125.1939712,
+        longitude: 6.1257211,
+        latitude: 125.1939712,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.newapplication,
@@ -50,8 +50,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "John Henry Alf-Acheche",
         applicantAddress:
             "Block 2 Lot 12 Sarangani Homes Phase 2, Brgy. San Isidro General Santos City",
-        latitude: 6.127977,
-        longitude: 125.184778,
+        longitude: 6.127977,
+        latitude: 125.184778,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.completed,
@@ -59,8 +59,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Recardo Vincente Narvaiz",
         applicantAddress:
             "Block 11 Lot 320 Maldives Subdivision, Brgy. San Isidro General Santos City",
-        latitude: 6.126642,
-        longitude: 125.181849,
+        longitude: 6.126642,
+        latitude: 125.181849,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.completed,
@@ -68,8 +68,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Jelea Gleyn Nacerna",
         applicantAddress:
             "Block 1 Lot 23 Jolibee Homes, Brgy. Bula General Santos City",
-        latitude: 6.122512,
-        longitude: 125.181731,
+        longitude: 6.122512,
+        latitude: 125.181731,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.returned,
@@ -77,8 +77,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Aileen Joshua Tubero",
         applicantAddress:
             "Block 5 Lot 10 Saranganhi Homes Phase 1, Brgy. San Isidro General Santos City",
-        latitude: 6.119130,
-        longitude: 125.181216,
+        longitude: 6.119130,
+        latitude: 125.181216,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.newapplication,
@@ -86,8 +86,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Kara Kara Jane Ray Yes",
         applicantAddress:
             "Block 33 Lot 22 Mt. Matutum Subdivision, Brgy. Mabuhay General Santos City",
-        latitude: 6.117424,
-        longitude: 125.185561,
+        longitude: 6.117424,
+        latitude: 125.185561,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.newapplication,
@@ -95,8 +95,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Aimee Marcoss",
         applicantAddress:
             "Block 2 Lot 32 Sarangani Homes Phase 1, Brgy. San Isidro General Santos City",
-        latitude: 6.121033,
-        longitude: 125.189123,
+        longitude: 6.121033,
+        latitude: 125.189123,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.returned,
@@ -131,8 +131,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Aileen Joshua Tubero",
         applicantAddress:
             "Block 15 Lot 45 Saranganhi Homes Phase 1, Brgy. San Isidro General Santos City",
-        latitude: 6.120447,
-        longitude: 125.179317,
+        longitude: 6.120447,
+        latitude: 125.179317,
       ),
       SacoListModel(
         sacoStatus: SacoStatus.returned,
@@ -140,8 +140,8 @@ class _SacoTabViewState extends State<SacoTabView>
         applicantName: "Kumeer Low Garancun",
         applicantAddress:
             "Block 23 Lot 1 Mt. Matutum Subdivision, Brgy. Mabuhay General Santos City",
-        latitude: 6.122601,
-        longitude: 125.184531,
+        longitude: 6.122601,
+        latitude: 125.184531,
       ),
     ];
 

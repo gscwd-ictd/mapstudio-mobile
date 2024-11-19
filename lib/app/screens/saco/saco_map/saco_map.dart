@@ -176,9 +176,9 @@ class _SacoMapState extends State<SacoMap> {
               ontap: () {
                 mapRouteBloc.add(GetMapRouteRequest(
                     startingPoint:
-                        '${geolocationBloc.state.currentLongitude.toString()}, ${geolocationBloc.state.currentLatitude.toString()}',
+                        '${geolocationBloc.state.currentLongitude}, ${geolocationBloc.state.currentLatitude}',
                     destinationPoint:
-                        '${finalSacoList[i].longitude.toString()}, ${finalSacoList[i].latitude.toString()}'));
+                        '${finalSacoList[i].latitude}, ${finalSacoList[i].longitude}'));
                 MarkerUtil.currentMarkerTap = LatLng(
                     finalSacoList[i].longitude, finalSacoList[i].latitude);
                 ontap();
