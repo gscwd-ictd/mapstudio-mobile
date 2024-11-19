@@ -12,7 +12,8 @@ Marker createMarker(
     required String sacoNumber,
     required String name,
     required String address,
-    required Function ontap}) {
+    required Function ontap,
+    required Function onYesTap}) {
   return Marker(
     width: MarkerUtil.currentMarkerTap == position ? 80.w : 60,
     height: MarkerUtil.currentMarkerTap == position ? 30.h : 80,
@@ -68,7 +69,9 @@ Marker createMarker(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 DefaultButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    onYesTap();
+                                  },
                                   buttonText: 'ACCEPT',
                                   buttonWidth: 12.w,
                                   txtSize: 15.sp,

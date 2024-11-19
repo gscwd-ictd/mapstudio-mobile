@@ -27,39 +27,44 @@ class _SacoFormDetailState extends State<SacoFormDetail> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 4.w, bottom: 2.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(widget.sacoNumber,
-                  style:
-                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-                  textScaler: TextScaler.linear(
-                      TextScaleUtil.textScaleFactor(context))),
-              Padding(
-                padding: EdgeInsets.only(left: 3.w),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(widget.applicantName,
-                        style: TextStyle(fontSize: 16.sp),
-                        textScaler: TextScaler.linear(
-                            TextScaleUtil.textScaleFactor(context))),
-                    Text(widget.applicantAddress,
-                        style: TextStyle(fontSize: 16.sp),
-                        textScaler: TextScaler.linear(
-                            TextScaleUtil.textScaleFactor(context))),
-                  ],
+      child: SizedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(widget.sacoNumber,
+                    style:
+                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+                    textScaler: TextScaler.linear(
+                        TextScaleUtil.textScaleFactor(context))),
+                SizedBox(
+                  width: 90.w,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 3.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(widget.applicantName,
+                            style: TextStyle(fontSize: 16.sp),
+                            textScaler: TextScaler.linear(
+                                TextScaleUtil.textScaleFactor(context))),
+                        Text(widget.applicantAddress,
+                            style: TextStyle(fontSize: 16.sp),
+                            textScaler: TextScaler.linear(
+                                TextScaleUtil.textScaleFactor(context))),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          )
-        ],
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

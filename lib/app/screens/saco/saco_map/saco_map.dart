@@ -130,6 +130,44 @@ class _SacoMapState extends State<SacoMap> {
       for (int i = 0; i < finalSacoList.length; i++) {
         markers.add(
           createMarker(
+              onYesTap: () {
+                showModalBottomSheet<void>(
+                    context: context,
+                    isScrollControlled: true,
+                    isDismissible: false,
+                    useRootNavigator: true,
+                    builder: (BuildContext context) {
+                      return Container(
+                        color:
+                            const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                          child: DraggableScrollableSheet(
+                              expand: false,
+                              snap: false,
+                              builder: (_, controller) {
+                                return SingleChildScrollView(
+                                    physics: const BouncingScrollPhysics(),
+                                    controller: controller,
+                                    child: SizedBox(
+                                        height: 120.h,
+                                        child: SacoForm(
+                                            sacoNumber:
+                                                finalSacoList[i].sacoNumber,
+                                            applicantName:
+                                                finalSacoList[i].applicantName,
+                                            applicantAddress: finalSacoList[i]
+                                                .applicantAddress,
+                                            sacoStatus:
+                                                finalSacoList[i].sacoStatus,
+                                            latitude: finalSacoList[i].latitude,
+                                            longitude:
+                                                finalSacoList[i].longitude)));
+                              }),
+                        ),
+                      );
+                    });
+              },
               position:
                   LatLng(finalSacoList[i].longitude, finalSacoList[i].latitude),
               address: finalSacoList[i].applicantAddress,
