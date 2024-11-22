@@ -184,7 +184,7 @@ class _SacoTabViewState extends State<SacoTabView>
                           tabController.animateTo(index);
                         },
                         minHeightOfItem: 20,
-                        minWidthOfItem: MediaQuery.sizeOf(context).width * 0.50,
+                        minWidthOfItem: MediaQuery.sizeOf(context).width * 0.52,
                         deActiveItemColor: Colors.white,
                         activeItemColor: const Color.fromARGB(255, 29, 41, 67),
                         deActiveTextStyle:
