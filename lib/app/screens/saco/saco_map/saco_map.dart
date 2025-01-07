@@ -173,6 +173,7 @@ class _SacoMapState extends State<SacoMap> {
               address: finalSacoList[i].applicantAddress,
               name: finalSacoList[i].applicantName,
               sacoNumber: finalSacoList[i].sacoNumber,
+              sacoStatus: finalSacoList[i].sacoStatus,
               ontap: () {
                 mapRouteBloc.add(GetMapRouteRequest(
                     startingPoint:

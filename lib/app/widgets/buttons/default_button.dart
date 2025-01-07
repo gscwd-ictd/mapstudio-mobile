@@ -45,7 +45,7 @@ class _DefaultButtonState extends State<DefaultButton> {
           fontWeight: FontWeight.normal,
           color: widget.txtColor == null ? Colors.white : widget.txtColor!,
           text: widget.buttonText,
-          txtSize: widget.txtSize ?? 18.sp,
+          txtSize: widget.txtSize ?? 14.sp,
         ),
       ),
       onPressed: () {

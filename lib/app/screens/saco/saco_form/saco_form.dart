@@ -86,7 +86,7 @@ class _SacoFormState extends State<SacoForm> {
                 height: 6.h,
                 child: DefaultButton(
                   buttonText: 'PROCEED',
-                  buttonWidth: 30.w,
+                  buttonWidth: 10.w,
                   onPressed: () {
                     showDialog(
                         barrierDismissible: false,
