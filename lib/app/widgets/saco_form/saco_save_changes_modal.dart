@@ -108,7 +108,7 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                       right: 5.w,
                     ),
                     child: SizedBox(
-                      height: 78.h,
+                      height: 72.h,
                       child: SingleChildScrollView(
                         child: Padding(
                           padding: EdgeInsets.only(left: 5.w, top: 2.h),
@@ -336,35 +336,38 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                   ),
                   SizedBox(
                     height: 5.h,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        DefaultButton(
-                          onPressed: () {
-                            showDialog(
-                                barrierDismissible: true,
-                                barrierColor:
-                                    const Color.fromRGBO(255, 255, 255, 80),
-                                // ignore: use_build_context_synchronously
-                                context: context,
-                                builder: (context) => const SacoSavedModal());
-                          },
-                          buttonText: 'SAVE',
-                          buttonWidth: 24.w,
-                          btnColor: AppColors.mainColor,
-                        ),
-                        DefaultButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          buttonText: 'BACK',
-                          buttonWidth: 2.w,
-                          btnColor: Colors.white,
-                          txtColor: AppColors.lblColor,
-                          borderSide: const BorderSide(
-                              color: AppColors.mainColor, width: 0.8),
-                        )
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          DefaultButton(
+                            onPressed: () {
+                              showDialog(
+                                  barrierDismissible: true,
+                                  barrierColor:
+                                      const Color.fromRGBO(255, 255, 255, 80),
+                                  // ignore: use_build_context_synchronously
+                                  context: context,
+                                  builder: (context) => const SacoSavedModal());
+                            },
+                            buttonText: 'SAVE',
+                            buttonWidth: 22.w,
+                            btnColor: AppColors.mainColor,
+                          ),
+                          DefaultButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            buttonText: 'BACK',
+                            buttonWidth: 2.w,
+                            btnColor: Colors.white,
+                            txtColor: AppColors.lblColor,
+                            borderSide: const BorderSide(
+                                color: AppColors.mainColor, width: 0.8),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],

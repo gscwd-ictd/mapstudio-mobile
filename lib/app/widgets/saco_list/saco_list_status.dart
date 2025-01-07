@@ -6,10 +6,12 @@ import '../../../common/enums/saco_status_enum.dart';
 // ignore: must_be_immutable
 class SacoStatusLabel extends StatefulWidget {
   final SacoStatus status;
+  final double txtStatus;
 
   const SacoStatusLabel({
     super.key,
     required this.status,
+    required this.txtStatus,
   });
 
   @override
@@ -38,6 +40,7 @@ class _SacoStatusLabelState extends State<SacoStatusLabel> {
           padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
           child: Text(
               style: TextStyle(
+                  fontSize: widget.txtStatus,
                   fontWeight: FontWeight.bold,
                   color: widget.status == SacoStatus.returned ||
                           widget.status == SacoStatus.completed

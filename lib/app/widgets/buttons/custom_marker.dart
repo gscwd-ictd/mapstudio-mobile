@@ -4,14 +4,18 @@ import 'package:latlong2/latlong.dart';
 import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:mapstudio/app/widgets/drawing/triangle_drawing.dart';
 import 'package:mapstudio/common/constants/colors.dart';
+import 'package:mapstudio/common/enums/saco_status_enum.dart';
 import 'package:mapstudio/common/utils/marker_util.dart';
 import 'package:sizer/sizer.dart';
+
+import '../saco_list/saco_list_status.dart';
 
 Marker createMarker(
     {required LatLng position,
     required String sacoNumber,
     required String name,
     required String address,
+    required SacoStatus sacoStatus,
     required Function ontap,
     required Function onYesTap}) {
   return Marker(
@@ -49,45 +53,73 @@ Marker createMarker(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(sacoNumber,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(sacoNumber,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold)),
+                              SacoStatusLabel(
+                                status: sacoStatus,
+                                txtStatus: 10,
+                              ),
+                            ],
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text('APPLICANT NAME'),
-                                const Text('ADDRESS'),
+                                Text(name),
+                                Text(address),
                                 SizedBox(height: 2.h)
                               ],
                             ),
                           ),
                           SizedBox(
-                            height: 4.h,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                DefaultButton(
-                                  onPressed: () {
-                                    onYesTap();
-                                  },
-                                  buttonText: 'ACCEPT',
-                                  buttonWidth: 12.w,
-                                  txtSize: 15.sp,
-                                ),
-                                DefaultButton(
-                                  onPressed: () {},
-                                  buttonText: 'DECLINE',
-                                  buttonWidth: 0.6.w,
-                                  btnColor: Colors.white,
-                                  txtColor: AppColors.lblColor,
-                                  txtSize: 16.sp,
-                                  borderSide: const BorderSide(
-                                      color: AppColors.mainColor, width: 0.8),
-                                )
-                              ],
-                            ),
+                            height: 5.h,
+                            child: sacoStatus == SacoStatus.newapplication
+                                ? Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      DefaultButton(
+                                        onPressed: () {
+                                          onYesTap();
+                                        },
+                                        buttonText: 'ACCEPT',
+                                        buttonWidth: 10.w,
+                                        txtSize: 15.sp,
+                                      ),
+                                      DefaultButton(
+                                        onPressed: () {},
+                                        buttonText: 'DECLINE',
+                                        buttonWidth: 0.6.w,
+                                        btnColor: Colors.white,
+                                        txtColor: AppColors.lblColor,
+                                        txtSize: 15.sp,
+                                        borderSide: const BorderSide(
+                                            color: AppColors.mainColor,
+                                            width: 0.8),
+                                      )
+                                    ],
+                                  )
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      DefaultButton(
+                                        onPressed: () {},
+                                        buttonText: 'CLOSE',
+                                        buttonWidth: 0.6.w,
+                                        btnColor: Colors.white,
+                                        txtColor: AppColors.lblColor,
+                                        txtSize: 15.sp,
+                                        borderSide: const BorderSide(
+                                            color: AppColors.mainColor,
+                                            width: 0.8),
+                                      )
+                                    ],
+                                  ),
                           ),
                         ],
                       ),

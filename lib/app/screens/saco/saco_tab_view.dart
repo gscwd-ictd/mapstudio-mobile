@@ -36,7 +36,7 @@ class _SacoTabViewState extends State<SacoTabView>
   Widget build(BuildContext context) {
     List<SacoListModel> dummySacoList = [
       SacoListModel(
-        sacoStatus: SacoStatus.newapplication,
+        sacoStatus: SacoStatus.inprogress,
         sacoNumber: "256854",
         applicantName: "Mark Dano",
         applicantAddress:
