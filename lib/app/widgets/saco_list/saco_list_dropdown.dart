@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapstudio/common/enums/saco_status_enum.dart';
 
+import '../../../domain/blocs/geolocation_bloc/geolocation_bloc.dart';
+import '../../../domain/blocs/map_route_bloc/map_route_bloc.dart';
 import '../../../domain/blocs/saco_dashboard_bloc/saco_dashboard_bloc.dart';
 import '../../../domain/blocs/saco_dashboard_bloc/saco_dashboard_event.dart';
 
@@ -27,7 +29,8 @@ class _SacoListDropDownState extends State<SacoListDropDown> {
   @override
   Widget build(BuildContext context) {
     final sacoDashboardBloc = BlocProvider.of<SacoDashboardBloc>(context);
-
+    final mapRouteBloc = BlocProvider.of<MapRouteBloc>(context);
+    final geoLocationBloc = BlocProvider.of<GeolocationBloc>(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       child: DropdownButton<String>(
@@ -38,8 +41,8 @@ class _SacoListDropDownState extends State<SacoListDropDown> {
         items: <String>[
           'All',
           'New',
-          // 'In Progress',
-          // 'Forwarded',
+          'In Progress',
+          'Forwarded',
           'Returned',
           'Completed'
         ].map((String value) {
@@ -56,7 +59,12 @@ class _SacoListDropDownState extends State<SacoListDropDown> {
         }).toList(),
         onChanged: (newValue) {
           SacoStatus newStatus = SacoStatus.all;
-
+          //reset polylines/routing in map when saco status dropdown is change in dashboard
+          mapRouteBloc.add(GetMapRouteRequest(
+              startingPoint:
+                  '${geoLocationBloc.state.currentLongitude}, ${geoLocationBloc.state.currentLatitude}',
+              destinationPoint:
+                  '${geoLocationBloc.state.currentLatitude}, ${geoLocationBloc.state.currentLongitude}'));
           switch (newValue) {
             case 'All':
               newStatus = SacoStatus.all;

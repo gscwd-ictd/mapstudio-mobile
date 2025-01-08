@@ -7,20 +7,26 @@ import 'package:mapstudio/app/widgets/saco_form/saco_save_changes_modal.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../common/enums/saco_status_enum.dart';
+import '../../../../data/models/pfdf_model.dart';
+import '../../pfdf/pfdf.dart';
 
 class SacoForm extends StatefulWidget {
   final String sacoNumber;
   final String applicantName;
   final String applicantAddress;
   final SacoStatus sacoStatus;
+  final List<PfdfModel> pfdf;
+
   final double latitude;
   final double longitude;
+
   const SacoForm(
       {super.key,
       required this.sacoNumber,
       required this.applicantName,
       required this.applicantAddress,
       required this.sacoStatus,
+      required this.pfdf,
       required this.latitude,
       required this.longitude});
 
@@ -88,20 +94,30 @@ class _SacoFormState extends State<SacoForm> {
                   buttonText: 'PROCEED',
                   buttonWidth: 10.w,
                   onPressed: () {
-                    showDialog(
-                        barrierDismissible: false,
-                        // barrierColor: const Color.fromRGBO(255, 255, 255, 80),
-                        // ignore: use_build_context_synchronously
-                        context: context,
-                        builder: (context) => SacoSaveChangesModal(
-                              tileLayer: openStreetMapTileLayer,
-                              sacoNumber: widget.sacoNumber,
-                              applicantName: widget.applicantName,
-                              applicantAddress: widget.applicantAddress,
-                              sacoStatus: widget.sacoStatus,
-                              latitude: widget.latitude,
-                              longitude: widget.longitude,
-                            ));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Pfdf(
+                                pfdf: widget.pfdf,
+                                sacoNumber: widget.sacoNumber,
+                                applicantName: widget.applicantName,
+                                applicantAddress: widget.applicantAddress,
+                                sacoStatus: widget.sacoStatus)));
+
+                    // showDialog(
+                    //     barrierDismissible: false,
+                    //     // barrierColor: const Color.fromRGBO(255, 255, 255, 80),
+                    //     // ignore: use_build_context_synchronously
+                    //     context: context,
+                    //     builder: (context) => SacoSaveChangesModal(
+                    //           tileLayer: openStreetMapTileLayer,
+                    //           sacoNumber: widget.sacoNumber,
+                    //           applicantName: widget.applicantName,
+                    //           applicantAddress: widget.applicantAddress,
+                    //           sacoStatus: widget.sacoStatus,
+                    //           latitude: widget.latitude,
+                    //           longitude: widget.longitude,
+                    //         ));
                   },
                 ),
               ),

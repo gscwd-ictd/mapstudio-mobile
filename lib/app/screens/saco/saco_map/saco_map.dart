@@ -152,21 +152,27 @@ class _SacoMapState extends State<SacoMap> {
                                     child: SizedBox(
                                         height: 120.h,
                                         child: SacoForm(
-                                            sacoNumber:
-                                                finalSacoList[i].sacoNumber,
-                                            applicantName:
-                                                finalSacoList[i].applicantName,
-                                            applicantAddress: finalSacoList[i]
-                                                .applicantAddress,
-                                            sacoStatus:
-                                                finalSacoList[i].sacoStatus,
-                                            latitude: finalSacoList[i].latitude,
-                                            longitude:
-                                                finalSacoList[i].longitude)));
+                                          sacoNumber:
+                                              finalSacoList[i].sacoNumber,
+                                          applicantName:
+                                              finalSacoList[i].applicantName,
+                                          applicantAddress:
+                                              finalSacoList[i].applicantAddress,
+                                          sacoStatus:
+                                              finalSacoList[i].sacoStatus,
+                                          latitude: finalSacoList[i].latitude,
+                                          longitude: finalSacoList[i].longitude,
+                                          pfdf: finalSacoList[i].pfdf,
+                                        )));
                               }),
                         ),
                       );
                     });
+              },
+              onNoTap: () {
+                setState(() {
+                  MarkerUtil.currentMarkerTap = LatLng(0, 0);
+                });
               },
               position:
                   LatLng(finalSacoList[i].longitude, finalSacoList[i].latitude),
