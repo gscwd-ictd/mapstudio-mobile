@@ -32,7 +32,7 @@ class _PfdfListDetailState extends State<PfdfListDetail>
           border: Border(
               bottom: BorderSide(
         width: 2,
-        color: Color.fromARGB(255, 237, 240, 245),
+        color: Color.fromARGB(255, 240, 238, 238),
       ))),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),

@@ -17,6 +17,7 @@ import 'package:mapstudio/common/utils/file_util.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../common/enums/saco_status_enum.dart';
+import '../../../data/models/pfdf_model.dart';
 import '../buttons/location_pin_button.dart';
 
 class SacoAcceptRequestModal extends StatefulWidget {
@@ -27,6 +28,7 @@ class SacoAcceptRequestModal extends StatefulWidget {
   final SacoStatus sacoStatus;
   final double latitude;
   final double longitude;
+  final List<PfdfModel> pfdf;
 
   const SacoAcceptRequestModal(
       {super.key,
@@ -36,7 +38,8 @@ class SacoAcceptRequestModal extends StatefulWidget {
       required this.sacoNumber,
       required this.applicantName,
       required this.applicantAddress,
-      required this.sacoStatus});
+      required this.sacoStatus,
+      required this.pfdf});
 
   @override
   State<SacoAcceptRequestModal> createState() => _SacoAcceptRequestModalState();
@@ -324,7 +327,8 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                                                     .latitude,
                                                                 longitude: widget
                                                                     .longitude,
-                                                                pfdf: [],
+                                                                pfdf:
+                                                                    widget.pfdf,
                                                               )));
                                                     }),
                                               ),

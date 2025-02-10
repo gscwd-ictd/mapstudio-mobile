@@ -61,6 +61,7 @@ class _SacoListDetailState extends State<SacoListDetail>
                               applicantName: widget.applicantName,
                               applicantAddress: widget.applicantAddress,
                               sacoStatus: widget.sacoStatus,
+                              pfdf: widget.pfdf,
                             )),
                       ));
             }
