@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapstudio/common/enums/saco_status_enum.dart';
 import 'package:mapstudio/data/models/pfdf_model.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../common/constants/colors.dart';
+import '../../widgets/buttons/default_button.dart';
 import '../../widgets/pfdf/pfdf_list_detail.dart';
 
 class Pfdf extends StatefulWidget {
@@ -24,6 +27,8 @@ class Pfdf extends StatefulWidget {
 }
 
 class _PfdfState extends State<Pfdf> {
+  bool isEditing = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,19 +60,82 @@ class _PfdfState extends State<Pfdf> {
           ],
         ),
       ),
-      body: Stack(
+      body: Column(
         children: [
-          ListView.builder(
-              padding: const EdgeInsets.fromLTRB(0, 4, 0, 20),
-              itemCount: widget.pfdf.length,
-              itemBuilder: (context, index) {
-                return PfdfListDetail(
-                  fixtureCount: widget.pfdf[index].fixtureCount,
-                  fixtureName: widget.pfdf[index].fixtureName,
-                  fixtureDesc: widget.pfdf[index].fixtureDesc,
-                  fixtureImage: widget.pfdf[index].fixtureImage,
-                );
-              })
+          Expanded(
+              flex: 1,
+              child: Container(
+                decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          width: 2, color: Color.fromARGB(255, 240, 238, 238))),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      !isEditing
+                          ? GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isEditing = true;
+                                });
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  FaIcon(
+                                    FontAwesomeIcons.penToSquare,
+                                    color: Colors.grey[500],
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 3, 0, 0),
+                                    child: Text(
+                                      'Edit',
+                                      style: TextStyle(
+                                          color: Colors.grey[500],
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ))
+                          : Text('test'),
+                    ],
+                  ),
+                ),
+              )),
+          Expanded(
+            flex: 15,
+            child: ListView.builder(
+                padding: const EdgeInsets.fromLTRB(0, 4, 0, 20),
+                itemCount: widget.pfdf.length,
+                itemBuilder: (context, index) {
+                  return PfdfListDetail(
+                    fixtureCount: widget.pfdf[index].fixtureCount,
+                    fixtureName: widget.pfdf[index].fixtureName,
+                    fixtureDesc: widget.pfdf[index].fixtureDesc,
+                    fixtureImage: widget.pfdf[index].fixtureImage,
+                  );
+                }),
+          ),
+          Expanded(
+              flex: 2,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+                child: SizedBox(
+                  height: 6.h,
+                  child: DefaultButton(
+                    buttonText: 'PROCEED',
+                    buttonWidth: 10.w,
+                    onPressed: () {},
+                  ),
+                ),
+              )),
         ],
       ),
     );
