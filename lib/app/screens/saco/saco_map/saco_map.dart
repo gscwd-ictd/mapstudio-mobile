@@ -237,6 +237,13 @@ class _SacoMapState extends State<SacoMap> {
                       BlocBuilder<GeolocationBloc, GeolocationState>(
                           builder: (context, state) {
                         if (state is GeoLocationRequestDone) {
+                          //when geolocation is updated, request for new map route
+                          mapRouteBloc.add(GetMapRouteRequest(
+                              startingPoint:
+                                  '${state.currentLongitude}, ${state.currentLatitude}',
+                              destinationPoint:
+                                  '${mapRouteBloc.state.destinationPoint}'));
+
                           double? lat = state.currentLatitude;
                           double? long = state.currentLongitude;
 
