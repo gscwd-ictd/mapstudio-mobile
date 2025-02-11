@@ -17,7 +17,8 @@ Marker createMarker(
     required String address,
     required SacoStatus sacoStatus,
     required Function ontap,
-    required Function onYesTap}) {
+    required Function onYesTap,
+    required Function onNoTap}) {
   return Marker(
     width: MarkerUtil.currentMarkerTap == position ? 80.w : 60,
     height: MarkerUtil.currentMarkerTap == position ? 30.h : 80,
@@ -88,38 +89,97 @@ Marker createMarker(
                                           onYesTap();
                                         },
                                         buttonText: 'ACCEPT',
-                                        buttonWidth: 10.w,
-                                        txtSize: 15.sp,
+                                        buttonWidth: 0.6.w,
+                                        txtSize: 14.sp,
                                       ),
                                       DefaultButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          onNoTap();
+                                        },
                                         buttonText: 'DECLINE',
                                         buttonWidth: 0.6.w,
                                         btnColor: Colors.white,
                                         txtColor: AppColors.lblColor,
-                                        txtSize: 15.sp,
+                                        txtSize: 14.sp,
+                                        borderSide: const BorderSide(
+                                            color: AppColors.mainColor,
+                                            width: 0.8),
+                                      ),
+                                      DefaultButton(
+                                        onPressed: () {
+                                          onNoTap();
+                                        },
+                                        buttonText: 'CLOSE',
+                                        buttonWidth: 0.6.w,
+                                        btnColor: Colors.white,
+                                        txtColor: AppColors.lblColor,
+                                        txtSize: 14.sp,
                                         borderSide: const BorderSide(
                                             color: AppColors.mainColor,
                                             width: 0.8),
                                       )
                                     ],
                                   )
-                                : Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      DefaultButton(
-                                        onPressed: () {},
-                                        buttonText: 'CLOSE',
-                                        buttonWidth: 0.6.w,
-                                        btnColor: Colors.white,
-                                        txtColor: AppColors.lblColor,
-                                        txtSize: 15.sp,
-                                        borderSide: const BorderSide(
-                                            color: AppColors.mainColor,
-                                            width: 0.8),
+                                : sacoStatus == SacoStatus.inprogress
+                                    ? Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          DefaultButton(
+                                            onPressed: () {
+                                              onYesTap();
+                                            },
+                                            buttonText: 'ACCEPT',
+                                            buttonWidth: 0.6.w,
+                                            txtSize: 14.sp,
+                                          ),
+                                          DefaultButton(
+                                            onPressed: () {
+                                              onNoTap();
+                                            },
+                                            buttonText: 'DECLINE',
+                                            buttonWidth: 0.6.w,
+                                            btnColor: Colors.white,
+                                            txtColor: AppColors.lblColor,
+                                            txtSize: 14.sp,
+                                            borderSide: const BorderSide(
+                                                color: AppColors.mainColor,
+                                                width: 0.8),
+                                          ),
+                                          DefaultButton(
+                                            onPressed: () {
+                                              onNoTap();
+                                            },
+                                            buttonText: 'CLOSE',
+                                            buttonWidth: 0.6.w,
+                                            btnColor: Colors.white,
+                                            txtColor: AppColors.lblColor,
+                                            txtSize: 14.sp,
+                                            borderSide: const BorderSide(
+                                                color: AppColors.mainColor,
+                                                width: 0.8),
+                                          )
+                                        ],
                                       )
-                                    ],
-                                  ),
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          DefaultButton(
+                                            onPressed: () {
+                                              onNoTap();
+                                            },
+                                            buttonText: 'CLOSE',
+                                            buttonWidth: 0.6.w,
+                                            btnColor: Colors.white,
+                                            txtColor: AppColors.lblColor,
+                                            txtSize: 15.sp,
+                                            borderSide: const BorderSide(
+                                                color: AppColors.mainColor,
+                                                width: 0.8),
+                                          )
+                                        ],
+                                      ),
                           ),
                         ],
                       ),
@@ -139,7 +199,22 @@ Marker createMarker(
               : SizedBox(
                   width: 60,
                   height: 80,
-                  child: Image.asset('assets/images/pin_surveyor.png'))
+                  child: sacoStatus == SacoStatus.newapplication
+                      ? Image.asset('assets/images/surveyPin_new.png')
+                      : sacoStatus == SacoStatus.inprogress
+                          ? Image.asset(
+                              'assets/images/surveyPin_inProgress.png')
+                          : sacoStatus == SacoStatus.forwarded
+                              ? Image.asset(
+                                  'assets/images/surveyPin_forwarded.png')
+                              : sacoStatus == SacoStatus.returned
+                                  ? Image.asset(
+                                      'assets/images/surveyPin_returned.png')
+                                  : sacoStatus == SacoStatus.completed
+                                      ? Image.asset(
+                                          'assets/images/surveyPin_completed.png')
+                                      : Image.asset(
+                                          'assets/images/surveyPin_completed.png'))
         ],
       ),
     ),

@@ -10,6 +10,7 @@ import 'package:mapstudio/app/widgets/saco_list/saco_list_status.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../common/enums/saco_status_enum.dart';
+import '../../../data/models/pfdf_model.dart';
 
 // ignore: must_be_immutable
 class SacoListDetail extends StatefulWidget {
@@ -17,6 +18,7 @@ class SacoListDetail extends StatefulWidget {
   String applicantName;
   String applicantAddress;
   SacoStatus sacoStatus;
+  List<PfdfModel> pfdf;
   final double latitude;
   final double longitude;
 
@@ -26,6 +28,7 @@ class SacoListDetail extends StatefulWidget {
     required this.applicantName,
     required this.applicantAddress,
     required this.sacoStatus,
+    required this.pfdf,
     required this.latitude,
     required this.longitude,
   });
@@ -58,6 +61,7 @@ class _SacoListDetailState extends State<SacoListDetail>
                               applicantName: widget.applicantName,
                               applicantAddress: widget.applicantAddress,
                               sacoStatus: widget.sacoStatus,
+                              pfdf: widget.pfdf,
                             )),
                       ));
             }
@@ -84,13 +88,15 @@ class _SacoListDetailState extends State<SacoListDetail>
                                   child: SizedBox(
                                       height: 120.h,
                                       child: SacoForm(
-                                          sacoNumber: widget.sacoNumber,
-                                          applicantName: widget.applicantName,
-                                          applicantAddress:
-                                              widget.applicantAddress,
-                                          sacoStatus: widget.sacoStatus,
-                                          latitude: widget.latitude,
-                                          longitude: widget.longitude)));
+                                        sacoNumber: widget.sacoNumber,
+                                        applicantName: widget.applicantName,
+                                        applicantAddress:
+                                            widget.applicantAddress,
+                                        sacoStatus: widget.sacoStatus,
+                                        latitude: widget.latitude,
+                                        longitude: widget.longitude,
+                                        pfdf: widget.pfdf,
+                                      )));
                             }),
                       ),
                     );

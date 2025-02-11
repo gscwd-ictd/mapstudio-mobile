@@ -221,6 +221,7 @@ class _SacoDashboardState extends State<SacoDashboard> {
                                     sacoStatus: finalSacoList[index].sacoStatus,
                                     latitude: finalSacoList[index].latitude,
                                     longitude: finalSacoList[index].longitude,
+                                    pfdf: finalSacoList[index].pfdf,
                                   );
                                 });
                           case <= 0:
@@ -244,6 +245,7 @@ class _SacoDashboardState extends State<SacoDashboard> {
                                         widget.sacoList[index].applicantAddress,
                                     sacoStatus:
                                         widget.sacoList[index].sacoStatus,
+                                    pfdf: finalSacoList[index].pfdf,
                                     latitude: widget.sacoList[index].latitude,
                                     longitude: widget.sacoList[index].longitude,
                                   );
