@@ -221,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           txtSize: 14,
                           radius: BorderRadius.circular(4),
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(
+                            Navigator.of(context).push(
                                 // ignore: use_build_context_synchronously
                                 PageRouteBuilder(
                               pageBuilder:
