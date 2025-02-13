@@ -49,8 +49,8 @@ class _SacoListDetailState extends State<SacoListDetail>
                   // ignore: use_build_context_synchronously
                   context: context,
                   builder: (context) => Container(
-                        color:
-                            const Color.fromARGB(255, 0, 0, 0).withOpacity(0.2),
+                        color: const Color.fromARGB(255, 0, 0, 0)
+                            .withValues(alpha: 0.2),
                         child: BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                             child: SacoAcceptRequestModal(
@@ -74,8 +74,8 @@ class _SacoListDetailState extends State<SacoListDetail>
                   useRootNavigator: true,
                   builder: (BuildContext context) {
                     return Container(
-                      color:
-                          const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                      color: const Color.fromARGB(255, 0, 0, 0)
+                          .withValues(alpha: 0.5),
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
                         child: DraggableScrollableSheet(
