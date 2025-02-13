@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mapstudio/app/screens/saco/saco_tab_view.dart';
 
+import '../../../app/screens/login/login.dart';
+
 part 'geolocation_event.dart';
 part 'geolocation_state.dart';
 
@@ -90,7 +92,8 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
           PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) {
           // Navigate to the SecondScreen
-          return const SacoTabView();
+          // return const SacoTabView();
+          return const LoginScreen();
         },
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           var tween = Tween<double>(begin: 0.0, end: 1).animate(animation);

@@ -265,7 +265,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                           builder: (context) => Container(
                                                 color: const Color.fromARGB(
                                                         255, 0, 0, 0)
-                                                    .withOpacity(0.2),
+                                                    .withValues(alpha: 0.2),
                                                 child: BackdropFilter(
                                                     filter: ImageFilter.blur(
                                                         sigmaX: 10, sigmaY: 10),
@@ -297,7 +297,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                             return Container(
                                               color: const Color.fromARGB(
                                                       255, 0, 0, 0)
-                                                  .withOpacity(0.5),
+                                                  .withValues(alpha: 0.5),
                                               child: BackdropFilter(
                                                 filter: ImageFilter.blur(
                                                     sigmaX: 15, sigmaY: 15),

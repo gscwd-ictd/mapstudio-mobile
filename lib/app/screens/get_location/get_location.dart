@@ -50,8 +50,9 @@ class _GetLocationState extends State<GetLocation> {
                   ),
                   SizedBox(
                     height: 6.h,
-                    width: 80.w,
+                    width: 90.w,
                     child: DefaultButton(
+                      radius: BorderRadius.circular(4),
                       buttonText: 'ENABLE LOCATION',
                       buttonWidth: 10.w,
                       onPressed: () {
@@ -61,26 +62,30 @@ class _GetLocationState extends State<GetLocation> {
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 90),
-                  TextButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10)),
-                    onPressed: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.of(context).size.width / 3.8,
+                  SizedBox(
+                    height: 6.h,
+                    width: 90.w,
+                    child: TextButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10)),
+                      onPressed: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(4),
                         ),
-                        child: DefaultText(
-                          color: Colors.grey,
-                          text: 'NOT NOW',
-                          txtSize: 14.sp,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: MediaQuery.of(context).size.width / 3.8,
+                          ),
+                          child: DefaultText(
+                            color: Colors.grey,
+                            text: 'NOT NOW',
+                            txtSize: 14.sp,
+                          ),
                         ),
                       ),
                     ),
