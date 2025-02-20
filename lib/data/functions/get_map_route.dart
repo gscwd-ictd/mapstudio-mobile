@@ -9,14 +9,14 @@ getRoutes(String startingPoint, String destinationPoint) async {
 
   List listOfPoints = [];
   List<LatLng> points = [];
-  print(response.statusCode);
+  // print(response.statusCode);
   if (response.statusCode == 200) {
     var data = jsonDecode(response.body);
     listOfPoints = data['features'][0]['geometry']['coordinates'];
     points = listOfPoints
         .map((e) => LatLng(e[1].toDouble(), e[0].toDouble()))
         .toList();
-    print(points);
+    // print(points);
     return {points, response.statusCode};
   } else {
     return {points = [], response.statusCode};

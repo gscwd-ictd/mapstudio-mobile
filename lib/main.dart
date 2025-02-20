@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mapstudio/app/screens/splash_screen/logo_screen.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_bloc.dart';
 import 'package:mapstudio/domain/blocs/map_layer_bloc/map_layer_event.dart';
@@ -52,7 +51,10 @@ class MyApp extends StatelessWidget {
             //
             // This works for code too, not just values: Most code changes can be
             // tested with just a hot reload.
+            bottomSheetTheme:
+                const BottomSheetThemeData(backgroundColor: Colors.transparent),
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            scaffoldBackgroundColor: Colors.white,
             useMaterial3: true,
           ),
           home: const Hero(tag: 'splash', child: LogoScreen()),

@@ -27,7 +27,7 @@ class _PlumbingAvavilableState extends State<PlumbingAvavilable> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextRadioButton(
                 rbMode: RadioButtonEnum.plumbingAvail,

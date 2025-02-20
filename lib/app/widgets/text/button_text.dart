@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mapstudio/common/utils/text_scale_util.dart';
 
+// ignore: must_be_immutable
 class DefaultText extends StatefulWidget {
   final String text;
   final double txtSize;

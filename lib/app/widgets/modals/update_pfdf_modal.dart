@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../common/constants/colors.dart';
+
 class UpdatePFDFModal extends StatefulWidget {
   const UpdatePFDFModal({super.key});
 
@@ -13,6 +15,7 @@ class _UpdatePFDFModalState extends State<UpdatePFDFModal> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: AppColors.bgColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -53,8 +56,8 @@ class _UpdatePFDFModalState extends State<UpdatePFDFModal> {
                 buttonText: 'No',
                 buttonWidth: 10.w,
                 radius: BorderRadius.circular(8),
-                btnColor: Colors.white,
-                txtColor: Colors.grey,
+                btnColor: Colors.blue,
+                txtColor: Colors.white,
                 txtSize: 16.sp),
             DefaultButton(
                 onPressed: () {
@@ -63,8 +66,8 @@ class _UpdatePFDFModalState extends State<UpdatePFDFModal> {
                 buttonText: 'Yes',
                 buttonWidth: 10.w,
                 radius: BorderRadius.circular(8),
-                btnColor: Colors.blue,
-                txtColor: Colors.white,
+                btnColor: Colors.white,
+                txtColor: Colors.grey,
                 txtSize: 16.sp)
           ],
         )

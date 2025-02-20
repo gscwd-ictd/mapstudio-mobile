@@ -7,7 +7,7 @@ class MapLayerBloc extends Bloc<MapLayerEvent, MapLayerState> {
   MapLayerBloc() : super(MapLayerStateInitial()) {
     on<InitializeMapLayer>(_initializeMapLayer);
     on<UpdateMapLayer>((event, emit) {
-      print(event.currentLayer);
+      // print(event.currentLayer);
       emit(MapLayerLoading());
       emit(MapLayerLoaded(currentLayer: event.currentLayer));
     });

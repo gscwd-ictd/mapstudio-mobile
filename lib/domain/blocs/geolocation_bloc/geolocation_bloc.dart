@@ -2,8 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:mapstudio/app/screens/saco/saco_tab_view.dart';
-
 import '../../../app/screens/login/login.dart';
 
 part 'geolocation_event.dart';
@@ -23,13 +21,13 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
   void _getGeolocationRequest(
       GetGeolocationRequest event, Emitter<GeolocationState> emit) async {
     emit(const GeoLocationRequestLoading());
-    print('geolocation request loading');
+    // print('geolocation request loading');
 
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // return Future.error('Location services are disabled.');
       emit(const GeoLocationDisabled());
-      print('geolocation request disabled');
+      // print('geolocation request disabled');
     } else {
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
@@ -49,8 +47,8 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
         emit(GeoLocationRequestDone(
             locationData.latitude, locationData.longitude));
 
-        print('geolocation request complete');
-        print('${locationData.latitude}, ${locationData.longitude}');
+        // print('geolocation request complete');
+        // print('${locationData.latitude}, ${locationData.longitude}');
       }
     }
   }
@@ -58,13 +56,13 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
   void _requestGeolocationPermission(RequestGeolocationPermission event,
       Emitter<GeolocationState> emit) async {
     emit(const GeoLocationRequestLoading());
-    print('geolocation permission request loading');
+    // print('geolocation permission request loading');
 
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // return Future.error('Location services are disabled.');
       emit(const GeoLocationDisabled());
-      print('geolocation permission request disabled');
+      // print('geolocation permission request disabled');
     } else {
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
@@ -84,10 +82,10 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
         emit(GeoLocationRequestDone(
             locationData.latitude, locationData.longitude));
 
-        print('geolocation permission request complete');
+        // print('geolocation permission request complete');
       }
       // ignore: use_build_context_synchronously
-      Navigator.of(event.context).pushReplacement(
+      Navigator.of(event.context).push(
           // ignore: use_build_context_synchronously
           PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) {

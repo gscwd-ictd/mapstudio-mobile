@@ -157,6 +157,7 @@ class _PfdfState extends State<Pfdf> {
                 child: SizedBox(
                   height: 6.h,
                   child: DefaultButton(
+                    radius: BorderRadius.circular(8),
                     buttonText: 'PROCEED',
                     buttonWidth: 10.w,
                     onPressed: () {},

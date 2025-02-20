@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mapstudio/app/widgets/buttons/text_radio_button.dart';
 import 'package:mapstudio/common/constants/labels.dart';
 import 'package:mapstudio/common/enums/radio_button_enum.dart';
-import 'package:mapstudio/common/utils/sizer_util.dart';
 import 'package:sizer/sizer.dart';
 
 class SizeOfConnection extends StatefulWidget {
@@ -28,7 +27,7 @@ class _SizeOfConnectionState extends State<SizeOfConnection> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(

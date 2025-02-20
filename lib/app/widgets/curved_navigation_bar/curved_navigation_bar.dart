@@ -1,6 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CurvedNavBar extends StatefulWidget {
   const CurvedNavBar({super.key});
@@ -21,20 +20,23 @@ class _CurvedNavBarState extends State<CurvedNavBar> {
         Padding(
           padding: EdgeInsets.all(10.0),
           child: Icon(
-            Icons.settings_outlined,
+            size: 26,
+            Icons.assignment_turned_in_outlined,
             color: Color.fromARGB(255, 29, 41, 67),
           ),
         ),
         Padding(
             padding: EdgeInsets.all(10.0),
-            child: FaIcon(
-              FontAwesomeIcons.house,
+            child: Icon(
+              size: 30,
+              Icons.home_outlined,
               color: Color.fromARGB(255, 29, 41, 67),
             )),
         Padding(
             padding: EdgeInsets.all(10.0),
-            child: FaIcon(
-              FontAwesomeIcons.circleQuestion,
+            child: Icon(
+              size: 28,
+              Icons.description_outlined,
               color: Color.fromARGB(255, 29, 41, 67),
             )),
       ],

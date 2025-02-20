@@ -6,7 +6,6 @@ import 'package:mapstudio/app/widgets/saco_form/saco_form_body/sub_form_body/plu
 import 'package:mapstudio/app/widgets/saco_form/saco_form_body/sub_form_body/size_of_connection.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_body/sub_form_body/system_available.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_body/sub_form_body/type_of_connection.dart';
-import 'package:mapstudio/common/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class SacoFormBody extends StatefulWidget {

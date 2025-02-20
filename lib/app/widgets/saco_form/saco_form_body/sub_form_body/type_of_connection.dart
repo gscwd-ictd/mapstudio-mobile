@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapstudio/app/widgets/buttons/custom_cbxButton.dart';
 import 'package:mapstudio/common/constants/labels.dart';
-import 'package:mapstudio/common/utils/cbx_button_util.dart';
 import 'package:sizer/sizer.dart';
 
 class TypeOfConnection extends StatefulWidget {

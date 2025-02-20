@@ -9,7 +9,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mapstudio/app/screens/saco/saco_form/saco_form.dart';
 import 'package:mapstudio/app/widgets/buttons/custom_marker.dart';
-import 'package:mapstudio/app/widgets/saco_form/saco_accept_request_modal.dart';
 import 'package:mapstudio/common/constants/colors.dart';
 import 'package:mapstudio/common/utils/marker_util.dart';
 import 'package:mapstudio/domain/blocs/map_route_bloc/map_route_bloc.dart';
@@ -32,6 +31,12 @@ class SacoMap extends StatefulWidget {
 }
 
 class _SacoMapState extends State<SacoMap> {
+  double currentZoom = 17;
+  double minZoom = 12;
+  double maxZoom = 20;
+  MapController mapController = MapController();
+  LatLng currentCenter = const LatLng(6.12562, 125.18451);
+
   late StreamSubscription<Position> test;
   @override
   void initState() {
@@ -55,9 +60,25 @@ class _SacoMapState extends State<SacoMap> {
   @override
   void dispose() {
     // TODO: implement dispose
-    print('disposing');
+    // print('disposing');
     test.cancel();
     super.dispose();
+  }
+
+  void zoomOut() {
+    if (currentZoom > minZoom) {
+      currentZoom = currentZoom - 1;
+      mapController.move(currentCenter, currentZoom);
+      print(currentZoom);
+    }
+  }
+
+  void zoomIn() {
+    if (currentZoom < maxZoom) {
+      currentZoom = currentZoom + 1;
+      mapController.move(currentCenter, currentZoom);
+      print(currentZoom);
+    }
   }
 
   @override
@@ -149,21 +170,17 @@ class _SacoMapState extends State<SacoMap> {
                                 return SingleChildScrollView(
                                     physics: const BouncingScrollPhysics(),
                                     controller: controller,
-                                    child: SizedBox(
-                                        height: 120.h,
-                                        child: SacoForm(
-                                          sacoNumber:
-                                              finalSacoList[i].sacoNumber,
-                                          applicantName:
-                                              finalSacoList[i].applicantName,
-                                          applicantAddress:
-                                              finalSacoList[i].applicantAddress,
-                                          sacoStatus:
-                                              finalSacoList[i].sacoStatus,
-                                          latitude: finalSacoList[i].latitude,
-                                          longitude: finalSacoList[i].longitude,
-                                          pfdf: finalSacoList[i].pfdf,
-                                        )));
+                                    child: SacoForm(
+                                      sacoNumber: finalSacoList[i].sacoNumber,
+                                      applicantName:
+                                          finalSacoList[i].applicantName,
+                                      applicantAddress:
+                                          finalSacoList[i].applicantAddress,
+                                      sacoStatus: finalSacoList[i].sacoStatus,
+                                      latitude: finalSacoList[i].latitude,
+                                      longitude: finalSacoList[i].longitude,
+                                      pfdf: finalSacoList[i].pfdf,
+                                    ));
                               }),
                         ),
                       );
@@ -171,7 +188,7 @@ class _SacoMapState extends State<SacoMap> {
               },
               onNoTap: () {
                 setState(() {
-                  MarkerUtil.currentMarkerTap = LatLng(0, 0);
+                  MarkerUtil.currentMarkerTap = const LatLng(0, 0);
                 });
               },
               position:
@@ -193,6 +210,41 @@ class _SacoMapState extends State<SacoMap> {
                 //   MarkerUtil.currentMarkerTap = LatLng(
                 //       finalSacoList[i].longitude, finalSacoList[i].latitude);
                 // });
+                showModalBottomSheet<void>(
+                    context: context,
+                    isScrollControlled: true,
+                    isDismissible: false,
+                    useRootNavigator: false,
+                    builder: (BuildContext context) {
+                      return Container(
+                        color: const Color.fromARGB(255, 0, 0, 0)
+                            .withValues(alpha: 0.0),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+                          child: DraggableScrollableSheet(
+                              initialChildSize: 0.25,
+                              maxChildSize: 1,
+                              expand: false,
+                              snap: true,
+                              builder: (_, controller) {
+                                return SingleChildScrollView(
+                                    physics: const BouncingScrollPhysics(),
+                                    controller: controller,
+                                    child: SacoForm(
+                                      sacoNumber: finalSacoList[i].sacoNumber,
+                                      applicantName:
+                                          finalSacoList[i].applicantName,
+                                      applicantAddress:
+                                          finalSacoList[i].applicantAddress,
+                                      sacoStatus: finalSacoList[i].sacoStatus,
+                                      latitude: finalSacoList[i].latitude,
+                                      longitude: finalSacoList[i].longitude,
+                                      pfdf: finalSacoList[i].pfdf,
+                                    ));
+                              }),
+                        ),
+                      );
+                    });
               }),
           // Marker(
           //   point:
@@ -217,19 +269,13 @@ class _SacoMapState extends State<SacoMap> {
             return BlocBuilder<MapLayerBloc, MapLayerState>(
               builder: (context, state) {
                 return FlutterMap(
-                    options: const MapOptions(
-                      // onTap: (tapPosition, point) async {
-                      //   mapRouteBloc.add(GetMapRouteRequest(
-                      //       startingPoint:
-                      //           '${state.currentLongitude}, ${state.currentLatitude}',
-                      //       destinationPoint:
-                      //           '${point.longitude}, ${point.latitude}'));
-                      // },
-                      initialCenter: LatLng(6.12562, 125.18451),
-                      initialZoom: 17,
-                      minZoom: 12,
-                      maxZoom: 20,
-                      interactionOptions: InteractionOptions(
+                    mapController: mapController,
+                    options: MapOptions(
+                      initialCenter: const LatLng(6.12562, 125.18451),
+                      initialZoom: currentZoom,
+                      minZoom: minZoom,
+                      maxZoom: maxZoom,
+                      interactionOptions: const InteractionOptions(
                           flags: ~InteractiveFlag.doubleTapZoom),
                     ),
                     children: [
@@ -331,7 +377,7 @@ class _SacoMapState extends State<SacoMap> {
                             backgroundColor: Colors.white,
                             shape: const CircleBorder(),
                             side: const BorderSide(color: AppColors.mainColor)),
-                        onPressed: () {},
+                        onPressed: zoomOut,
                         child: Icon(
                           FontAwesomeIcons.minus,
                           color: AppColors.mainColor,
@@ -348,7 +394,7 @@ class _SacoMapState extends State<SacoMap> {
                             backgroundColor: Colors.white,
                             shape: const CircleBorder(),
                             side: const BorderSide(color: AppColors.mainColor)),
-                        onPressed: () {},
+                        onPressed: zoomIn,
                         child: Icon(
                           Icons.add,
                           color: AppColors.mainColor,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mapstudio/app/widgets/text/button_text.dart';
-import 'package:sizer/sizer.dart';
 
 // ignore: must_be_immutable
 class LocationPinButton extends StatefulWidget {
