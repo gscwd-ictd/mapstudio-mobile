@@ -12,7 +12,6 @@ import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_returned_modal.dart';
 import 'package:mapstudio/app/widgets/text/button_text.dart';
 import 'package:mapstudio/common/constants/colors.dart';
-import 'package:mapstudio/common/constants/labels.dart';
 import 'package:mapstudio/common/utils/file_util.dart';
 import 'package:sizer/sizer.dart';
 
@@ -302,6 +301,8 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                                 filter: ImageFilter.blur(
                                                     sigmaX: 15, sigmaY: 15),
                                                 child: DraggableScrollableSheet(
+                                                    initialChildSize: 0.75,
+                                                    maxChildSize: 1,
                                                     expand: false,
                                                     snap: false,
                                                     builder: (_, controller) {
@@ -310,26 +311,21 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                                               const BouncingScrollPhysics(),
                                                           controller:
                                                               controller,
-                                                          child: SizedBox(
-                                                              height: 120.h,
-                                                              child: SacoForm(
-                                                                sacoNumber: widget
-                                                                    .sacoNumber,
-                                                                applicantName:
-                                                                    widget
-                                                                        .applicantName,
-                                                                applicantAddress:
-                                                                    widget
-                                                                        .applicantAddress,
-                                                                sacoStatus: widget
-                                                                    .sacoStatus,
-                                                                latitude: widget
-                                                                    .latitude,
-                                                                longitude: widget
-                                                                    .longitude,
-                                                                pfdf:
-                                                                    widget.pfdf,
-                                                              )));
+                                                          child: SacoForm(
+                                                            sacoNumber: widget
+                                                                .sacoNumber,
+                                                            applicantName: widget
+                                                                .applicantName,
+                                                            applicantAddress: widget
+                                                                .applicantAddress,
+                                                            sacoStatus: widget
+                                                                .sacoStatus,
+                                                            latitude:
+                                                                widget.latitude,
+                                                            longitude: widget
+                                                                .longitude,
+                                                            pfdf: widget.pfdf,
+                                                          ));
                                                     }),
                                               ),
                                             );

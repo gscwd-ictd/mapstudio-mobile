@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../common/constants/colors.dart';
-import '../../../common/utils/sizer_util.dart';
 import '../../widgets/buttons/default_button.dart';
 import '../saco/saco_tab_view.dart';
 
@@ -15,8 +13,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
-  final String _email = "";
-  final String _password = "";
+  late String _email;
+  late String _password;
 
   void _togglePassword() {
     setState(() {
@@ -157,7 +155,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                           child: TextFormField(
-                            onChanged: (text) {},
+                            onChanged: (text) {
+                              setState(() {
+                                _email = text;
+                              });
+                            },
                             style: const TextStyle(fontSize: 16),
                             decoration: const InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
@@ -180,7 +182,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 0, 30),
                           child: TextFormField(
-                            onChanged: (text) {},
+                            onChanged: (text) {
+                              setState(() {
+                                _password = text;
+                              });
+                            },
                             style: const TextStyle(fontSize: 16),
                             obscureText: _obscureText,
                             decoration: InputDecoration(

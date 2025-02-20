@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mapstudio/common/constants/colors.dart';
 import 'package:mapstudio/common/utils/text_scale_util.dart';
 import 'package:sizer/sizer.dart';
 

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mapstudio/common/constants/colors.dart';
-import 'package:mapstudio/common/utils/file_util.dart';
-import 'package:screenshot/screenshot.dart';
 import 'package:shadow_widget/shadow_widget.dart';
 import 'package:sizer/sizer.dart';
 

@@ -1,9 +1,7 @@
 library easy_animated_tabbar;
 
 import 'package:easy_animated_tabbar/easy_button_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:indexed/indexed.dart';
 
 class SacoEasyAnimatedTab extends StatefulWidget {
@@ -19,8 +17,9 @@ class SacoEasyAnimatedTab extends StatefulWidget {
   final TextStyle deActiveTextStyle;
   final double activeBorderRadius;
   final double deActiveBorderRadius;
-  SacoEasyAnimatedTab(
-      {required this.buttonTitles,
+  const SacoEasyAnimatedTab(
+      {super.key,
+      required this.buttonTitles,
       required this.onSelected,
       this.selectedIndex = 0,
       this.animationDuration = 300,

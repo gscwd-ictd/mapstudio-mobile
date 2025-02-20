@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mapstudio/app/widgets/buttons/default_button.dart';
-import 'package:mapstudio/app/widgets/text/button_text.dart';
 import 'package:mapstudio/common/constants/colors.dart';
-import 'package:mapstudio/common/utils/sizer_util.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../common/enums/saco_status_enum.dart';

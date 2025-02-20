@@ -28,7 +28,7 @@ class _SystemAvailableState extends State<SystemAvailable> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextRadioButton(
                 rbMode: RadioButtonEnum.sysAvail,

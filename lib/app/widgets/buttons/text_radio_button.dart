@@ -31,7 +31,7 @@ class _TextRadioButtonState extends State<TextRadioButton> {
     return Padding(
       padding: EdgeInsets.only(bottom: 0.6.h),
       child: SizedBox(
-        width: 42.w,
+        width: 44.w,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Container(

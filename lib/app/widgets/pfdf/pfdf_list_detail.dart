@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sizer/sizer.dart';
-
-import '../buttons/default_button.dart';
 
 // ignore: must_be_immutable
 class PfdfListDetail extends StatefulWidget {
@@ -82,23 +78,34 @@ class _PfdfListDetailState extends State<PfdfListDetail>
                 ],
               ),
             ),
-            const Expanded(
+            Expanded(
+                flex: 2,
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image(
-                  image: AssetImage("assets/images/btn_plus.png"),
-                  height: 40,
-                  width: 40,
-                ),
-                Image(
-                  image: AssetImage("assets/images/btn_minus.png"),
-                  height: 40,
-                  width: 40,
-                ),
-              ],
-            ))
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      padding: const EdgeInsets.all(0),
+                      icon: const Image(
+                        image: AssetImage("assets/images/btn_plus.png"),
+                        height: 40,
+                        width: 40,
+                      ),
+                      iconSize: 40,
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      padding: const EdgeInsets.all(0),
+                      icon: const Image(
+                        image: AssetImage("assets/images/btn_minus.png"),
+                        height: 40,
+                        width: 40,
+                      ),
+                      iconSize: 40,
+                      onPressed: () {},
+                    ),
+                  ],
+                ))
           ],
         ),
       ),

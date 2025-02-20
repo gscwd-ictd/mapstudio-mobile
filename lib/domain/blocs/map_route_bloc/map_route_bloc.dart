@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +29,7 @@ class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
     if (isNotNull && isNotEmpty) {
       var response = await http
           .get(getRouteUrl(event.startingPoint, event.destinationPoint));
-      print(event.startingPoint);
+      // print(event.startingPoint);
       List listOfPoints = [];
       List<LatLng> points = [];
 
@@ -40,9 +39,9 @@ class MapRouteBloc extends Bloc<MapRouteEvent, MapRouteState> {
         points = listOfPoints
             .map((e) => LatLng(e[1].toDouble(), e[0].toDouble()))
             .toList();
-        print(response.body);
-        print(points);
-        print('mapRoutes updated');
+        // print(response.body);
+        // print(points);
+        // print('mapRoutes updated');
         emit(MapRouteUpdated(
             points, event.startingPoint, event.destinationPoint));
 

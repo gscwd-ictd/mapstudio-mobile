@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mapstudio/app/screens/saco/saco_map/saco_map.dart';
 import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_body/saco_form_body.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_form_details.dart';
-import 'package:mapstudio/app/widgets/saco_form/saco_save_changes_modal.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../common/enums/saco_status_enum.dart';
@@ -91,6 +89,7 @@ class _SacoFormState extends State<SacoForm> {
               child: SizedBox(
                 height: 6.h,
                 child: DefaultButton(
+                  radius: BorderRadius.circular(8),
                   buttonText: 'PROCEED',
                   buttonWidth: 10.w,
                   onPressed: () {

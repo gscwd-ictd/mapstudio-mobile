@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:mapstudio/app/screens/saco/saco_form/saco_form.dart';
 import 'package:mapstudio/app/screens/saco/saco_map/saco_map.dart';
 import 'package:mapstudio/app/widgets/saco_form/saco_accept_request_modal.dart';
-import 'package:mapstudio/app/widgets/saco_form/saco_returned_modal.dart';
 import 'package:mapstudio/app/widgets/saco_list/saco_list_status.dart';
 import 'package:sizer/sizer.dart';
 
@@ -85,18 +84,15 @@ class _SacoListDetailState extends State<SacoListDetail>
                               return SingleChildScrollView(
                                   physics: const BouncingScrollPhysics(),
                                   controller: controller,
-                                  child: SizedBox(
-                                      height: 120.h,
-                                      child: SacoForm(
-                                        sacoNumber: widget.sacoNumber,
-                                        applicantName: widget.applicantName,
-                                        applicantAddress:
-                                            widget.applicantAddress,
-                                        sacoStatus: widget.sacoStatus,
-                                        latitude: widget.latitude,
-                                        longitude: widget.longitude,
-                                        pfdf: widget.pfdf,
-                                      )));
+                                  child: SacoForm(
+                                    sacoNumber: widget.sacoNumber,
+                                    applicantName: widget.applicantName,
+                                    applicantAddress: widget.applicantAddress,
+                                    sacoStatus: widget.sacoStatus,
+                                    latitude: widget.latitude,
+                                    longitude: widget.longitude,
+                                    pfdf: widget.pfdf,
+                                  ));
                             }),
                       ),
                     );

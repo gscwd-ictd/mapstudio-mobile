@@ -1,6 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names
 
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapstudio/app/widgets/map_floating_action_button/map_floating_action_button.dart';
@@ -56,8 +55,8 @@ class _MapScreen extends State<MapScreen> {
       ),
     ];
     // First get the FlutterView.
-    FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
-    final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
+    // FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
+    // final geolocationBloc = BlocProvider.of<GeolocationBloc>(context);
 
     //check if orientation is portrait or landscape
     Orientation deviceOrientation = MediaQuery.of(context).orientation;

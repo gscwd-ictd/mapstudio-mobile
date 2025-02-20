@@ -12,8 +12,6 @@ class RadioButtonUtil {
         return plumbingAvail;
       case RadioButtonEnum.sizeOfConnection:
         return sizeOfConnection;
-      default:
-        return 0;
     }
   }
 

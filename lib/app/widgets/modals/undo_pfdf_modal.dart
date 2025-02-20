@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mapstudio/app/widgets/buttons/default_button.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../common/constants/colors.dart';
+
 class UndoPfdfModal extends StatefulWidget {
   const UndoPfdfModal({super.key});
 
@@ -13,6 +15,7 @@ class _UndoPfdfModalState extends State<UndoPfdfModal> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: AppColors.bgColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -53,8 +56,8 @@ class _UndoPfdfModalState extends State<UndoPfdfModal> {
                 buttonText: 'No',
                 buttonWidth: 10.w,
                 radius: BorderRadius.circular(8),
-                btnColor: Colors.white,
-                txtColor: Colors.grey,
+                btnColor: Colors.red,
+                txtColor: Colors.white,
                 txtSize: 16.sp),
             DefaultButton(
                 onPressed: () {
@@ -63,8 +66,8 @@ class _UndoPfdfModalState extends State<UndoPfdfModal> {
                 buttonText: 'Yes',
                 buttonWidth: 10.w,
                 radius: BorderRadius.circular(8),
-                btnColor: Colors.red,
-                txtColor: Colors.white,
+                btnColor: Colors.white,
+                txtColor: Colors.grey,
                 txtSize: 16.sp)
           ],
         )
