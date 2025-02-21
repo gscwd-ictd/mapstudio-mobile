@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:mapstudio/app/screens/exact_location/exact_location.dart';
 import 'package:mapstudio/app/widgets/modals/undo_pfdf_modal.dart';
 import 'package:mapstudio/app/widgets/modals/update_pfdf_modal.dart';
 import 'package:mapstudio/common/enums/saco_status_enum.dart';
@@ -16,6 +17,8 @@ class Pfdf extends StatefulWidget {
   final String applicantName;
   final String applicantAddress;
   final SacoStatus sacoStatus;
+  final double applicantLatitude;
+  final double applicantLongitude;
 
   const Pfdf(
       {super.key,
@@ -23,7 +26,9 @@ class Pfdf extends StatefulWidget {
       required this.sacoNumber,
       required this.applicantName,
       required this.applicantAddress,
-      required this.sacoStatus});
+      required this.sacoStatus,
+      required this.applicantLatitude,
+      required this.applicantLongitude});
 
   @override
   State<Pfdf> createState() => _PfdfState();
@@ -160,7 +165,33 @@ class _PfdfState extends State<Pfdf> {
                     radius: BorderRadius.circular(8),
                     buttonText: 'PROCEED',
                     buttonWidth: 10.w,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          // ignore: use_build_context_synchronously
+                          PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          // Navigate to the SecondScreen
+                          return ExactLocation(
+                              pfdf: widget.pfdf,
+                              sacoNumber: widget.sacoNumber,
+                              applicantName: widget.applicantName,
+                              applicantAddress: widget.applicantAddress,
+                              sacoStatus: SacoStatus.inprogress,
+                              applicantLatitude: widget.applicantLatitude,
+                              applicantLongitude: widget.applicantLongitude);
+                        },
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          var tween = Tween<double>(begin: 0.0, end: 1)
+                              .animate(animation);
+                          return FadeTransition(
+                            opacity: tween,
+                            // Apply slide transition
+                            child: child,
+                          );
+                        },
+                      ));
+                    },
                   ),
                 ),
               )),

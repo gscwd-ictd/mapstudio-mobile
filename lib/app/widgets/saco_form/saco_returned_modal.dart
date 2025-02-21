@@ -54,7 +54,7 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                 stops: [0.0, 1.0],
                 tileMode: TileMode.clamp),
           ),
-          height: 54.h,
+          height: 60.h,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,8 +113,8 @@ class _SacoReturnedModalState extends State<SacoReturnedModal> {
                                     side: BorderSide.none,
                                     borderRadius: BorderRadius.circular(20)),
                                 child: SizedBox(
-                                  height: 22.h,
-                                  width: 78.w,
+                                  height: 25.h,
+                                  width: 80.w,
                                   child: FlutterMap(
                                       options: MapOptions(
                                         initialCenter: LatLng(

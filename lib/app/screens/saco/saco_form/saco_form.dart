@@ -101,7 +101,9 @@ class _SacoFormState extends State<SacoForm> {
                                 sacoNumber: widget.sacoNumber,
                                 applicantName: widget.applicantName,
                                 applicantAddress: widget.applicantAddress,
-                                sacoStatus: widget.sacoStatus)));
+                                sacoStatus: widget.sacoStatus,
+                                applicantLatitude: widget.latitude,
+                                applicantLongitude: widget.longitude)));
 
                     // showDialog(
                     //     barrierDismissible: false,

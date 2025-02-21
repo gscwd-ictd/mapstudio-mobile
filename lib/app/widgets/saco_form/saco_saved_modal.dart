@@ -78,8 +78,10 @@ class _SacoSavedModalState extends State<SacoSavedModal> {
                           Navigator.of(context).pop();
                           Navigator.of(context).pop();
                           Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
                         },
-                        buttonText: 'DONE',
+                        buttonText: 'Back to Home',
                         buttonWidth: SizerUtil.width(context) / 12),
                   ),
                 ],

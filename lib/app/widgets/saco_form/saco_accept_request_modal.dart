@@ -46,6 +46,7 @@ class SacoAcceptRequestModal extends StatefulWidget {
 
 class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
   bool isDeclined = false;
+  bool isAnimating = false;
   @override
   void initState() {
     // TODO: implement initState
@@ -110,140 +111,153 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 6.h, right: 4.w),
+                      padding: EdgeInsets.only(top: 6.h, left: 5.w, right: 5.w),
                       child: AnimatedContainer(
+                        onEnd: () {
+                          setState(() {
+                            isAnimating = false;
+                          });
+                        },
                         duration: const Duration(milliseconds: 300),
-                        height: isDeclined ? 70.h : 55.h,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 5.w),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '${isDeclined ? 'Decline' : 'Accept'} Survey Request for:',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 15.5.sp),
-                              ),
-                              SizedBox(
-                                height: 1.h,
-                              ),
-                              Text(
-                                widget.sacoNumber,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 5.w),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 0.4.h,
-                                    ),
-                                    Text(
-                                      widget.applicantName,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 16.sp),
-                                    ),
-                                    SizedBox(
-                                      height: 0.1.h,
-                                    ),
-                                    Text(
-                                      widget.applicantAddress,
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(fontSize: 16.sp),
-                                    ),
-                                    SizedBox(
-                                      height: 0.4.h,
-                                    ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(30),
-                                      child: Card(
-                                        elevation: 10,
-                                        shape: RoundedRectangleBorder(
-                                            side: BorderSide.none,
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        child: SizedBox(
-                                          height: 38.h,
-                                          width: 78.w,
-                                          child: FlutterMap(
-                                              options: MapOptions(
-                                                initialCenter: LatLng(
-                                                    widget.longitude,
-                                                    widget.latitude),
-                                                initialZoom: 17,
-                                                minZoom: 12,
-                                                maxZoom: 20,
-                                                interactionOptions:
-                                                    const InteractionOptions(
-                                                        flags: ~InteractiveFlag
-                                                            .doubleTapZoom),
-                                              ),
-                                              children: [
-                                                widget.tileLayer,
-                                                MarkerLayer(markers: [
-                                                  // marker for concessionare address (longitude/latitude)
-                                                  Marker(
-                                                    point: LatLng(
-                                                        widget.longitude,
-                                                        widget.latitude),
-                                                    width: 60,
-                                                    height: 80,
-                                                    alignment: Alignment.center,
-                                                    child: LocationPinButton(
-                                                      onPressed: () {},
-                                                    ),
+                        height: isDeclined ? 64.h : 48.h,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${isDeclined ? 'Decline' : 'Accept'} Survey Request for:',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 15.5.sp),
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Text(
+                              widget.sacoNumber,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 16.sp, fontWeight: FontWeight.bold),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 3.w),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 0.4.h,
+                                  ),
+                                  Text(
+                                    widget.applicantName,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
+                                  SizedBox(
+                                    height: 0.1.h,
+                                  ),
+                                  Text(
+                                    widget.applicantAddress,
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
+                                  SizedBox(
+                                    height: 0.4.h,
+                                  ),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: Card(
+                                      elevation: 10,
+                                      shape: RoundedRectangleBorder(
+                                          side: BorderSide.none,
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: SizedBox(
+                                        height: 30.h,
+                                        width: 80.w,
+                                        child: FlutterMap(
+                                            options: MapOptions(
+                                              initialCenter: LatLng(
+                                                  widget.longitude,
+                                                  widget.latitude),
+                                              initialZoom: 17,
+                                              minZoom: 12,
+                                              maxZoom: 20,
+                                              interactionOptions:
+                                                  const InteractionOptions(
+                                                      flags: ~InteractiveFlag
+                                                          .doubleTapZoom),
+                                            ),
+                                            children: [
+                                              widget.tileLayer,
+                                              MarkerLayer(markers: [
+                                                // marker for concessionare address (longitude/latitude)
+                                                Marker(
+                                                  point: LatLng(
+                                                      widget.longitude,
+                                                      widget.latitude),
+                                                  width: 60,
+                                                  height: 80,
+                                                  alignment: Alignment.center,
+                                                  child: LocationPinButton(
+                                                    onPressed: () {},
                                                   ),
-                                                ])
-                                              ]),
-                                        ),
+                                                ),
+                                              ])
+                                            ]),
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 0.4.h,
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                ],
                               ),
-                              //State Reason
-                              !isDeclined
-                                  ? Container()
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          'State Reason',
-                                        ),
-                                        TextFormField(
-                                          scrollPadding: EdgeInsets.symmetric(
-                                              vertical: 10.h),
-                                          style: TextStyle(fontSize: 16.sp),
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              borderSide: BorderSide.none,
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey, width: 1),
+                            ),
+                            //State Reason
+                            !isDeclined
+                                ? Container()
+                                : isAnimating
+                                    ? Container()
+                                    : Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            'State Reason',
+                                          ),
+                                          AnimatedContainer(
+                                            duration: const Duration(
+                                                milliseconds: 300),
+                                            child: TextFormField(
+                                              scrollPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 20.h),
+                                              style: TextStyle(fontSize: 16.sp),
+                                              decoration: InputDecoration(
+                                                filled: true,
+                                                fillColor: Colors.white,
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey,
+                                                      width: 1),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey,
+                                                      width: 1),
+                                                ),
+                                              ),
+                                              maxLines: 3,
                                             ),
                                           ),
-                                          maxLines: 3,
-                                        ),
-                                      ],
-                                    ),
-                            ],
-                          ),
+                                        ],
+                                      ),
+                          ],
                         ),
                       ),
                     ),
@@ -293,45 +307,58 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                                           isDismissible: false,
                                           useRootNavigator: true,
                                           builder: (BuildContext context) {
-                                            return Container(
-                                              color: const Color.fromARGB(
-                                                      255, 0, 0, 0)
-                                                  .withValues(alpha: 0.5),
-                                              child: BackdropFilter(
-                                                filter: ImageFilter.blur(
-                                                    sigmaX: 15, sigmaY: 15),
-                                                child: DraggableScrollableSheet(
-                                                    initialChildSize: 0.75,
-                                                    maxChildSize: 1,
-                                                    expand: false,
-                                                    snap: false,
-                                                    builder: (_, controller) {
-                                                      return SingleChildScrollView(
-                                                          physics:
-                                                              const BouncingScrollPhysics(),
-                                                          controller:
-                                                              controller,
-                                                          child: SacoForm(
-                                                            sacoNumber: widget
-                                                                .sacoNumber,
-                                                            applicantName: widget
-                                                                .applicantName,
-                                                            applicantAddress: widget
-                                                                .applicantAddress,
-                                                            sacoStatus: widget
-                                                                .sacoStatus,
-                                                            latitude:
-                                                                widget.latitude,
-                                                            longitude: widget
-                                                                .longitude,
-                                                            pfdf: widget.pfdf,
-                                                          ));
-                                                    }),
+                                            return Padding(
+                                              padding: EdgeInsets.only(
+                                                  bottom: MediaQuery.of(context)
+                                                      .viewInsets
+                                                      .bottom),
+                                              child: Container(
+                                                color: const Color.fromARGB(
+                                                        255, 0, 0, 0)
+                                                    .withValues(alpha: 0.5),
+                                                child: BackdropFilter(
+                                                  filter: ImageFilter.blur(
+                                                      sigmaX: 15, sigmaY: 15),
+                                                  child:
+                                                      DraggableScrollableSheet(
+                                                          initialChildSize:
+                                                              0.75,
+                                                          maxChildSize: 1,
+                                                          expand: false,
+                                                          snap: false,
+                                                          builder:
+                                                              (_, controller) {
+                                                            return SingleChildScrollView(
+                                                                physics:
+                                                                    const BouncingScrollPhysics(),
+                                                                controller:
+                                                                    controller,
+                                                                child: SacoForm(
+                                                                  sacoNumber: widget
+                                                                      .sacoNumber,
+                                                                  applicantName:
+                                                                      widget
+                                                                          .applicantName,
+                                                                  applicantAddress:
+                                                                      widget
+                                                                          .applicantAddress,
+                                                                  sacoStatus: widget
+                                                                      .sacoStatus,
+                                                                  latitude: widget
+                                                                      .latitude,
+                                                                  longitude: widget
+                                                                      .longitude,
+                                                                  pfdf: widget
+                                                                      .pfdf,
+                                                                ));
+                                                          }),
+                                                ),
                                               ),
                                             );
                                           });
                                     },
                               buttonText: isDeclined ? 'DECLINE' : 'ACCEPT',
+                              radius: BorderRadius.circular(8),
                               buttonWidth: 6.w,
                               btnColor: isDeclined
                                   ? AppColors.abortColor
@@ -341,11 +368,13 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                               onPressed: isDeclined
                                   ? () {
                                       setState(() {
+                                        isAnimating = true;
                                         isDeclined = false;
                                       });
                                     }
                                   : () {
                                       setState(() {
+                                        isAnimating = true;
                                         isDeclined = true;
                                       });
                                     },
@@ -353,6 +382,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                               buttonWidth: 2.w,
                               btnColor: Colors.white,
                               txtColor: AppColors.lblColor,
+                              radius: BorderRadius.circular(8),
                               borderSide: BorderSide(
                                   color: isDeclined
                                       ? AppColors.abortColor
@@ -367,6 +397,7 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                               buttonWidth: 1.w,
                               btnColor: Colors.white,
                               txtColor: AppColors.lblColor,
+                              radius: BorderRadius.circular(8),
                               borderSide: BorderSide(
                                   color: isDeclined
                                       ? AppColors.abortColor
@@ -389,8 +420,9 @@ class _SacoAcceptRequestModalState extends State<SacoAcceptRequestModal> {
                   color:
                       isDeclined ? AppColors.abortColor : AppColors.mainColor,
                   height: 40,
+                  width: 95.w,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18.w),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Center(
                       child: DefaultText(
                         color: Colors.white,
