@@ -35,7 +35,10 @@ class _SacoMapState extends State<SacoMap> {
   double minZoom = 12;
   double maxZoom = 20;
   MapController mapController = MapController();
-  LatLng currentCenter = const LatLng(6.12562, 125.18451);
+  LatLng currentCenter =
+      const LatLng(6.12562, 125.18451); //current center of the map
+  LatLng currentUserLocation =
+      const LatLng(6.12562, 125.18451); //current location of user
 
   late StreamSubscription<Position> test;
   @override
@@ -69,7 +72,6 @@ class _SacoMapState extends State<SacoMap> {
     if (currentZoom > minZoom) {
       currentZoom = currentZoom - 1;
       mapController.move(currentCenter, currentZoom);
-      print(currentZoom);
     }
   }
 
@@ -77,8 +79,12 @@ class _SacoMapState extends State<SacoMap> {
     if (currentZoom < maxZoom) {
       currentZoom = currentZoom + 1;
       mapController.move(currentCenter, currentZoom);
-      print(currentZoom);
     }
+  }
+
+  void reCenter() {
+    currentZoom = 17;
+    mapController.move(currentUserLocation, currentZoom);
   }
 
   @override
@@ -216,32 +222,36 @@ class _SacoMapState extends State<SacoMap> {
                     isDismissible: false,
                     useRootNavigator: false,
                     builder: (BuildContext context) {
-                      return Container(
-                        color: const Color.fromARGB(255, 0, 0, 0)
-                            .withValues(alpha: 0.0),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-                          child: DraggableScrollableSheet(
-                              initialChildSize: 0.25,
-                              maxChildSize: 1,
-                              expand: false,
-                              snap: true,
-                              builder: (_, controller) {
-                                return SingleChildScrollView(
-                                    physics: const BouncingScrollPhysics(),
-                                    controller: controller,
-                                    child: SacoForm(
-                                      sacoNumber: finalSacoList[i].sacoNumber,
-                                      applicantName:
-                                          finalSacoList[i].applicantName,
-                                      applicantAddress:
-                                          finalSacoList[i].applicantAddress,
-                                      sacoStatus: finalSacoList[i].sacoStatus,
-                                      latitude: finalSacoList[i].latitude,
-                                      longitude: finalSacoList[i].longitude,
-                                      pfdf: finalSacoList[i].pfdf,
-                                    ));
-                              }),
+                      return Padding(
+                        padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom),
+                        child: Container(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withValues(alpha: 0.0),
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+                            child: DraggableScrollableSheet(
+                                initialChildSize: 0.25,
+                                maxChildSize: 1,
+                                expand: false,
+                                snap: true,
+                                builder: (_, controller) {
+                                  return SingleChildScrollView(
+                                      physics: const BouncingScrollPhysics(),
+                                      controller: controller,
+                                      child: SacoForm(
+                                        sacoNumber: finalSacoList[i].sacoNumber,
+                                        applicantName:
+                                            finalSacoList[i].applicantName,
+                                        applicantAddress:
+                                            finalSacoList[i].applicantAddress,
+                                        sacoStatus: finalSacoList[i].sacoStatus,
+                                        latitude: finalSacoList[i].latitude,
+                                        longitude: finalSacoList[i].longitude,
+                                        pfdf: finalSacoList[i].pfdf,
+                                      ));
+                                }),
+                          ),
                         ),
                       );
                     });
@@ -258,7 +268,7 @@ class _SacoMapState extends State<SacoMap> {
           // );
         );
       }
-      print('${markers.length} markers');
+      // print('${markers.length} markers');
       return markers;
     }
 
@@ -271,6 +281,9 @@ class _SacoMapState extends State<SacoMap> {
                 return FlutterMap(
                     mapController: mapController,
                     options: MapOptions(
+                      onPositionChanged: (camera, hasGesture) {
+                        currentCenter = camera.center;
+                      },
                       initialCenter: const LatLng(6.12562, 125.18451),
                       initialZoom: currentZoom,
                       minZoom: minZoom,
@@ -296,6 +309,8 @@ class _SacoMapState extends State<SacoMap> {
                           LatLng latLng = const LatLng(0, 0);
                           if (lat != null && long != null) {
                             latLng = LatLng(lat, long);
+                            currentUserLocation =
+                                latLng; // update currentCenter for zoomIn and zoomOut functions
                             mapRouteBloc.add(GetMapRouteRequest(
                                 startingPoint:
                                     mapRouteBloc.state.startingPoint.toString(),
@@ -360,7 +375,7 @@ class _SacoMapState extends State<SacoMap> {
                             backgroundColor: Colors.white,
                             shape: const CircleBorder(),
                             side: const BorderSide(color: AppColors.mainColor)),
-                        onPressed: () {},
+                        onPressed: reCenter,
                         child: Icon(
                           Icons.my_location,
                           color: AppColors.mainColor,

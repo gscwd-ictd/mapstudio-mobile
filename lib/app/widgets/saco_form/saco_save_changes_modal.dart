@@ -164,8 +164,8 @@ class _SacoSaveChangesModalState extends State<SacoSaveChangesModal> {
                                               borderRadius:
                                                   BorderRadius.circular(8)),
                                           child: SizedBox(
-                                            height: 25.h,
-                                            width: 75.w,
+                                            height: 30.h,
+                                            width: 80.w,
                                             child: FlutterMap(
                                                 options: MapOptions(
                                                   initialCenter: LatLng(

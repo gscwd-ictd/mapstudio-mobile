@@ -72,28 +72,32 @@ class _SacoListDetailState extends State<SacoListDetail>
                   isDismissible: false,
                   useRootNavigator: true,
                   builder: (BuildContext context) {
-                    return Container(
-                      color: const Color.fromARGB(255, 0, 0, 0)
-                          .withValues(alpha: 0.5),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                        child: DraggableScrollableSheet(
-                            expand: false,
-                            snap: false,
-                            builder: (_, controller) {
-                              return SingleChildScrollView(
-                                  physics: const BouncingScrollPhysics(),
-                                  controller: controller,
-                                  child: SacoForm(
-                                    sacoNumber: widget.sacoNumber,
-                                    applicantName: widget.applicantName,
-                                    applicantAddress: widget.applicantAddress,
-                                    sacoStatus: widget.sacoStatus,
-                                    latitude: widget.latitude,
-                                    longitude: widget.longitude,
-                                    pfdf: widget.pfdf,
-                                  ));
-                            }),
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: Container(
+                        color: const Color.fromARGB(255, 0, 0, 0)
+                            .withValues(alpha: 0.5),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                          child: DraggableScrollableSheet(
+                              expand: false,
+                              snap: false,
+                              builder: (_, controller) {
+                                return SingleChildScrollView(
+                                    physics: const BouncingScrollPhysics(),
+                                    controller: controller,
+                                    child: SacoForm(
+                                      sacoNumber: widget.sacoNumber,
+                                      applicantName: widget.applicantName,
+                                      applicantAddress: widget.applicantAddress,
+                                      sacoStatus: widget.sacoStatus,
+                                      latitude: widget.latitude,
+                                      longitude: widget.longitude,
+                                      pfdf: widget.pfdf,
+                                    ));
+                              }),
+                        ),
                       ),
                     );
                   });
