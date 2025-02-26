@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shadow_widget/shadow_widget.dart';
 
 // ignore: must_be_immutable
 class PfdfListDetail extends StatefulWidget {
@@ -34,7 +35,7 @@ class _PfdfListDetailState extends State<PfdfListDetail>
         padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
               flex: 1,
@@ -49,7 +50,8 @@ class _PfdfListDetailState extends State<PfdfListDetail>
             ),
             Expanded(
               flex: 3,
-              child: ClipRRect(
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
                 child: Image(
                   image: AssetImage(widget.fixtureImage),
                   height: 75,

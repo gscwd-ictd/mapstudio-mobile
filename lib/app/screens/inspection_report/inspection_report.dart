@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mapstudio/app/screens/exact_location/exact_location.dart';
 import 'package:mapstudio/common/enums/saco_status_enum.dart';
 import 'package:mapstudio/data/models/pfdf_model.dart';
 import 'package:sizer/sizer.dart';
@@ -9,7 +8,6 @@ import '../../../../common/constants/colors.dart';
 import '../../widgets/buttons/default_button.dart';
 import '../../widgets/inspection_report/inspection_report_map.dart';
 import '../../widgets/inspection_report/saco_form_label.dart';
-import '../../widgets/pfdf/pfdf_list_detail.dart';
 import '../../widgets/saco_form/saco_saved_modal.dart';
 
 class InspectionReport extends StatefulWidget {
@@ -74,10 +72,10 @@ class _InspectionReportState extends State<InspectionReport> {
           Expanded(
               flex: 22,
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                     Container(
                       width: 100.w,
                       decoration: const BoxDecoration(
@@ -161,9 +159,35 @@ class _InspectionReportState extends State<InspectionReport> {
                         ],
                       ),
                     ),
-                  ],
-                ),
-              )),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                      child: SizedBox(
+                        height: 300,
+                        child: ListView.builder(
+                            padding: const EdgeInsets.fromLTRB(0, 4, 0, 20),
+                            itemCount: widget.pfdf.length,
+                            itemBuilder: (context, index) {
+                              return Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                    child: SizedBox(
+                                      width: 30,
+                                      child: Text(
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          '${widget.pfdf[index].fixtureCount}'),
+                                    ),
+                                  ),
+                                  Text(widget.pfdf[index].fixtureName),
+                                ],
+                              );
+                            }),
+                      ),
+                    )
+                  ]))),
           Expanded(
               flex: 3,
               child: Padding(

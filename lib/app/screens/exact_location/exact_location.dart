@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:mapstudio/app/screens/inspection_report/inspection_report.dart';
-import 'package:mapstudio/app/widgets/modals/undo_pfdf_modal.dart';
-import 'package:mapstudio/app/widgets/modals/update_pfdf_modal.dart';
 import 'package:mapstudio/common/enums/saco_status_enum.dart';
 import 'package:mapstudio/data/models/pfdf_model.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../common/constants/colors.dart';
 import '../../widgets/buttons/default_button.dart';
-import '../../widgets/pfdf/pfdf_list_detail.dart';
 
 class ExactLocation extends StatefulWidget {
   final List<PfdfModel> pfdf;

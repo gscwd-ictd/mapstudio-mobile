@@ -49,18 +49,77 @@ class _SacoTabViewState extends State<SacoTabView>
                 fixtureCount: 6,
                 fixtureName: "Bath Tub",
                 fixtureDesc: "A instrument used for bathing.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bath-tub.png"),
             PfdfModel(
                 fixtureCount: 13,
                 fixtureName: "Dish Washer",
                 fixtureDesc: "A instrument used for dish washing.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/domestic-dish-washer.png"),
             PfdfModel(
                 fixtureCount: 23,
-                fixtureName: "Water Hose",
-                fixtureDesc:
-                    "A instrument used for washing the car or the garden.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureName: "Shower Head",
+                fixtureDesc: "A instrument used for taking a bath.",
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
+            PfdfModel(
+                fixtureCount: 6,
+                fixtureName: "Bath Tub",
+                fixtureDesc: "A instrument used for bathing.",
+                fixtureImage: "assets/images/pfdf/bath-tub.png"),
+            PfdfModel(
+                fixtureCount: 13,
+                fixtureName: "Dish Washer",
+                fixtureDesc: "A instrument used for dish washing.",
+                fixtureImage: "assets/images/pfdf/domestic-dish-washer.png"),
+            PfdfModel(
+                fixtureCount: 23,
+                fixtureName: "Shower Head",
+                fixtureDesc: "A instrument used for taking a bath.",
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
+            PfdfModel(
+                fixtureCount: 6,
+                fixtureName: "Bath Tub",
+                fixtureDesc: "A instrument used for bathing.",
+                fixtureImage: "assets/images/pfdf/bath-tub.png"),
+            PfdfModel(
+                fixtureCount: 13,
+                fixtureName: "Dish Washer",
+                fixtureDesc: "A instrument used for dish washing.",
+                fixtureImage: "assets/images/pfdf/domestic-dish-washer.png"),
+            PfdfModel(
+                fixtureCount: 23,
+                fixtureName: "Shower Head",
+                fixtureDesc: "A instrument used for taking a bath.",
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
+            PfdfModel(
+                fixtureCount: 6,
+                fixtureName: "Bath Tub",
+                fixtureDesc: "A instrument used for bathing.",
+                fixtureImage: "assets/images/pfdf/bath-tub.png"),
+            PfdfModel(
+                fixtureCount: 13,
+                fixtureName: "Dish Washer",
+                fixtureDesc: "A instrument used for dish washing.",
+                fixtureImage: "assets/images/pfdf/domestic-dish-washer.png"),
+            PfdfModel(
+                fixtureCount: 23,
+                fixtureName: "Shower Head",
+                fixtureDesc: "A instrument used for taking a bath.",
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
+            PfdfModel(
+                fixtureCount: 6,
+                fixtureName: "Bath Tub",
+                fixtureDesc: "A instrument used for bathing.",
+                fixtureImage: "assets/images/pfdf/bath-tub.png"),
+            PfdfModel(
+                fixtureCount: 13,
+                fixtureName: "Dish Washer",
+                fixtureDesc: "A instrument used for dish washing.",
+                fixtureImage: "assets/images/pfdf/domestic-dish-washer.png"),
+            PfdfModel(
+                fixtureCount: 23,
+                fixtureName: "Shower Head",
+                fixtureDesc: "A instrument used for taking a bath.",
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.newapplication,
@@ -75,12 +134,12 @@ class _SacoTabViewState extends State<SacoTabView>
                 fixtureCount: 1,
                 fixtureName: "Lavatory",
                 fixtureDesc: "A room for washing things.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/lavatory.png"),
             PfdfModel(
                 fixtureCount: 1,
                 fixtureName: "Dish Washer",
                 fixtureDesc: "A instrument used for dish washing.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/domestic-dish-washer.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.completed,
@@ -93,19 +152,19 @@ class _SacoTabViewState extends State<SacoTabView>
           pfdf: [
             PfdfModel(
                 fixtureCount: 2,
-                fixtureName: "Sinks",
+                fixtureName: "Sink",
                 fixtureDesc: "A metal or glass water container.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bar-sink.png"),
             PfdfModel(
                 fixtureCount: 5,
                 fixtureName: "Dish Washer",
                 fixtureDesc: "A instrument used for dish washing.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/domestic-dish-washer.png"),
             PfdfModel(
                 fixtureCount: 2,
                 fixtureName: "Shower Head",
                 fixtureDesc: "A instrument used for bathing.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.completed,
@@ -120,17 +179,17 @@ class _SacoTabViewState extends State<SacoTabView>
                 fixtureCount: 3,
                 fixtureName: "Bidet",
                 fixtureDesc: "A small hose next to the toilet.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bidet.png"),
             PfdfModel(
                 fixtureCount: 10,
-                fixtureName: "Urinal",
-                fixtureDesc: "A instrument used for urinating.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureName: "Washing Machine",
+                fixtureDesc: "An appliance used for washing clothes.",
+                fixtureImage: "assets/images/pfdf/clothes-washer.png"),
             PfdfModel(
                 fixtureCount: 2,
                 fixtureName: "Shower Head",
                 fixtureDesc: "A instrument used for bathing.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.returned,
@@ -145,17 +204,17 @@ class _SacoTabViewState extends State<SacoTabView>
                 fixtureCount: 1,
                 fixtureName: "Bidet",
                 fixtureDesc: "A small hose next to the toilet.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bidet.png"),
             PfdfModel(
                 fixtureCount: 3,
-                fixtureName: "Urinal",
-                fixtureDesc: "A instrument used for urinating.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureName: "Washing Machine",
+                fixtureDesc: "An appliance for washing clothes.",
+                fixtureImage: "assets/images/pfdf/clothes-washer.png"),
             PfdfModel(
                 fixtureCount: 2,
-                fixtureName: "Sinks",
+                fixtureName: "Sink",
                 fixtureDesc: "A metal or glass water container.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/photo.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.newapplication,
@@ -170,17 +229,17 @@ class _SacoTabViewState extends State<SacoTabView>
                 fixtureCount: 1,
                 fixtureName: "Bidet",
                 fixtureDesc: "A small hose next to the toilet.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bidet.png"),
             PfdfModel(
                 fixtureCount: 3,
-                fixtureName: "Urinal",
-                fixtureDesc: "A instrument used for urinating.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureName: "Washing Machine",
+                fixtureDesc: "An appliance used for washing clothes.",
+                fixtureImage: "assets/images/pfdf/clothes-washer.png"),
             PfdfModel(
                 fixtureCount: 2,
-                fixtureName: "Sinks",
+                fixtureName: "Sink",
                 fixtureDesc: "A metal or glass water container.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bar-sink.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.newapplication,
@@ -193,19 +252,19 @@ class _SacoTabViewState extends State<SacoTabView>
           pfdf: [
             PfdfModel(
                 fixtureCount: 1,
-                fixtureName: "Water Hose",
+                fixtureName: "Shower Head",
                 fixtureDesc: "A hose used to water the garden.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
             PfdfModel(
                 fixtureCount: 3,
                 fixtureName: "Swimming Pool",
                 fixtureDesc: "A huge container of water used for swimming.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/photo.png"),
             PfdfModel(
                 fixtureCount: 2,
-                fixtureName: "Sinks",
+                fixtureName: "Sink",
                 fixtureDesc: "A metal or glass water container.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bar-sink.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.returned,
@@ -218,19 +277,19 @@ class _SacoTabViewState extends State<SacoTabView>
           pfdf: [
             PfdfModel(
                 fixtureCount: 1,
-                fixtureName: "Water Hose",
+                fixtureName: "Shower Head",
                 fixtureDesc: "A hose used to water the garden.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
             PfdfModel(
                 fixtureCount: 3,
                 fixtureName: "Swimming Pool",
                 fixtureDesc: "A huge container of water used for swimming.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/photo.png"),
             PfdfModel(
                 fixtureCount: 2,
-                fixtureName: "Sinks",
+                fixtureName: "Sink",
                 fixtureDesc: "A metal or glass water container.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bar-sink.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.completed,
@@ -243,9 +302,9 @@ class _SacoTabViewState extends State<SacoTabView>
           pfdf: [
             PfdfModel(
                 fixtureCount: 23,
-                fixtureName: "Water Hose",
+                fixtureName: "Shower Head",
                 fixtureDesc: "A hose used to water the garden.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.completed,
@@ -258,9 +317,9 @@ class _SacoTabViewState extends State<SacoTabView>
           pfdf: [
             PfdfModel(
                 fixtureCount: 2,
-                fixtureName: "Sinks",
+                fixtureName: "Sink",
                 fixtureDesc: "A metal or glass water container.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bar-sink.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.returned,
@@ -275,22 +334,22 @@ class _SacoTabViewState extends State<SacoTabView>
                 fixtureCount: 32,
                 fixtureName: "Bath Tub",
                 fixtureDesc: "A metal or glass water container for bathing.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bath-tub.png"),
             PfdfModel(
                 fixtureCount: 1,
-                fixtureName: "Water Hose",
+                fixtureName: "Shower Head",
                 fixtureDesc: "A hose used to water the garden.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
             PfdfModel(
                 fixtureCount: 3,
                 fixtureName: "Swimming Pool",
                 fixtureDesc: "A huge container of water used for swimming.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/photo.png"),
             PfdfModel(
                 fixtureCount: 2,
-                fixtureName: "Sinks",
+                fixtureName: "Sink",
                 fixtureDesc: "A metal or glass water container.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bar-sink.png"),
           ]),
       SacoListModel(
           sacoStatus: SacoStatus.returned,
@@ -305,22 +364,22 @@ class _SacoTabViewState extends State<SacoTabView>
                 fixtureCount: 32,
                 fixtureName: "Bath Tub",
                 fixtureDesc: "A metal or glass water container for bathing.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bath-tub.png"),
             PfdfModel(
                 fixtureCount: 1,
-                fixtureName: "Water Hose",
+                fixtureName: "Shower Head",
                 fixtureDesc: "A hose used to water the garden.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/shower-head.png"),
             PfdfModel(
                 fixtureCount: 3,
                 fixtureName: "Swimming Pool",
                 fixtureDesc: "A huge container of water used for swimming.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/photo.png"),
             PfdfModel(
                 fixtureCount: 2,
-                fixtureName: "Sinks",
+                fixtureName: "Sink",
                 fixtureDesc: "A metal or glass water container.",
-                fixtureImage: "assets/images/photo.png"),
+                fixtureImage: "assets/images/pfdf/bar-sink.png"),
           ]),
     ];
 
