@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mapstudio/app/widgets/buttons/text_radio_button.dart';
 import 'package:mapstudio/common/constants/labels.dart';
-import 'package:mapstudio/common/enums/radio_button_enum.dart';
 import 'package:sizer/sizer.dart';
 
 class SacoFormLabelAndEntry extends StatefulWidget {
